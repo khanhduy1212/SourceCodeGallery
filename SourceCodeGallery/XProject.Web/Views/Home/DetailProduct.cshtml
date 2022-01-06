@@ -1,0 +1,440 @@
+﻿@{
+    ViewBag.Title = "DetailProduct";
+    var pictureRepository = DependencyHelper.GetService<IGeneralRepository<XPicture>>();
+    var menuRepository = DependencyHelper.GetService<IGeneralRepository<XMenu>>();
+    var productRepository = DependencyHelper.GetService<IGeneralRepository<XProduct>>();
+    var lang = "";
+    var httpCookie = Request.Cookies["Language"];
+    lang = httpCookie != null ? httpCookie.Value : ConfigurationManager.AppSettings["Culture"];
+
+    var listProduct = productRepository.GetIQueryableItems().Where(x => x.CodeLanguage == lang);
+}
+@using System.Configuration
+@using XProject.Domain.Abstract
+@using XProject.Domain.Entities
+@using XProject.Web
+@using XProject.Web.Infrastructure;
+@model XProject.Domain.Entities.XProduct
+<div id="main">
+    <div id="main_scroller" class="scroll_transition">
+
+        <div id="content" data-current="specials_detail" data-controller="panel_detail" class="scroll_transition">
+
+            <div id="section_scroller">
+                <div id="section_scroller_container" class="scroll_transition forced transform_only" >
+                    <div class="section_panel intro has_transition_1500 transform_only">
+                        <div class="loading_cover has_transition_1000_inout_quint"></div>
+                        <div class="panel_start has_transition_800"></div>
+                        <div class="panel_intro">
+
+                            <div class="no_overflow">
+                                <h1 class="panel_section_title has_transition_1000 top_hidden">Products</h1>
+                            </div>
+                            <div class="no_overflow">
+                                <h2 class="panel_section_subtitle has_transition_1000 top_hidden">Extraordinary Experiences.</h2>
+                            </div>
+                            <div class="panel_section_text_container top_translated has_transition_2000">
+                                <p class="panel_section_text">Often it is the experiences that make a trip most memorable, whether that is a boat ride under the twinkling night sky with someone you love or a tension-melting massage from a&nbsp;<br />skilled masseuse. With these special offers - all of which include special experiential treats - you can elevate your Casa Angelina stay.</p>
+                                <div id="section_text_scrollbar" class="menu_panel_scrollbar">
+                                    <div class="pointer has_transition_1000"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel_separator">
+                            <div class="line_1 has_transition_1500"></div>
+                            <div class="line_2 has_transition_1500"></div>
+                        </div>
+                        <div class="swipe_ad mobile_only">
+                            <div class="no_overflow">
+                                <p class="controller_text top_hidden has_transition_1000 clswipe">swipe</p>
+                            </div>
+                            <div class="circle_button right ">
+                                <div class="back hidden_by_scaling_full has_transition_1000 transform_all"></div>
+                                <div class="arrow hidden has_transition_800">
+                                    <span class="fadeOutRight">
+                                        <img src="~/Template/images/tiny_arrow.png" style="margin-top: 15px;" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @{
+                        List<XProduct> listPA = ViewBag.ListProductAll;
+                        foreach (var item in listPA.Where(x=>x.IsLink==1).OrderBy(x=>x.Order).ToList())
+                        {
+                            <a href="@Url.Action("DetailProduct","Home",new { id=item.Name.UrlFrendly()+"-"+item.CurrentId})" class="section_panel has_transition_1500 transform_only @(item.CurrentId==Model.CurrentId?"active":"")" rel="@item.Name.UrlFrendly()" rel1="@item.IsLink">
+                                <div class="loading_cover has_transition_1000_inout_quint"></div>
+                                <div class="section_pic has_transition_1000_inout_quint scaled_full">
+                                    <div class="section_veil has_transition_800"></div>
+                                    <img class="scroll_transition" src="@(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 853))" />
+                                </div>
+                                <div class="info has_transition_1500 top_double">
+                                    <div class="num_back has_transition_1500_inout"></div>
+                                    <img class="section_triangle full_width" src="~/Template/images/4_1.png">
+                                    <div class="info_data has_transition_1500_inout">
+                                        <div class="section_panel_title"><h1>@item.Name</h1></div>
+                                        <div class="section_separator">
+                                            <div class="pointer"></div>
+                                        </div>
+                                        <div class="section_subtitle"><h2>@item.ShortDescription</h2></div>
+                                    </div>
+                                </div>
+                                <div class="details has_transition_600_quint no_opacity">
+                                    <div class="info_details">
+                                        <div class="panel_detail special">
+                                            <!--  <div class="no_overflow">
+                                                <p class="det_num top_hidden has_transition_1500"><span class="pedix">from</span>07<span>th</span><span class="monthName">&nbsp;April</span><span class="year">2019</span></p>
+                                            </div> -->
+                                            <div class="no_overflow">
+                                                <p class="det_black top_hidden has_transition_1000">AVAILABILITY:</p>
+                                            </div>
+                                            <div class="no_overflow">
+                                                <div class="det_white top_hidden has_transition_1000">from @item.CreateDate.Value.ToString("dd MMM yyyy")</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="panel_detail special">
+                                            <div class="no_overflow">
+                                                <p class="det_black top_hidden has_transition_1000">INCLUDES:</p>
+                                            </div>
+                                            <div class="no_overflow">
+                                                <div class="det_white top_hidden has_transition_1500">
+                                                    <ul>
+                                                        @{
+                                                            if ( !string.IsNullOrEmpty(item.Includes))
+                                                            {
+                                                                if (item.Includes.Trim().Length > 0)
+                                                                {
+                                                                    var __includes = item.Includes.Split('\n');
+                                                                    foreach (var _item in __includes)
+                                                                    {
+                                                                        <li><span class="dash">-</span> <span class="special_snip">@_item</span></li>
+                                                                    }
+
+                                                                }
+                                                            }
+
+
+                                                        }     
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>       
+                                        <div class="instructions mobile_only">
+                                            <p  class="clTap">tap to enter or swipe to move</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel_separator">
+                                    <div class="line_1 has_transition_1500"></div>
+                                    <div class="line_2 has_transition_1500"></div>
+                                </div>
+                            </a>
+                        }
+                    }
+                  
+                 
+                </div>
+
+                <div id="panel_controls" class="has_transition_1000 transform_only">
+                    <div class="prev has_transition_1000 hidden transform_only">
+                        <div class="panel_back has_transition_1000"></div>
+                        <div class="panel_circle has_transition_1000 hidden_by_scaling_full">
+                            <img class="has_transition_1000" src="~/Template/images/left_arrow.png" />
+                        </div>
+                        <p class="panel_text has_transition_1000">Other Specials</p>
+
+                    </div>
+                    @Html.Partial("Partial/_pMenuChild")
+                    <div class="next hidden has_transition_1000 transform_only">
+                        <div class="panel_back has_transition_1000"></div>
+                        <div class="panel_circle has_transition_1000 hidden_by_scaling_full">
+                            <img class="has_transition_1000" src="https://lamos.vn/Template/images/right_arrow.png" />
+                        </div>
+                        <p class="panel_text has_transition_1000">Other Products</p>
+                    </div>
+                </div>
+            </div>
+            <div id="section_animation" class="has_transition_1500_quint no_transition">
+                <div class="section_panel" rel="spring-is-in-the-air">
+                    <div class="section_pic first_run">
+                        <img class="scroll_transition mobile_hidden" src="@(ConfigurationManager.AppSettings["UrlImage"] + Model.UrlImage.Split('_')[0] + "/" + String.Format(Model.UrlImage, 853))">
+                        <img class="scroll_transition mobile_only" src="@(ConfigurationManager.AppSettings["UrlImage"] + Model.UrlImage.Split('_')[0] + "/" + String.Format(Model.UrlImage, 853))">
+
+                    </div>
+                    <div class="info has_transition_1500 mobile_only top_translated">
+                        <div class="num_back has_transition_1500_inout"></div>
+                        <img class="section_triangle full_width" src="~/Template/images/1_1.png">
+                        <div class="info_data has_transition_1500_inout">
+                            <div class="section_panel_title"><h1>@Model.Name</h1></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="head_content" class="has_transition_1000_inout">
+                    <div class="back_1 no_width reverse has_transition_1000_inout"></div>
+                    <div class="back_2 no_width reverse has_transition_1000_inout"></div>
+
+                    <div class="panel_name has_date">
+                        <div class="name_body">
+
+
+                            <div class="panel_intro">
+                                <div class="subsection_num">
+
+                                    <span class="number1 cusnumber">
+                                        @{
+                                            var menu = menuRepository.GetIQueryableItems().FirstOrDefault(x => x.CurrentId == Model.TypeId && x.CodeLanguage == lang);
+
+                                            if (menu != null)
+                                            {
+                                                var parentMenu = menuRepository.GetIQueryableItems().FirstOrDefault(x => x.CurrentId == menu.IdParentMenu && x.CodeLanguage == lang);
+                                                if (parentMenu.Order != null)
+                                                {
+
+                                                    <span class="dark top_double has_transition_1200">
+                                                        @switch (parentMenu.Order)
+                                                        {
+                                                            case 1:
+                                                                @("I")
+                                                                break;
+                                                            case 2:
+                                                                @("II")
+                                                                break;
+                                                            case 3:
+                                                                @("III")
+                                                                break;
+                                                            case 4:
+                                                                @("IV")
+                                                                break;
+                                                            case 5:
+                                                                @("V")
+                                                                break;
+                                                            case 6:
+                                                                @("VI")
+                                                                break;
+                                                            case 7:
+                                                                @("VII")
+                                                                break;
+                                                            case 8:
+                                                                @("VIII")
+                                                                break;
+                                                        }
+                                                        .
+                                                    </span>
+                                                    <span class="number1 cusnumber dark top_double has_transition_1200">
+                                                        @(menu.Order).
+                                                    </span>
+
+
+                                                }
+
+
+                                            }
+
+                                        }
+
+                                      
+                                    </span>
+
+                                    <span class="number2">
+                                        <span class="dark top_double has_transition_1500">
+                                            @switch (Model.Order)
+                                            {
+                                                case 1:
+                                                    @("a")
+                                                    break;
+                                                case 2:
+                                                    @("b")
+                                                    break;
+                                                case 3:
+                                                    @("c")
+                                                    break;
+                                                case 4:
+                                                    @("d")
+                                                    break;
+                                                case 5:
+                                                    @("e")
+                                                    break;
+                                                case 6:
+                                                    @("g")
+                                                    break;
+                                                case 7:
+                                                    @("h")
+                                                    break;
+                                                case 8:
+                                                    @("i")
+                                                    break;
+                                            }
+                                      
+                                        </span>
+                                    </span>
+                                  
+                                </div>
+
+                                <div class="no_overflow">
+                                    <h1 class="dark top_double has_transition_1200 panel_section_title has_transition_1500" style="color: #ffffff;">@Model.Name</h1>
+                                </div>
+                              
+
+                            </div>
+
+                            <div class="no_overflow date_container" style="margin: 30px; opacity: 0;">
+                                <div class="no_overflow">
+                                    <h2 style="font-size: 20px;" class="panel_section_subtitle has_transition_1000">@Model.ShortDescription</h2>
+                                   
+                                </div>
+                               
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="section_content">
+                <div class="row content">
+                    <div class="paragraph_details">
+                        <div class="p_detail">
+                            <h4>EXPERIENCE INCLUDES</h4>
+                            <div class="body_text smaller">
+                                <ul>
+                                    @{
+                                        if (!string.IsNullOrEmpty(Model.Includes))
+                                        {
+                                            if (Model.Includes.Trim().Length > 0)
+                                            {
+                                                var _includes = Model.Includes.Split('\n');
+                                                foreach (var _item in _includes)
+                                                {
+                                                <li><span class="dash">-</span> <span class="special_snip">@_item</span></li>
+                                            }
+                                        }
+                                        }
+
+                                    }                                  
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="paragraph first">
+                        <div class="no_overflow" style="width: 85%;">
+                            <h1 class="big_title top_hidden has_transition_1000">@Model.Title</h1>
+                        </div>
+                        <div class="no_overflow big_subtitle "  style="width: 85%;">
+                            <h2 class="big_subtitle top_hidden has_transition_1000">@Model.ShortDescription</h2>
+                        </div>
+                        <p class="body_text one_col top_translated has_transition_2000"  style="width: 85%;">@Html.Raw(Model.Description)</p>
+
+                    </div>
+                </div>
+             
+
+                <div class="row">
+                    <div id="fullscreen_gallery">
+                        <div class="gallery_borders">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                            <div class="left"></div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="gallery_slider">
+                            @{
+                                var cImages = pictureRepository.GetIQueryableItems().Where(x => x.ProductsId == Model.CurrentId && x.TypeId==1).ToList();
+                                for (int i = 0; i < cImages.Count; i++)
+                                {
+                                    var pic = cImages[i];
+                                    if (i == 0)
+                                    {
+                                        <div class="pic_big has_transition_1500 active">
+                                            <img src="@(ConfigurationManager.AppSettings["UrlImage"] + pic.ConvertedFilename.Split('_')[0] + "/" + String.Format(pic.ConvertedFilename, 853))" />
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="pic_big has_transition_1500">
+                                            <img src="@(ConfigurationManager.AppSettings["UrlImage"] + pic.ConvertedFilename.Split('_')[0] + "/" + String.Format(pic.ConvertedFilename, 853))" />
+                                        </div>
+                                    }
+
+                                }
+                            }
+                           
+                         
+                        </div>
+                        <div class="gallery_controller">
+                            <div class="button_right has_transition_800">
+                                <div class="circle has_transition_1000"><img class="has_transition_1000" src="https://lamos.vn/Template/images/white_right_arrow.png" /></div>
+                            </div>
+                            <div class="button_left has_transition_800">
+                                <div class="circle has_transition_1000"><img class="has_transition_1000" src="https://lamos.vn/Template/images/white_left_arrow.png" /></div>
+                            </div>
+                            <div class="btn-contact button_down has_transition_800">
+                                <div class="circle has_transition_1000"><img class="has_transition_1000" src="https://lamos.vn/Template/images/white_right_arrow.png" /></div>
+                            </div>
+                        </div>
+                        <div class="numbers">
+                            <p class="counter">1</p>
+                            <div class="gallery_diagonal"></div>
+                            <p class="total">@cImages.Count<p>
+                        </div>
+                        <div class="advice">
+                            <img width=20 src="~/Template/images/rotate.png" />
+                            <p>
+                                rotate for <br />fullscreen gallery
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mobile_hidden">
+                    <div id="more_specials">
+                        <div class="no_overflow">
+                            <h3 class="section_title top_hidden has_transition_1500">Remarkable Creations</h3>
+                        </div>
+
+                        <div class="special_arrow left hidden_by_scaling_full">
+                            <img src="~/Template/images/left_arrow.png" />
+                        </div>
+                        <div id="more_specials_container">
+                            <div id="more_specials_scroller">
+                                @foreach (var item in listProduct.Where(x=>x.Active==1 && x.IsLink == 1 && x.CurrentId!=Model.CurrentId).ToList())
+                                {
+                                    <a href="@Url.Action("DetailProduct","Home",new {id=item.Name.UrlFrendly()+"-"+item.CurrentId})" class="special_box">
+                                        <div class="pic_box covered">
+                                            <div class="cover white hidden has_transition_1500_inout"></div>
+
+                                            @{
+                                                var pic = pictureRepository.GetIQueryableItems().FirstOrDefault(x => x.ProductsId == item.CurrentId && x.TypeId == 1);
+                                                if (pic != null)
+                                                {
+                                                    <img class="content hidden has_transition_1500_inout special_scroller_pic" src="@(ConfigurationManager.AppSettings["UrlImage"] + pic.ConvertedFilename.Split('_')[0] + "/" + String.Format(pic.ConvertedFilename, 569320))">
+                                                }
+                                            }
+                                           
+                                        </div>
+                                        <p class="text_box top_double has_transition_1500"><span class="toUppercase">@item.Name</span></p>
+                                        <p class="text_box date_box top_double has_transition_1500">
+                                          
+                                        </p>
+
+                                    </a>
+                                }
+                              
+
+                               
+                            </div>
+                        </div>
+                        <div class="special_arrow right hidden_by_scaling_full has_transition_1500">
+                            <img src="https://lamos.vn/Template/images/right_arrow.png" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        @Html.Partial("Partial/_pFooter")
+    </div>
+</div>

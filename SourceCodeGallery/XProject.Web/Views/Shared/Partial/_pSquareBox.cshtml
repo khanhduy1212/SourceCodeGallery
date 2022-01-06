@@ -1,0 +1,44 @@
+﻿@using System.Configuration
+@using XProject.Domain.Abstract
+@using XProject.Domain.Entities
+@using XProject.Web
+@using XProject.Web.Infrastructure;
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+    var lang = "";
+
+    var contentRepository = DependencyHelper.GetService<IGeneralRepository<XContent>>();
+    var httpCookie = Request.Cookies["Language"];
+    if (httpCookie != null)
+    {
+        lang = httpCookie.Value;
+    }
+    else
+    {
+        lang = ConfigurationManager.AppSettings["Culture"];
+    }
+    var listContent = contentRepository.GetIQueryableItems().Where(x => x.Active == 1 && x.CodeLanguage == lang);
+    var index = 1;
+}
+
+<div class="row stripe">
+    @foreach (var item in listContent.Where(x => x.Type == 3).OrderBy(x => x.Order).Take(4).ToList())
+    {
+        <a href="@item.Link" class="cta half_pic top_translated no_overflow has_transition_2000">
+            <div class="description_box relative @((index==2 || index==3)?"grey":"" )">
+                <div class="transform_all back has_transition_1000"></div>
+
+                <h3 class="desc_title relative">@item.Name</h3>
+                <hr class="relative"/>
+                <p class="desc_text  relative ">@item.ShortDescription</p>
+            </div>
+            <img class="full_width has_transition_1500" data-src="@(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 683455))"/>
+
+        </a>
+        index++;
+    }
+
+
+</div>
+

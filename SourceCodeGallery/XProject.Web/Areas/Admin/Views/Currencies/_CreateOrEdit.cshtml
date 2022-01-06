@@ -1,0 +1,46 @@
+@using XProject.Domain.Entities
+@using Resources
+@model Currency
+
+<div class="form-group">
+    <label class="col-sm-3 control-label no-padding-right">@Resource.Name</label>
+    <div class="col-sm-9">
+        @Html.Bootstrap().TextBoxFor(m => m.Name).Class("form-control code").ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label no-padding-right">@Resource.Symbol</label>
+    <div class="col-sm-9">
+        @Html.Bootstrap().TextBoxFor(m => m.Symbol).Class("form-control code").ShowValidationMessage(true)
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3"></label>
+    <div class="col-sm-9">
+        <div class="checkbox">
+            <label>
+                <input name="@Html.NameFor(m => m.IsAppendSymbol)" type="checkbox" class="ace" @(Model.IsAppendSymbol ? "checked" : "") value="true" />
+                <span class="lbl"> Is Append Symbol</span>
+                <input type="hidden" name="@Html.NameFor(m => m.IsAppendSymbol)" value="false" />
+            </label>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3"></label>
+    <div class="col-sm-9">
+        <div class="checkbox">
+            <label>
+                <input name="@Html.NameFor(m => m.IsDefault)" type="checkbox" class="ace" @(Model.IsDefault ? "checked" : "") value="true"/>
+                <span class="lbl"> @Resource.IsDefault</span>
+                <input type="hidden" name="@Html.NameFor(m => m.IsDefault)" value="false" />
+            </label>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label no-padding-right">@Resource.Precision</label>
+    <div class="col-sm-9">
+        @Html.Bootstrap().TextBoxFor(m => m.Precision).Class("form-control code").ShowValidationMessage(true)
+    </div>
+</div>

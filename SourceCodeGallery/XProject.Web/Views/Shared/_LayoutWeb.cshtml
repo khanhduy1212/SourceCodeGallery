@@ -1,0 +1,660 @@
+﻿@using System.Configuration
+
+<!doctype html>
+<html lang="en" class="">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Lamos Artistic Advertising</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="keywords" content="Lamos Artistic Advertising" />
+    <meta name="description" content="Lamos Artistic Advertising" />
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="~/Template/images/logo-footer.png" sizes="32x32">
+
+    @RenderSection("share_fb", false)
+
+
+
+
+    <link rel="stylesheet" href="~/Template/css/reset.css" type="text/css">
+    <link rel="stylesheet" href="~/Template/css/fonts.css" type="text/css">
+    <link rel="stylesheet" href="~/Template/css/style.css" type="text/css">
+    <link rel="stylesheet" href="~/Template/css/glDatePicker.flatwhite.css">
+
+    <link href="~/Template/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Template/css/owl.theme.default.css" rel="stylesheet" />
+    <link href="~/Template/css/animate.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="~/Template/css/CusWeb.css" rel="stylesheet" />
+    <script>
+        var action = 'index';
+        var lang = 'en';
+
+
+
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141536391-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-141536391-1');
+    </script>
+
+</head>
+<body class="preload" id="index">
+    @*<div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3&appId=1849195448659779&autoLogAppEvents=1"></script>*@
+    <div id="main_veil" class="has_transition_1500"></div>
+    <input type="hidden" class="linkHome" value="@ConfigurationManager.AppSettings["UrlWeb"]" />
+    @Html.Partial("Partial/_pSideMobile")
+    @Html.Partial("Partial/_pMenuMobile")
+    @Html.Partial("Partial/_pMenuSide")
+    @Html.Partial("Partial/_pMainMenu")
+
+
+
+
+    @RenderBody()
+    @{
+        string actionName = Request.RequestContext.RouteData.Values["action"].ToString();
+        string controllerName = Request.RequestContext.RouteData.Values["controller"].ToString();
+        <input type="hidden" id="hdAction" value="@actionName" />
+   if (controllerName == "Home" && actionName != "Recruitment")
+        {
+
+            <div id="panelDetailController" style="pointer-events: all;">
+
+                <a href="" id="panelPrev" class="has_transition_800 top_hidden">
+                    <img src="https://lamos.vn/Template/images/panel_prev.png" />
+                    <p class="panel_text"></p>
+                </a>
+                <a href="" id="backToPanels" class="has_transition_800 top_hidden">
+                    <div class="back_circle">
+                        @*<div class="line_container">
+                                <div class="line _1"></div>
+                                <div class="line _2"></div>
+                                <div class="line _3"></div>
+                            </div>*@
+
+                        <div class="burger__iJR12 burger__iJR12-cus loaded__2RjjS  ">
+
+                            <div class="_1 one__3bfvM" style="background-color: #ffffff"></div>
+                            <div class="_2 two__37U_E" style="background-color: #ffffff"></div>
+                            <div class="_3 three__3fk-_" style="background-color: #ffffff"></div>
+
+                        </div>
+                    </div>
+                </a>
+                <a href="" id="panelNext" class="has_transition_800 top_hidden">
+
+                    <img src="https://lamos.vn/Template/images/panel_next.png" />
+                    <p class="panel_text"></p>
+                </a>
+            </div>
+        }
+        else
+        {
+            <div id="panelDetailController" style="pointer-events: all;"></div>
+        }
+    }
+
+
+    <div id="panelMobileController" class="has_transition_800 top_hidden mobile_only">
+        <a href="@Url.Action("Index", "Home")" id="mobileBack" class="has_transition_800 top_hidden">
+            back
+            <div class="line_container">
+                <div class="line _1"></div>
+                <div class="line _2"></div>
+                <div class="line _3"></div>
+            </div>
+        </a>
+
+        <div class="right_side">
+            <a href="" id="mobilePrev" class="has_transition_800 top_hidden">
+                <div class="circle_button left ">
+                    <div class="back "></div>
+                    <div class="arrow">
+                        <img src="~/Template/images/tiny_arrow.png" />
+                    </div>
+                </div>
+                <p class="controller_text clPrev">prev</p>
+            </a>
+            <a href="" id="mobileNext" class="has_transition_800 top_hidden">
+                <p class="controller_text  has_transition_1000 clNext">next</p>
+                <div class="circle_button right ">
+                    <div class="back "></div>
+                    <div class="arrow">
+                        <img src="~/Template/images/tiny_arrow.png" />
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id="book_interface" class="overlay_layer hidden has_transition_1000">
+        <div class="white_back hidden_by_scaling_low has_transition_1000"></div>
+        <div class="left_panel hidden has_transition_1000_inout">
+            <div class="no_overflow">
+                <h2 class="overlay_title top_hidden has_transition_1500">BOOK NOW</h2>
+            </div>
+            <div class="diagonal_line hidden has_transition_1000_inout">
+                <div class="_1"></div>
+                <div class="_2"></div>
+            </div>
+        </div>
+        <div class="right_panel">
+            <div id="book_form_container">
+                <div class="form_input date arrival has_transition_800">
+                    <label for="arrival" class="top_double has_transition_1000">arrival<img src="~/Template/images/calendar.png" /></label><input readonly name="arrival" class="top_double has_transition_1000_inout" type="text" id="arrival" value="03/05/2019">
+                </div>
+                <div class="form_input date departure has_transition_800">
+                    <label for="departure" class="top_double has_transition_1000">departure<img src="~/Template/images/calendar.png" /></label><input readonly class="top_double has_transition_1000_inout" name="departure" type="text" id="departure" value="03/07/2019">
+                </div>
+                <div class="form_input people has_transition_800">
+                    <label for="people" class="top_double has_transition_1000">guests<img src="~/Template/images/guests.png" /></label><input class="top_double has_transition_600_inout" type="text" id="guests" value="2">
+                </div>
+            </div>
+            <div id="book_submit" class="has_transition_800">
+
+                <p class="submit hidden has_transition_1500">submit</p>
+
+                <div class="circle_button right ">
+                    <div class="back hidden_by_scaling_full has_transition_1000 transform_all"></div>
+                    <div class="arrow hidden has_transition_800">
+                        <img src="~/Template/images/arrow_small.png" />
+                    </div>
+                </div>
+            </div>
+            <div id="book_close" class="overlay_close hidden_by_scaling_full has_transition_1000">
+                <div class="menu_close">
+                    <div class="line_1 has_transition_800"></div>
+                    <div class="line_2 has_transition_800"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="sitemap_interface" class="overlay_layer hidden has_transition_1000">
+        <div class="white_back hidden_by_scaling_low has_transition_1000"></div>
+        <div class="left_panel hidden has_transition_1000_inout">
+            <div class="no_overflow">
+                <h2 class="overlay_title top_hidden has_transition_1500">SITEMAP</h2>
+            </div>
+            <div class="diagonal_line hidden has_transition_1000_inout">
+                <div class="_1"></div>
+                <div class="_2"></div>
+            </div>
+        </div>
+        <div class="right_panel">
+            <div id="sitemapitem_box">
+                <img class="text_shadow_upper scroll_transition no_opacity" src="~/Template/images/text_shadow_upper.png" />
+                <div class="items_container">
+                    <div id="sitemap_scroller" class="scroll_transition">
+                        <div class="site_chapter">
+                            <a href="/home" class="chapter_name top_double has_transition_1000 animating">
+                                <span class="chapter_number">0.</span>
+                                <img class="lifestyle has_transition_800_quint top_hidden" data-src="/Template/images/logo2.png" style="width: 215px" />
+                                <span class="fancy_name">Home</span>
+                            </a>
+                            <div class="section_separator no_width has_transition_1500_inout">
+                                <div class="pointer"></div>
+                            </div>
+
+                        </div>
+                        <div class="site_chapter">
+                            <p class="chapter_name top_double has_transition_1000 animating">
+                                <span class="chapter_number">1.</span>The Hotel<span class="fancy_name">Hotel</span>
+                                <div class="section_separator no_width has_transition_1500_inout">
+                                    <div class="pointer"></div>
+                                </div>
+                                <a href="/en/location" class="chapter_paragraph top_double has_transition_1000 animating">
+                            <p class="site_paragraph_name "><span class="site_paragraph_number">1.<span class="bigger">1</span></span>Location & Position<span class="site_paragraph_sub">on the bustling amalfi coast</span></p>
+                            </a>
+                            <a href="/en/facilities" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name "><span class="site_paragraph_number">1.<span class="bigger">2</span></span>Facilities<span class="site_paragraph_sub">the extras that count</span></p>
+                            </a>
+                            <a href="/en/lifestyle" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name "><span class="site_paragraph_number">1.<span class="bigger">3</span></span>Lifestyle<span class="site_paragraph_sub">design and relaxation</span></p>
+                            </a>
+                            <a href="/en/travel" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name "><span class="site_paragraph_number">1.<span class="bigger">4</span></span>Travel Guide<span class="site_paragraph_sub">our guide to the amalfi coast</span></p>
+                            </a>
+
+                        </div>
+                        <div class="site_chapter">
+                            <a href="/en/rooms" class="chapter_name top_double has_transition_1000 animating"><span class="chapter_number">2.</span>Private Retreats<span class="fancy_name">Rooms & Suites</span></a>
+                            <div class="section_separator no_width has_transition_1500_inout">
+                                <div class="pointer"></div>
+                            </div>
+                            <a href="/en/rooms/junior-suite" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name "><span class="site_paragraph_number">2.<span class="bigger">1</span></span>Junior Suite<span class="site_paragraph_sub">the <span class="as_pic">ethos</span> of casa angelina</span></p>
+                            </a>
+                            <a href="/en/rooms/grand-de-luxe" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name "><span class="site_paragraph_number">2.<span class="bigger">2</span></span>Grand De Luxe<span class="site_paragraph_sub">our <span class="as_pic">style</span> statement</span></p>
+                            </a>
+                            <a href="/en/rooms/terrace" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name "><span class="site_paragraph_number">2.<span class="bigger">3</span></span>Terrace<span class="site_paragraph_sub">slow living</span></p>
+                            </a>
+                            <a href="/en/rooms/relaxing" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name "><span class="site_paragraph_number">2.<span class="bigger">4</span></span>Relaxing<span class="site_paragraph_sub">tranquil beauty</span></p>
+                            </a>
+                            <a href="/en/rooms/romantic" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name "><span class="site_paragraph_number">2.<span class="bigger">5</span></span>Romantic<span class="site_paragraph_sub">the ultimate romantic getaway</span></p>
+                            </a>
+                            <a href="/en/rooms/canopy" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name "><span class="site_paragraph_number">2.<span class="bigger">6</span></span>Canopy<span class="site_paragraph_sub">a most charming space</span></p>
+                            </a>
+                            <a href="/en/rooms/classic" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name "><span class="site_paragraph_number">2.<span class="bigger">7</span></span>Classic<span class="site_paragraph_sub">cozy chic</span></p>
+                            </a>
+                            <a href="/en/rooms/single" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name "><span class="site_paragraph_number">2.<span class="bigger">8</span></span>Single<span class="site_paragraph_sub">a truly private experience</span></p>
+                            </a>
+                            <a href="/en/rooms/eaudesea-experience" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name "><span class="site_paragraph_number">2.<span class="bigger">9</span></span>Eaudesea Experience<span class="site_paragraph_sub">where sea and sky hypnotize your soul</span></p>
+                            </a>
+
+                        </div>
+                        <div class="site_chapter">
+                            <a href="/en/dining" class="chapter_name top_double has_transition_1000 animating"><span class="chapter_number">3.</span>Fine dining, Amalfi-style<span class="fancy_name">Dining</span></a>
+                            <div class="section_separator no_width has_transition_1500_inout">
+                                <div class="pointer"></div>
+                            </div>
+                            <a href="/en/dining/taste" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name"><span class="site_paragraph_number">3.<span class="bigger">1</span></span>Taste<span class="site_paragraph_sub">a mediterranean feast</span></p>
+                            </a>
+                            <a href="/en/dining/un-piano-nel-cielo" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name"><span class="site_paragraph_number">3.<span class="bigger">2</span></span>Un Piano Nel Cielo<span class="site_paragraph_sub">fine dining at the high</span></p>
+                            </a>
+                            <a href="/en/dining/our-chef-for-you" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name"><span class="site_paragraph_number">3.<span class="bigger">3</span></span>One-on-One <br />with our Chef<span class="site_paragraph_sub">a specially composed menu</span></p>
+                            </a>
+                            <a href="/en/dining/wine-cellar" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name"><span class="site_paragraph_number">3.<span class="bigger">4</span></span>Wine Cellar<span class="site_paragraph_sub">an extensive wine&nbsp;selection</span></p>
+                            </a>
+                            <a href="/en/dining/seascape-bar" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name"><span class="site_paragraph_number">3.<span class="bigger">5</span></span>Seascape Bar<span class="site_paragraph_sub">drinks&nbsp;and majestic views</span></p>
+                            </a>
+                            <a href="/en/dining/pool-sundeck" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name"><span class="site_paragraph_number">3.<span class="bigger">6</span></span>Sundeck Pool Restaurant<span class="site_paragraph_sub">italian summer staples</span></p>
+                            </a>
+                            <a href="/en/dining/breakfast" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name"><span class="site_paragraph_number">3.<span class="bigger">7</span></span>Breakfast<span class="site_paragraph_sub">better mornings</span></p>
+                            </a>
+                            <a href="/en/dining/happenings-and-events" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name"><span class="site_paragraph_number">3.<span class="bigger">8</span></span>Happenings and Events<span class="site_paragraph_sub">intimate weddings &amp;&nbsp;celebrations</span></p>
+                            </a>
+
+                        </div>
+                        <div class="site_chapter">
+                            <a href="/en/specials" class="chapter_name top_double has_transition_1000 animating"><span class="chapter_number">4.</span>Extraordinary Experiences.<span class="fancy_name">Specials</span></a>
+                            <div class="section_separator no_width has_transition_1500_inout">
+                                <div class="pointer"></div>
+                            </div>
+                            <a href="/en/specials/spring-is-in-the-air" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name"><span class="site_paragraph_number">4.<span class="bigger">1</span></span>Spring Offer<span class="site_paragraph_sub">a spring sojourn on the amalfi coast</span></p>
+                            </a>
+                            <a href="/en/specials/romance-retreat" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name"><span class="site_paragraph_number">4.<span class="bigger">2</span></span>Romance Retreat<span class="site_paragraph_sub">a starry-eyed weekend stay</span></p>
+                            </a>
+                            <a href="/en/specials/body-and-soul" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name"><span class="site_paragraph_number">4.<span class="bigger">3</span></span>Body & Soul<span class="site_paragraph_sub">getting back to the best you</span></p>
+                            </a>
+                            <a href="/en/specials/easy-reach" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name"><span class="site_paragraph_number">4.<span class="bigger">4</span></span>Easy Reach<span class="site_paragraph_sub">hassle-free transfers</span></p>
+                            </a>
+                            <a href="/en/specials/dolce-vita" class="chapter_paragraph top_double has_transition_1000 animating">
+                                <p class="site_paragraph_name"><span class="site_paragraph_number">4.<span class="bigger">5</span></span>Dolce Vita<span class="site_paragraph_sub">a dose of retro magic</span></p>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                <img class="text_shadow_lower" src="~/Template/images/text_shadow_lower.png" />
+
+            </div>
+            <div id="sitemap_close" class="overlay_close hidden_by_scaling_full has_transition_1000">
+                <div class="menu_close">
+                    <div class="line_1 has_transition_800"></div>
+                    <div class="line_2 has_transition_800"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="credits_interface" class="overlay_layer hidden has_transition_1000">
+        <div class="white_back hidden_by_scaling_low has_transition_1000"></div>
+        <div class="left_panel hidden has_transition_1000_inout">
+            <div class="no_overflow">
+                <h2 class="overlay_title top_hidden has_transition_1500">CREDITS</h2>
+            </div>
+            <div class="diagonal_line hidden has_transition_1000_inout">
+                <div class="_1"></div>
+                <div class="_2"></div>
+            </div>
+        </div>
+        <div class="right_panel">
+            <div id="credits_box">
+                <div class="credit_section">
+                    <p class="role top_double animating has_transition_1500">Content Management & Supervision</p>
+                    <p class="people top_double animating has_transition_1500">Ms Annarita Aprea</p>
+                    <p class="mansion top_double animating has_transition_1500">Casa Angelina Director of Sales&Marketing</p>
+                </div>
+                <div class="credit_section">
+                    <p class="role top_double animating has_transition_1500">Work Group Coordination</p>
+                    <p class="people top_double animating has_transition_1500">Mr Domenico De Simone</p>
+                    <p class="mansion top_double animating has_transition_1500">Casa Angelina Managing Director</p>
+                </div>
+                <div class="credit_section">
+                    <p class="role top_double animating has_transition_1500">Art Direction, Storytelling Web Design, UI/UX & Mobile Experience</p>
+                    <p class="people top_double animating has_transition_1500">Mediasoul</p>
+                </div>
+                <div class="credit_section">
+                    <p class="role top_double animating has_transition_1500">Photography</p>
+                    <p class="people top_double animating has_transition_1500">Umberto D’Aniello</p>
+                </div>
+            </div>
+            <div id="credits_close" class="overlay_close hidden_by_scaling_full has_transition_1000">
+                <div class="menu_close">
+                    <div class="line_1 has_transition_800"></div>
+                    <div class="line_2 has_transition_800"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="~/Template/js/jquery.js"></script>
+    <script src="~/Template/js/plugins.js"></script>
+    <script src="~/Template/js/commons.js?01"></script>
+    <script src="~/Template/js/mobile.js?01"></script>
+    <script src="~/Template/js/index.js?01"></script>
+    <script src="~/Template/js/packed.js?01"></script>
+    <script src="~/Template/js/panels.js?01"></script>
+    <script src="~/Template/js/panel_detail.js?01"></script>
+    <script src="~/Template/js/gallery.js"></script>
+    <script src="~/Template/js/weather.js"></script>
+    <script src="~/Template/js/moment.js"></script>
+    <script src="~/Template/js/moment-timezone-with-data.js"></script>
+    <script src="~/Template/js/CusWeb.js"></script>
+    <script src="~/Template/js/owl.carousel.js"></script>
+
+    <script>
+    var linkImg = '@(ConfigurationManager.AppSettings["UrlImage"])';
+    $('.modal-toggle').on('click', function(e) {
+        e.preventDefault();
+
+        var idNews = $(this).attr('rel');
+        loadDetailNew(idNews);
+    });
+
+    function loadDetailNew(id) {
+        var url = "@Url.Action("GetNewById", "Home")";
+        var obj = {};
+        obj.id = id;
+        $.ajax
+        ({
+            type: "POST",
+            url: url, //LyricsloadMore
+            data: JSON.stringify(obj),
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function(data) {
+                console.log(data);
+                $('.name-news').html(data.Name);
+                $('.shortDescription').html(data.ShortDescription);
+                $('.Description').html(data.Description);
+                $('.img-new').attr('src', data.UrlImage);
+                $('.modal').toggleClass('is-visible');
+
+            }
+        });
+    }
+
+    $(document).on('click', '.btnSubscribe', function () {
+        if ($('.txtEmail').val() == "") {
+            $('.email-footer').find('.success').addClass('cushidden');
+            $('.email-footer').find('.error').addClass('cushidden');
+            $('.email-footer').find('.langEmailEmpty').removeClass('cushidden');
+        } else {
+
+            if (!emailReg.test($('.txtEmail').val())) {
+                $('.email-footer').find('.success').addClass('cushidden');
+                $('.email-footer').find('.error').addClass('cushidden');
+                $('.email-footer').find('.langEmailFormat').removeClass('cushidden');
+            } else {
+                $('.email-footer').find('.success').addClass('cushidden');
+                $('.email-footer').find('.error').addClass('cushidden');
+                Subscribe();
+            }
+
+        }
+
+    });
+    function Subscribe() {
+        var url = "@Url.Action("Subscribe", "Home")";
+        var obj = {};
+        obj.id = $('.txtEmail').val();
+        $.ajax
+        ({
+            type: "POST",
+            url: url, //LyricsloadMore
+            data: JSON.stringify(obj),
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function(data) {
+                console.log(data);
+                if (data.code=="1") {
+                    $('.email-footer').find('.success').addClass('cushidden');
+                    $('.email-footer').find('.error').addClass('cushidden');
+                    $('.email-footer').find('.langRegistSuccess').removeClass('cushidden');
+                    $('.txtEmail').val('');
+                }
+                if (data.code == "-1") {
+                    $('.email-footer').find('.success').addClass('cushidden');
+                    $('.email-footer').find('.error').addClass('cushidden');
+                    $('.email-footer').find('.langEmailRegisted').removeClass('cushidden');
+                }
+            }
+        });
+    }
+    </script>
+    <script>
+        $(".modal").on("show", function () {
+            $("body").addClass("modal-open");
+        }).on("hidden", function () {
+            $("body").removeClass("modal-open");
+        });
+        function TextAnimation(x) {
+            setTimeout(function () {
+                $('#right_panel').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $(this).removeClass();
+                });
+            }, 500);
+
+        };
+
+        function TextAnimation1(x) {
+
+            setTimeout(function () {
+                $('#img11').css('display', 'block');
+                $('#images1').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $(this).removeClass();
+                });
+            }, 2100);
+
+        };
+
+        function TextAnimation2(x) {
+
+            setTimeout(function () {
+                $('#img12').css('display', 'block');
+                $('#images2').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $(this).removeClass();
+                });
+            }, 2200);
+
+        };
+
+        $(document).ready(function () {
+            //TextAnimation("slideInLeft");
+            TextAnimation1("slideInDown");
+            TextAnimation2("slideInUp");
+            $(".modal-close").click(function () {
+                $('.modal').removeClass('is-visible');
+            });
+
+        });
+        $(document).ready(function () {
+            //$("#btn-contact").click(function () {
+            //    setTimeout(function() {
+            //        var myElement = document.getElementById('partners');
+            //        var topPos = myElement.offsetTop;
+            //        document.getElementById('partners').scrollTop = -topPos;
+            //    },4000);
+
+            //});
+        });
+        $('.owl-carousel').owlCarousel({
+
+            loop: true,
+            margin: 30,
+            autoplay: true,
+            autoplayTimeout: 4000,
+            autoplayHoverPause: true,
+            navText: ["", ""],
+            responsive: {
+                0: {
+                    items: 2,
+                    nav: true
+                },
+                600: {
+                    items: 3,
+                    nav: true
+                },
+                1000: {
+                    items: 5,
+                    nav: true
+
+                }
+            }
+        });
+        $('.owl-carousel-new').owlCarousel({
+            items: 3,
+            loop: true,
+            margin: 10,
+            autoplay: true,
+            autoplayTimeout: 4000,
+            autoplayHoverPause: true,
+            navText: ["", ""],
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 2,
+                    nav: false
+                },
+                1000: {
+                    items: 5,
+                    nav: true
+
+                }
+            }
+        });
+
+
+        if ($('#scroll_up').length) {
+            var scrollTrigger = 100, // px
+                backToTop = function () {
+                    var scrollTop = $(window).scrollTop();
+                    console.log(scrollTop);
+                    if (scrollTop > scrollTrigger) {
+                        $('#scroll_up').removeClass('no_opacity');
+                    } else {
+
+                        $('#scroll_up').addClass('no_opacity');
+                    }
+                };
+            backToTop();
+            $(window).scrollTop(0);
+            $('#scroll_up').on('click', function (e) {
+                e.preventDefault();
+                $('html,body').animate({
+                    scrollTop: 0
+                }, 700);
+            });
+        }
+
+
+    </script>
+    <div class="modal">
+        <div class="modal-overlay modal-toggle"></div>
+        <div class="modal-wrapper modal-transition">
+            <div class="modal-header">
+                <button class="modal-close modal-toggle" style="cursor: pointer; font-weight: bold;">
+                    X
+                </button>
+                <h2 class="modal-heading name-news"></h2>
+            </div>
+
+            <div class="modal-body mobile_hidden">
+                <div class="modal-content" style="height: 95%;">
+                    <div class="row has_form full" style="overflow: hidden;">
+                        <div class="form_info_block">
+                            <div class="child-image">
+                                <img class="img-new" src="~/Template/images/bm3a7895_2400x1350_7d7025e8ba881a7c3c04e5b2cb202f41.jpg" />
+                            </div>
+
+                        </div>
+
+                        <div class="page_form" rel="shop">
+                            <div class="form_container cus-form_container">
+                                <div class="has_transition_800 shortDescription">
+
+
+
+                                </div>
+                                <div class="has_transition_800 Description">
+
+                                </div>
+                            </div>
+                            @*<div class="fb-comments" data-href="http://lamos.tunguyen.net/" data-width="" data-numposts="5"></div>*@
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-body mobile_only">
+                <div class="modal-content" style="height: 95%;">
+                    <div class="row has_form full" style="overflow: hidden;">
+
+                        <div class="page_form" rel="shop">
+                            <div class="form_container cus-form_container">
+                                <img width="100%" class="img-new" src="~/Template/images/bm3a7895_2400x1350_7d7025e8ba881a7c3c04e5b2cb202f41.jpg" />
+                                <div class="has_transition_800 shortDescription">
+
+
+
+                                </div>
+                                <div class="has_transition_800 Description">
+
+                                </div>
+                            </div>
+                            @*<div class="fb-comments" data-href="http://lamos.tunguyen.net/" data-width="" data-numposts="5"></div>*@
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="scroll_down1" class="btn-contact has_transition_800 mobile_only hidden" style="opacity: 0;">
+
+        <img class="icon-contact-mobile" src="~/Template/images/icon-contact-mobile.png" />
+    </div>
+</body>
+</html>

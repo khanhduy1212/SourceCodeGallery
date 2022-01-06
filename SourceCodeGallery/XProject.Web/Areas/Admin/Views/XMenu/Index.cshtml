@@ -1,0 +1,421 @@
+﻿@using System
+@using System.Configuration
+@using System.Linq
+@using XProject.Web.Areas.Admin.Models
+@using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical
+@using XProject.Domain.Entities
+@using XProject.Web.Areas.Admin.Helper
+
+@using Resources
+@model System.Collections.Generic.IEnumerable<XMenu>
+@{
+    ViewBag.Title= Utilities.Resource("XMenu_Title", "List");
+
+}
+<div class="page-header">
+    <h1>
+        @ViewBag.Title
+    </h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-6">
+                @Html.Bootstrap().DropDownList("DropMenu", new SelectList(((List<XMenu>) ViewBag.ListMenuParent), "CurrentId", "Name")).OptionLabel("").Class("form-control").ShowValidationMessage(true)
+            </div>
+            <div class="col-sm-6">
+                <div class="clearfix">
+                    <div class="pull-right tableTools-container">
+                        <div class="dt-buttons btn-overlap btn-group">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    @if (CurrentUser.HasPermission("XMenu", "Create"))
+                                    {
+                                        <a href="@Url.Action("Create")" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                                            <span>
+                                                Create New
+                                            </span>
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  </div>
+        </div>
+
+       
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <table class="table  table-bordered table-hover" id="table_data">
+                <thead>
+                    <tr>
+                        <th>@Utilities.Resource("XMenu_ID", "ID")</th>   
+                        <th>@Utilities.Resource("XMenu_Name", "Name")</th>
+                        <th>@Utilities.Resource("XMenu_ParentName", "Parent Menu")</th>
+                        <th>@Utilities.Resource("XMenu_Order", "Order")</th>
+                        <th>@Utilities.Resource("XMenu_Active", "Status")</th>
+                        <th style="max-width: 150px"></th>
+                        <th style="max-width: 150px"></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+@Html.Partial("_ListIndexAction")
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body showTableImg">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Script(
+    @<script>
+        //jQuery(function ($) {
+        //    var sampleData = initiateDemoData();//see below
+
+
+        //    $('#tree1').ace_tree({
+        //        dataSource: sampleData['dataSource1'],
+        //        multiSelect: true,
+        //        cacheItems: true,
+        //        'open-icon': 'ace-icon tree-minus',
+        //        'close-icon': 'ace-icon tree-plus',
+        //        'itemSelect': true,
+        //        'folderSelect': false,
+        //        'selected-icon': 'ace-icon fa fa-check',
+        //        'unselected-icon': 'ace-icon fa fa-times',
+        //        loadingHTML: '<div class="tree-loading"><i class="ace-icon fa fa-refresh fa-spin blue"></i></div>'
+        //    });
+
+          
+
+
+
+        //    function initiateDemoData() {
+        //        var tree_data = {
+        //            'for-sale': { text: 'For Sale', type: 'folder' },
+        //            'vehicles': { text: 'Vehicles', type: 'folder' },
+        //            'rentals': { text: 'Rentals', type: 'folder' },
+        //            'real-estate': { text: 'Real Estate', type: 'folder' },
+        //            'pets': { text: 'Pets', type: 'folder' },
+        //            'tickets': { text: 'Tickets', type: 'item' },
+        //            'services': { text: 'Services', type: 'item' },
+        //            'personals': { text: 'Personals', type: 'item' }
+        //        }
+        //        tree_data['for-sale']['additionalParameters'] = {
+        //            'children': {
+        //                'appliances': { text: 'Appliances', type: 'item' },
+        //                'arts-crafts': { text: 'Arts & Crafts', type: 'item' },
+        //                'clothing': { text: 'Clothing', type: 'item' },
+        //                'computers': { text: 'Computers', type: 'item' },
+        //                'jewelry': { text: 'Jewelry', type: 'item' },
+        //                'office-business': { text: 'Office & Business', type: 'item' },
+        //                'sports-fitness': { text: 'Sports & Fitness', type: 'item' }
+        //            }
+        //        }
+        //        tree_data['vehicles']['additionalParameters'] = {
+        //            'children': {
+        //                'cars': { text: 'Cars', type: 'folder' },
+        //                'motorcycles': { text: 'Motorcycles', type: 'item' },
+        //                'boats': { text: 'Boats', type: 'item' }
+        //            }
+        //        }
+        //        tree_data['vehicles']['additionalParameters']['children']['cars']['additionalParameters'] = {
+        //            'children': {
+        //                'classics': { text: 'Classics', type: 'item' },
+        //                'convertibles': { text: 'Convertibles', type: 'item' },
+        //                'coupes': { text: 'Coupes', type: 'item' },
+        //                'hatchbacks': { text: 'Hatchbacks', type: 'item' },
+        //                'hybrids': { text: 'Hybrids', type: 'item' },
+        //                'suvs': { text: 'SUVs', type: 'item' },
+        //                'sedans': { text: 'Sedans', type: 'item' },
+        //                'trucks': { text: 'Trucks', type: 'item' }
+        //            }
+        //        }
+
+        //        tree_data['rentals']['additionalParameters'] = {
+        //            'children': {
+        //                'apartments-rentals': { text: 'Apartments', type: 'item' },
+        //                'office-space-rentals': { text: 'Office Space', type: 'item' },
+        //                'vacation-rentals': { text: 'Vacation Rentals', type: 'item' }
+        //            }
+        //        }
+        //        tree_data['real-estate']['additionalParameters'] = {
+        //            'children': {
+        //                'apartments': { text: 'Apartments', type: 'item' },
+        //                'villas': { text: 'Villas', type: 'item' },
+        //                'plots': { text: 'Plots', type: 'item' }
+        //            }
+        //        }
+        //        tree_data['pets']['additionalParameters'] = {
+        //            'children': {
+        //                'cats': { text: 'Cats', type: 'item' },
+        //                'dogs': { text: 'Dogs', type: 'item' },
+        //                'horses': { text: 'Horses', type: 'item' },
+        //                'reptiles': { text: 'Reptiles', type: 'item' }
+        //            }
+        //        }
+
+        //        var dataSource1 = function (options, callback) {
+        //            var $data = null
+        //            if (!("text" in options) && !("type" in options)) {
+        //                $data = tree_data;//the root tree
+        //                callback({ data: $data });
+        //                return;
+        //            }
+        //            else if ("type" in options && options.type == "folder") {
+        //                if ("additionalParameters" in options && "children" in options.additionalParameters)
+        //                    $data = options.additionalParameters.children || {};
+        //                else $data = {}//no data
+        //            }
+
+        //            if ($data != null)//this setTimeout is only for mimicking some random delay
+        //                setTimeout(function () { callback({ data: $data }); }, parseInt(Math.random() * 500) + 200);
+
+        //            //we have used static data here
+        //            //but you can retrieve your data dynamically from a server using ajax call
+        //            //checkout examples/treeview.html and examples/treeview.js for more info
+        //        }
+
+
+
+
+              
+        //        return { 'dataSource1': dataSource1 }
+        //    }
+
+        //});
+        function updatePosition(idpro, idpic) {
+            $.get('@Url.Action("UpdatePosition", "XMenu")/?idpro=' + idpro + '&idpic=' + idpic, function (data) {
+
+                getImg(data);
+
+            });
+        }
+        var myFile = "";
+        function UploadImg() {
+
+            var data = new FormData();
+            var files = $("#files").get(0).files;
+            var idpro = $('#hdIdProduct').val();
+            if (files.length > 0) {
+                $.each(files, function (i, o) {
+                    var file = $("#files").prop('files')[i];
+                    data.append("files", file);
+                });
+                data.append("idPro", idpro);
+
+            }
+
+
+            $.ajax({
+                url: '@Url.Action("UploadImg", "XMenu")',
+                type: "POST",
+                enctype: 'multipart/form-data',
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+
+                    console.log(response);
+                    getImg(response);
+
+                },
+                error: function (er) {
+
+                }
+
+            });
+        }
+
+        function getImg(idPro) {
+            $.get('@Url.Action("GetImageById", "XMenu")/' + idPro + '', function (data) {
+
+                $('#exampleModal').modal('show');
+                $('.showTableImg').html('');
+                $('.showTableImg').html(data);
+                $('#hdIdProduct').val(idPro);
+                $('.btnDeleteImage').on('click', function () {
+                    var id = $(this).attr('rel');
+                    $.get('@Url.Action("DeleteImg1", "XMenu")/' + id + '', function (data) {
+
+                        getImg(data);
+                    });
+                });
+                $('.btnUpload').on('click', function () {
+                    UploadImg();
+
+                });
+                $('.radioOrder').on('click', function () {
+
+                    updatePosition($(this).attr('rel'), $(this).attr('rel-pic'));
+                });
+
+
+            });
+        }
+        $(document).on('click', '.btnShowImage', function () {
+            var id = $(this).attr('rel');
+
+            $.get('@Url.Action("GetImageById","XMenu")/' + id + '', function (data) {
+
+                $('#exampleModal').modal('show');
+                $('.showTableImg').html('');
+                $('.showTableImg').html(data);
+                $('#hdIdProduct').val(id);
+                $('.btnDeleteImage').on('click', function () {
+
+                    var id = $(this).attr('rel');
+                    $.get('@Url.Action("DeleteImg1", "XMenu")/' + id + '', function (data) {
+
+                        getImg(data);
+                    });
+                });
+                $('.btnUpload').on('click', function () {
+                    UploadImg();
+
+                });
+                $('.radioOrder').on('click', function () {
+
+                    updatePosition($(this).attr('rel'), $(this).attr('rel-pic'));
+                });
+            });
+        });
+        var idM = 0;
+        $(document).on('change', '#DropMenu', function() {
+            var id = $(this).val();
+            idM = id;
+            $modelTable._fnAjaxUpdate();
+        });
+        var $modelTable = $('#table_data').dataTable({
+            fixedHeader: true,
+            processing: false,
+            serverSide: true,
+            searching: true,
+            ordering: true,
+            info: false,
+            stateSave: false,
+            lengthMenu: [[25, 50, -1], [25, 50, "All"]],
+            drawCallback: function (settings) {
+                $('.mt-action-dot').popover({ trigger: "hover" });
+            },
+            initComplete: function () {
+                $('#table_data_filter input').unbind();
+                var timeOutTyping;
+                $('#table_data_filter input').bind('keyup', function (e) {
+                    clearTimeout(timeOutTyping);
+                    timeOutTyping = setTimeout(function () {
+                        $modelTable.fnFilter($('#table_data_filter input').val());
+                    }, 600);
+                });
+             
+            },
+            ajax: {
+                url: "/XMenu/IndexAjax",
+                type: "GET",
+                data: function (d) {
+                    d.idMenu = idM;
+                }
+            },
+            "columnDefs": [
+             
+                {
+                   
+                    "targets": 1,
+                    'className': 'text-center'
+                }, {
+                    "render": function (data, type, row) {
+                       
+                        return data> 0 || data!=null ? data:'Is Parent';
+                    },
+                    "targets": 2,
+                    'className': 'text-center'
+                },
+                {
+                    "render": function (data, type, row) {
+                        var name = "";
+                        switch (data) {
+                        case 1:
+                            name = "Active";
+                            break;
+                        case 0:
+                            name = "Not Active";
+                            break;
+
+                        }
+                        return name;
+                    },
+                    "targets": 4,
+                    'className': 'text-center'
+                },
+          {
+              "render": function (data, type, row) {
+                  return $('#actionTemplate').html().replace(/{ID}/g, row.ID);
+              },
+              "targets": 5,
+              'className': 'text-center'
+          },
+                {
+                    "render": function (data, type, row) {
+                        var data1 = "<a rel=\"" + row.ID + "\" href=\"#\" class=\"btn btn-info btn-sm no-radius btnShowImage\"><i class=\"ace-icon fa  fa-camera\"></i><span class=\"label label-inverse arrowed-in\">" + data + "</span></a>";
+                        return data1;
+                    },
+                    "targets": 6,
+                    'className': 'text-center'
+                }
+
+            ],
+            columns: [
+                { "data": "ID", "orderable": true },
+                { "data": "Name", "orderable": true },
+                { "data": "NameParent", "orderable": true },
+                { "data": "Order", "orderable": true },
+                { "data": "Active", "orderable": true },
+                { "data": "ID", "orderable": false },
+                { "data": "CountImg", "orderable": false },
+
+
+            ],
+            order: [[0, "asc"]]
+        });
+
+
+
+
+    </script>
+                                                                         )

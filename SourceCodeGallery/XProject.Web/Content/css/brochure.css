@@ -1,0 +1,201 @@
+﻿/* Basic */
+body { 
+  font: 15px/18px "Cantarell", sans-serif;
+  color: #000000;
+}
+.leftcontent {
+	float:left; 
+	width:46%; 
+	padding:0 2%; 
+}
+.rightcontent {
+	float:left; 
+	width:45%; 
+	padding:0 2%;
+	border-left:1px dotted #999999;
+}
+.rightcontentrow {
+	float:left; 
+	width:100%;	
+}
+.rcrleft {
+	float:left; 
+	width:50%;
+}
+.rcrright {
+	float:left; 
+	width:48%; 
+	padding-left:2%
+}
+.left3content {
+	float:left; 
+	width:31.2%; 
+	padding:0 1%; 
+}
+.mid3content {
+	float:left; 
+	width:31.2%; 
+	padding:0 1%; 
+	border-left:1px dotted #999999;
+    padding-bottom:10px;
+}
+.right3content {
+	float:left; 
+	width:31.2%; 
+	padding:0 1%; 
+	border-left:1px dotted #999999;
+}
+.rsep {
+	float:left;
+	width:100%;
+	margin-top:1%;
+	margin-bottom:1%;
+	border-top:1px dotted #999999;
+}
+a.button {
+	font-size: 20px;
+	font-weight: 500;
+	color: #000;
+	text-decoration:none;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	padding: 6px 20px;
+	line-height: 1.7em;
+	background: transparent;
+	border: 2px solid;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-moz-transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+	position: relative;
+}
+
+a.button:hover {
+	background: #E6E6E6;
+	border: 2px solid transparent;
+	padding: 6px 34px 6px 14px;
+}
+a.button:after {
+font-size: 32px;
+	line-height: 1em;
+	content:"\35";
+	opacity: 0;
+	position: absolute;
+	margin-left: -20px;
+	-moz-transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+	top: 7px;
+	right: 5px;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 340px) {
+	 .leftcontent {
+		float:left; 
+		width:98%; 
+	}
+	.rightcontent {
+		float:left; 
+		width:98%; 
+		border-top:2px dotted #999999;
+		border-left:0;
+		padding-top:2%;
+	}
+	.rightcontentrow {
+		float:left; 
+		width:100%;	
+	}
+	.rcrleft {
+		float:left; 
+		width:100%;
+	}
+	.rcrright {
+		float:left; 
+		width:100%; 
+	}
+	.left3content {
+		float:left; 
+		width:98%; 
+		padding:0 1%; 
+		margin-bottom:3%;
+		border-bottom:2px dotted #999999;
+	}
+	.mid3content {
+		float:left; 
+		width:98%; 
+		padding:0 1%; 
+		border-left:0;
+		margin-bottom:3%;
+		border-bottom:2px dotted #999999;
+	}
+	.right3content {
+		float:left; 
+		width:98%; 
+		padding:0 1%; 
+		border-left:0;
+	}
+	.rsep {
+		float:left;
+		width:100%;
+		margin-top:1%;
+		margin-bottom:3%;
+		border-top:1px dotted #999999;
+	}
+}
+/* For mobile devices */
+@media only screen and (max-width: 767px) {
+  .leftcontent {
+		float:left; 
+		width:98%; 
+	}
+	.rightcontent {
+		float:left; 
+		width:98%; 
+		border-top:2px dotted #999999;
+		border-left:0;
+		padding-top:2%;
+	}
+	.rightcontentrow {
+		float:left; 
+		width:100%;	
+	}
+	.rcrleft {
+		float:left; 
+		width:100%;
+	}
+	.rcrright {
+		float:left; 
+		width:100%; 
+	}
+	.left3content {
+		float:left; 
+		width:98%; 
+		padding:0 1%; 
+		margin-bottom:3%;
+		border-bottom:2px dotted #999999;
+	}
+	.mid3content {
+		float:left; 
+		width:98%; 
+		padding:0 1%; 
+		border-left:0;
+		margin-bottom:3%;
+		border-bottom:2px dotted #999999;
+	}
+	.right3content {
+		float:left; 
+		width:98%; 
+		padding:0 1%; 
+		border-left:0;
+	}
+	.rsep {
+		float:left;
+		width:100%;
+		margin-top:1%;
+		margin-bottom:3%;
+		border-top:1px dotted #999999;
+	}
+}

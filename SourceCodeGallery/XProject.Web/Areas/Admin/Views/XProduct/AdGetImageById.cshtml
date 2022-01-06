@@ -1,0 +1,115 @@
+﻿@using System.Configuration
+@model IEnumerable<XProject.Domain.Entities.XPicture>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="row">
+            <form id="formUpload" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Image Project</label>
+                    <div class="col-md-7">
+                        <div>
+                            <style>
+                                .thumb {
+                                    height: 75px;
+                                    border: 1px solid #000;
+                                    margin: 10px 5px 0 0;
+                                }
+                            </style>
+                            <input type="hidden" id="hdIdProduct" name="idPro" value="" />
+                            <input type="file" class="form-control" id="files" name="files" multiple accept="image/*" />
+
+                            <script>
+                            function handleFileSelect(evt) {
+                                var files = evt.target.files; // FileList object
+
+                                // Loop through the FileList and render image files as thumbnails.
+                                for (var i = 0, f; f = files[i]; i++) {
+
+                                    // Only process image files.
+                                    if (!f.type.match('image.*')) {
+                                        continue;
+                                    }
+
+                                    var reader = new FileReader();
+
+                                    // Closure to capture the file information.
+                                    reader.onload = (function(theFile) {
+                                        return function(e) {
+                                            // Render thumbnail.
+                                            var span = document.createElement('span');
+                                            span.innerHTML = [
+                                                '<img class="thumb" src="', e.target.result,
+                                                '" title="', escape(theFile.name), '"/>'
+                                            ].join('');
+                                            document.getElementById('list').insertBefore(span, null);
+                                        };
+                                    })(f);
+
+                                    // Read in the image file as a data URL.
+                                    reader.readAsDataURL(f);
+                                }
+                            }
+
+                            document.getElementById('files').addEventListener('change', handleFileSelect, false);
+                            </script>
+
+                        </div>
+                        <div>
+                            <output id="list"></output>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-1">
+                        <button class="btn btn-info2 btnUpload" type="button">Upload</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+        <div class="row">
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+
+                            <th>Order</th>
+                            <th>Image</th>
+                            <th style="max-width: 50px"></th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><input name="radioPic" rel="@item.ProductsId" rel-pic="@item.ID" type="radio" @(item.Position == 1 ? "checked='checked'" : "") class="radioOrder" /></td>
+                                <td>
+                                    <img class="thumb" width="150" src="@ConfigurationManager.AppSettings["UrlImage"]@item.ConvertedFilename.Split('_')[0]/@String.Format(item.ConvertedFilename, 853)" title="">
+                                </td>
+                                <td style="vertical-align: central !important;">
+                                    <a class="btn btn-xs btn-danger btnDeleteImage" onclick="return confirm('Do you delete image ?')" rel="@item.ID">
+                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>

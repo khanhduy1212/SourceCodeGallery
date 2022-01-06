@@ -1,0 +1,251 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Configuration
+@using System.Globalization
+@using Resources
+@using XProject.Domain.Entities
+@using XProject.Web.Areas.Admin.Helper
+@model XSeo
+
+
+<div class="widget-box">
+    <div class="widget-header">
+        <h5 class="widget-title">@Utilities.Resource("XSeo_Title", "Infomation")</h5>
+    </div>
+    <div class="widget-body">
+        <div class="widget-main">
+            <div class="tabbable">
+                @{
+                    var indexTab = 1;
+                    var indexTab1 = 1;
+                }
+                @{
+                    if (Model.ID == 0)
+                    {
+                        <ul class="nav nav-tabs padding-12 tab-color-blue background-blue">
+                            @foreach (var item in ((List<XCountry>)ViewBag.Country))
+                            {
+                                <li class="@(indexTab == 1 ? "active" : "")">
+                                    <a data-toggle="tab" href="#@(item.Code)" title="@item.Name" aria-expanded="false">@item.Code</a>
+                                </li>
+                                indexTab++;
+                            }
+                        </ul>
+
+                        <div class="tab-content">
+                            @foreach (var item in ((List<XCountry>)ViewBag.Country))
+                            {
+                                <input type="hidden" class="hdCodeLanguage" value="@item.Code" />
+                                var guid = Guid.NewGuid().ToString();
+                                <input type="hidden" name="XSeosArray.Index" value="@(guid)" />
+                                <div id="@item.Code" class="tab-pane @(indexTab1 == 1 ? "active" : "")">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="hidden" value="@item.Code" name="XSeosArray[@guid].CodeLanguage" />
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XSeo_Name", "Tên") @item.Code <span class="required">*</span></label>
+                                                    <div class="col-md-10">
+                                                        @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control", Name = "XSeosArray[" + guid + "].Name" }).ShowValidationMessage(true)
+
+
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XSeo_Description", "Mô tả") @item.Code </label>
+                                                    <div class="col-md-10">
+                                                        @Html.Bootstrap().TextAreaFor(m => m.Description).HtmlAttributes(new { @class = "form-control editor", Name = "XSeosArray[" + guid + "].Description", id = "Description_" + item.Code })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XSeoLink", "Link") @item.Code</label>
+                                                    <div class="col-md-10">
+                                                        @Html.Bootstrap().TextBoxFor(m => m.Link).HtmlAttributes(new { @class = "form-control", Name = "XSeosArray[" + guid + "].Link" }).ShowValidationMessage(true)
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XSeoKeyWord", "KeyWord") @item.Code</label>
+                                                    <div class="col-md-10">
+                                                        @Html.Bootstrap().TextBoxFor(m => m.KeyWord).HtmlAttributes(new { @class = "form-control", Name = "XSeosArray[" + guid + "].KeyWord" }).ShowValidationMessage(true)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                indexTab1++;
+
+                            }
+
+
+                           
+                        </div>
+                    }
+                    else
+                    {
+                        <ul class="nav nav-tabs padding-12 tab-color-blue background-blue">
+                           @foreach (var item in Model.XSeosList.ToList())
+                           {
+                                <li class="@(indexTab == 1 ? "active" : "")">
+                                    <a data-toggle="tab" href="#@(item.CodeLanguage)" aria-expanded="false">@item.CodeLanguage</a>
+                                </li>
+                                indexTab++;
+                            }
+                        </ul>
+
+                        <div class="tab-content">
+                          @foreach (var item in Model.XSeosList.ToList())
+                          {
+                              var guid = Guid.NewGuid().ToString();
+                                <input type="hidden" name="XSeosArray.Index" value="@(guid)" />
+                                <input type="hidden" class="hdCodeLanguage" value="@item.CodeLanguage" />
+                                <div id="@item.CodeLanguage" class="tab-pane @(indexTab1 == 1 ? "active" : "")">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="hidden" value="@item.CodeLanguage" name="XSeosArray[@guid].CodeLanguage" />
+                                                    <input type="hidden" value="@item.ID" name="XSeosArray[@guid].ID" />
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XSeo_Name", "Tên") @item.CodeLanguage <span class="required">*</span></label>
+                                                    <div class="col-md-10">
+                                                        @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control", Name = "XSeosArray[" + guid + "].Name", Value =item.Name }).ShowValidationMessage(true)
+
+
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XSeo_Description", "Mô tả") @item.CodeLanguage </label>
+                                                    <div class="col-md-10">
+                                                        @Html.TextArea("Description",item.Description, new { @class = "form-control", Name = "XSeosArray[" + guid + "].Description",id= "Description_"+ item.CodeLanguage })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XSeoLinkMenu", "Link") @item.CodeLanguage</label>
+                                                    <div class="col-md-10">
+                                                        @Html.Bootstrap().TextBoxFor(m => m.Link).HtmlAttributes(new { @class = "form-control", Name = "XSeosArray[" + guid + "].Link", Value = item.Link }).ShowValidationMessage(true)
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XSeoKeyWord", "KeyWord") @item.CodeLanguage</label>
+                                                    <div class="col-md-10">
+                                                        @Html.Bootstrap().TextBoxFor(m => m.KeyWord).HtmlAttributes(new { @class = "form-control", Name = "XSeosArray[" + guid + "].KeyWord", Value = item.KeyWord }).ShowValidationMessage(true)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                indexTab1++;
+
+                            }
+
+
+
+                        </div>
+                    }
+
+                }
+               
+
+            </div>
+
+         
+
+ 
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Partial("_pImage", new XProject.Web.Areas.Admin.Models.UploadModel("UrlImage", Model.UrlImage, Model.UrlImage, @Utilities.Resource("XSeo_Picture", "Images")))
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@Html.Script(
+
+
+    @<script>
+        
+       
+         $(function(){
+             //$('.hdCodeLanguage').each(function(e){
+             //    CKEDITOR.replace("Description_"+$(this).val(), { height: '300px' });
+             //});
+         });
+         $('#validation-form').validate({
+             errorElement: 'div',
+             errorClass: 'help-block',
+             focusInvalid: false,
+             ignore: "",
+             rules: {
+                 Name: {
+                     required: true
+                 },
+                 Picture: {
+                     file: 'required'
+                 }
+             },
+
+             messages: {
+                 Name: "Name not empty.",
+
+             },
+
+
+             highlight: function (e) {
+
+                 if ($(e).is('.file-upload')) {
+                     $(e).parents('div').eq(1).find('.form-group').removeClass('has-info').addClass('has-error');
+                 } else {
+                     $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+                 }
+
+
+             },
+
+             success: function (e) {
+
+                 if ($(e).is('.file-upload')) {
+                     $(e).parents('div').eq(1).find('.form-group').removeClass('has-error').addClass('has-info');
+                     $(e).parents('div').eq(1).find('.form-group .help-block').remove();
+                 }
+                 else {
+                     $(e).closest('.form-group').removeClass('has-error').addClass('has-info');
+                     $(e).closest('.form-group').find('.help-block').remove();
+                 }
+
+             },
+
+             errorPlacement: function (error, element) {
+
+                 if (element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                     var controls = element.closest('div[class*="col-"]');
+                     if (controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                     else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+                 }
+                 else if (element.is('.select2')) {
+                     error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+                 }
+                 else if (element.is('.file-upload')) {
+                     error.insertAfter(element.parents('div').eq(1).find('.file-caption-main'));
+                 }
+                 else if (element.is('.chosen-select')) {
+                     error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+                 }
+                 else error.insertAfter(element);
+             },
+
+             submitHandler: function (form) {
+             },
+             invalidHandler: function (form) {
+             }
+         });
+
+
+     </script>)

@@ -1,0 +1,63 @@
+﻿@using Resources
+<script id="actionTemplate" type="text/html">
+
+
+    <div class="hidden-sm hidden-xs btn-group">
+        
+        <a class="btn btn-xs btn-info" href="@Url.Action("Edit")/{ID}">
+            <i class="ace-icon fa fa-pencil bigger-120"></i>
+        </a>
+
+        <a class="btn btn-xs btn-danger" href="#" data-action="delete" data-id="/{ID}">
+            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+        </a>
+    </div>
+    <div class="hidden-md hidden-lg">
+        <div class="inline pos-rel">
+            <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                
+                <li>
+                    <a href="@Url.Action("Edit")/{ID}" class="tooltip-success" data-rel="tooltip" title="Edit">
+                        <span class="green">
+                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" data-action="delete" data-id="{ID}" class="tooltip-error" data-rel="tooltip" title="Delete">
+                        <span class="red">
+                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</script>
+
+
+
+@Html.Script(
+    @<script>
+        $(document).on('click', '[data-action="delete"]', function (e) {
+            e.preventDefault();
+            var $self = $(this);
+            bootbox.confirm("@Resource.ConfirmDelete", function (isOK) {
+                if (isOK) {
+                  
+                    $.getJSON("@Url.Action("DeActive")?id=" + $self.attr('data-id').replace('/',''), function (data) {
+                    }).success(function () { $modelTable._fnAjaxUpdate();})
+                        .error(function () { alert(decodeURIComponent('@Resource.DontHavePermission')); });
+
+                }
+            });
+
+        });
+
+     </script>
+                                                                     )

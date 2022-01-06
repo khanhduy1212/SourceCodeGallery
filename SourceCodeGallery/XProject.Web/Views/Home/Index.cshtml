@@ -1,0 +1,354 @@
+﻿@using System.Configuration
+@using XProject.Domain.Abstract
+@using XProject.Domain.Entities
+@using XProject.Web
+@using XProject.Web.Infrastructure;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+    var lang = "";
+
+    var contentRepository = DependencyHelper.GetService<IGeneralRepository<XContent>>();
+    var httpCookie = Request.Cookies["Language"];
+    if (httpCookie != null)
+    {
+        lang = httpCookie.Value;
+    }
+    else
+    {
+        lang = ConfigurationManager.AppSettings["Culture"];
+    }
+    var listContent = contentRepository.GetIQueryableItems().Where(x => x.Active == 1 && x.CodeLanguage == lang);
+}
+
+<div id="main">
+    <div id="main_scroller" class="scroll_transition">
+        <div id="content" data-current="index" data-controller="page">
+            <div id="header">
+                <img class="full_height desktop mobile_hidden scaled has_transition_1500" src="~/Template/images/head.jpg" />
+                <img class="full_width mobile mobile_only" src="~/Template/images/head_mobile.jpg" />
+                <div id="header_content">
+                    <div id="true_mobile" class="mobile_only">
+                        <div class="no_overflow">
+                            <h2 class="true_mobile has_transition_800 top_hidden">
+                                <img class="lifestyle has_transition_800_quint top_hidden" data-src="/Template/images/logo2.png" style="width: 215px" />
+                            </h2>
+                        </div>
+
+                    </div>
+                    <div id="scroll_mobile" class="mobile_only top_double has_transition_800">
+                        <svg width="40" height="60">
+                            <path class="s_arrow has_transition_800" d="M20,18 L20,40 M20,41 L16,35 M20,41 L24,35" stroke="white" fill="none" stroke-width="1.5"></path>
+                        </svg>
+                    </div>
+                    <div id="right_panel" class="mobile_hidden">
+                        <img class="white_panel full_height hidden has_transition_1500" src="~/Template/images/A.png" />
+
+                        <img class="c_letter mobile_hidden hidden has_transition_1500" src="~/Template/images/c_title.png" />
+
+
+                    </div>
+                    <div id="right_content" class="mobile_hidden">
+                        <div class="upper">
+                            <div class="upper_content">
+                               <div class="book_now_top no_opacity has_transition_800" style="border: 0px!important;">
+                                    <a class="" href="tel:+84931801313">
+                                     
+                                        <img style="position: relative; top: -7px; left: -37px; width: 30px;" src="~/Template/images/icon-keep.png"/> 
+                                        <span class="clKeepIn">Keep in touch</span>
+                                    </a>
+                                </div>
+                                <div class="menu_controller has_transition_800" id="menucontrol">
+                                    <div class="burger__iJR12 loaded__2RjjS  ">
+
+                                        <div class="_1 one__3bfvM"></div>
+                                        <div class="_2 two__37U_E"></div>
+                                        <div class="_3 three__3fk-_"></div>
+                                        <p class="langMenu">Menu</p>
+                                    </div>
+
+                                  
+                                </div>
+
+                               
+                            </div>
+                        </div>
+                        <div class="center">
+                            <div id="panel_logo">
+                                <div class="no_overflow">
+                                    <img class="casangelina has_transition_800 top_hidden" data-src="/Template/images/logo.png" />
+                                </div>
+
+                            </div>
+                            <div id="true_perfection">
+                                <div style="animation-delay: 2s;" class="animated fadeInDown">
+                                    <img style="width: 138px;" data-src="/Template/images/logo2-1.png" />
+
+                                </div>
+                                <div style="animation-delay: 2s;" class="animated fadeInUp">
+                                    <img style="width: 215px; margin-top: -17px; position: relative; z-index: 1" data-src="/Template/images/logo2-2.png" />
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="scroll_down" class="btn-contact no_opacity has_transition_800 mobile_hidden">
+                    <div class="mouse"></div>
+                </div>
+               
+            </div>
+            <div id="page">
+                <div class="row content">
+                    <div class="paragraph first content-about">
+                        @{
+                            var aboutContent = listContent.FirstOrDefault(x => x.Type == 2);
+                            if (aboutContent != null)
+                            {
+                                <div class="no_overflow" style="width:68%;">
+                                    <h1 class="big_title top_hidden has_transition_800">
+                                        @aboutContent.Name
+                                    </h1>
+                                </div>
+                                <hr />
+                                <div class="no_overflow big_subtitle " style="width:68%;">
+                                    <h2 class="big_subtitle top_hidden has_transition_800">
+                                        @aboutContent.ShortDescription
+                                    </h2>
+                                </div>
+                                <div class="body_text">
+                                    @Html.Raw(aboutContent.Description)
+                                </div>
+                                   
+                               
+                            }
+                            else
+                            {
+                                <div class="no_overflow">
+                                    <h1 class="big_title top_hidden has_transition_800">
+                                        Chic and Secluded
+                                    </h1>
+                                </div>
+                                <hr />
+                                <div class="no_overflow big_subtitle ">
+                                    <h2 class="big_subtitle top_hidden has_transition_800">
+                                        Boutique Hotel on the Amalfi Coast.
+                                    </h2>
+                                </div>
+                                <p class="body_text two_col top_translated has_transition_2000">
+                                    Sitting on the high cliffs of the Amalfi Coast, Casa Angelina offers a sublime slice of modern minimalism on the Mediterranean, with an emphasis on elegant simplicity and first-rate food.<br />An airy refuge, our boutique 39-room hotel is&nbsp;a place where guests can rediscover the forgotten rhythms of long, drawn-out days and easy, lingering evenings. <br /> Our hotel serves as a sanctuary, bearing a fresh, pared-back aesthetic and a white-on-white palette that accentuates both the sea and sky blues outside and the contemporary artworks on display inside.<br /><br /> Understated chic is our design ethos and subtle details are our raison d&rsquo;&ecirc;tre: we like to make sure everything is immaculate, from the pillowy and pristine white Etro cotton sheets dressing your bed right down to the carefully placed garnish of garden-grown herbs on your plate.
+                                </p>
+                            }
+                        }
+
+
+                    </div>
+                </div>
+            <div class="row no_overflow mobile_hidden">
+                <div id="understated_pic">
+					
+                    <div class="chic_layer c1 absolute on_top scroll-custom-l clasL">
+                        <img class="full_width" data-src="/Template/images/l.png" />
+                    </div>
+                    <div class="chic_layer c2 absolute on_top scroll-custom-u clasu">
+                        <img class="full_width" data-src="/Template/images/u.png" />
+                    </div>
+
+                    <div class="chic_layer h2 absolute scroll-custom-m clasm">
+                        <img class="full_width" data-src="/Template/images/m.png" />
+                    </div>
+                    <div class="chic_layer i absolute scroll-custom-i clasi">
+                        <img class="full_width" data-src="/Template/images/i.png" />
+                    </div>
+                    <div class="chic_layer c3 absolute on_top scroll-custom-e clase">
+                        <img class="full_width" data-src="/Template/images/e.png" />
+                    </div>
+					
+                    <div class="chic_layer c4 absolute scroll-custom-e2 clase2">
+                        <img class="full_width" data-src="/Template/images/e2.png" />
+                    </div>
+
+                </div>
+
+
+                @*<div id="understated_pic">
+                    <img class="full_width" data-src="/Template/style/images/home/understated_full.jpg" />
+                    <img class="full_width absolute mountain" data-src="/Template/style/images/home/mountain.png" />
+                    <div class="chic_layer c1 absolute on_top scroll_transition">
+                        <img class="full_width" data-src="/Template/style/images/home/c_small.png" />
+                    </div>
+                    <div class="chic_layer h1 absolute on_top scroll_transition">
+                        <img class="full_width" data-src="/Template/style/images/home/h1.png" />
+                    </div>
+                    <div class="chic_layer h2 absolute scroll_transition">
+                        <img class="full_width" data-src="/Template/style/images/home/h2.png" />
+                    </div>
+                    <div class="chic_layer i absolute on_top scroll_transition">
+                        <img class="full_width" data-src="/Template/style/images/home/i.png" />
+                    </div>
+                    <div class="chic_layer c2 absolute scroll_transition">
+                        <img class="full_width" data-src="/Template/style/images/home/c2.png" />
+                    </div>
+                    <div class="understated_layer absolute scroll_transition">
+                        <img class="full_width" data-src="/Template/style/images/home/understated.png" />
+                    </div>
+                </div>*@
+
+            </div>
+                @Html.Partial("Partial/_pExperience")
+                <div class="row" style="display: none;">
+                    <div class="main_block_title relative">
+                        <div class="diagonal_line hidden has_transition_1500_inout">
+                            <div class="_1"></div>
+                            <div class="_2"></div>
+                        </div>
+                        <div class="block_title"><div class="no_overflow"><p class="desc_text top_hidden has_transition_1500">to enjoy at</p></div><div class="no_overflow"><p class="desc_title top_hidden has_transition_1500">CASA ANGELINA</p></div></div>
+                    </div>
+                </div>
+                <div class="row stripe" style="display: none;">
+                    <a class="cta full_pic no_overflow top_translated has_transition_2000">
+                        <img class="full_width has_transition_1500" data-src="/Template/images/flowers.jpg" id="flowers" />
+                        <div class="description_box grey relative">
+                            <div class="transform_all back has_transition_1000"></div>
+                            <h3 class="desc_title relative">LIFESTYLE</h3>
+                            <hr class="relative" />
+                            <p class="desc_text relative">design and relaxation</p>
+                        </div>
+                    </a>
+
+                </div>
+
+                @Html.Partial("Partial/_pSquareBox")
+                @*@{
+                    var tblContent = listContent.FirstOrDefault(x => x.CurrentId == 23);
+                    if (tblContent != null)
+                    {
+                        <div class="row stripe section-video" style="display: none;">
+                            <a class="cta full_pic top_translated no_overflow has_transition_2000">
+                                <div class="description_box relative">
+                                    <div class="transform_all back has_transition_1000"></div>
+
+                                    <h3 class="desc_title relative">@tblContent.Name</h3>
+                                    <hr class="relative" />
+                                    <p class="desc_text relative">@tblContent.ShortDescription</p>
+                                </div>
+                                <div class="video_panel self self_hidden has_transition_1500" style="text-align: center;">
+
+                                </div>
+                            </a>
+                        </div>
+                    }
+                }*@
+
+
+                <div class="row">
+                    <div id="fullscreen_gallery">
+                        <div class="gallery_borders">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                            <div class="left "></div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="gallery_slider">
+                            <div class="pic_big has_transition_1500 active">
+
+                                <div class="video_panel self self_hidden has_transition_1500" style="text-align: center;">
+
+                                </div>
+                            </div>
+
+                            @{
+                                var cImages = listContent.Where(x => x.Type == 17).ToList();
+                                var index = 1;
+                            }
+                            @foreach (var item in cImages)
+                            {
+                                @*@(index == 1 ? "active" : "")*@
+                                <div class="pic_big has_transition_1500 ">
+                                    <img alt="@item.Name" data-src="@(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 853))" />
+                                </div>
+                                index++;
+                            }
+                           
+                        </div>
+                        <div class="gallery_controller">
+                            <div class="button_right has_transition_800">
+                                <div class="circle has_transition_1000"><img class="has_transition_1000" src="https://lamos.vn/Template/images/white_right_arrow.png" /></div>
+                            </div>
+                            <div class="button_left has_transition_800">
+                                <div class="circle has_transition_1000 hidden_by_scaling_full"><img class="has_transition_1000" src="https://lamos.vn/Template/images/white_left_arrow.png" /></div>
+                            </div>
+                            <div class="btn-contact button_down has_transition_800">
+                                <div class="circle has_transition_1000"><img class="has_transition_1000" src="https://lamos.vn/Template/images/white_right_arrow.png" /></div>
+                            </div>
+                        </div>
+                        <div class="numbers">
+                            <p class="counter">1</p>
+                            <div class="gallery_diagonal"></div>
+                            <p class="total">@(cImages.Count+1)<p>
+                        </div>
+                        <div class="advice">
+                            <img width=20 src="~/Template/images/rotate.png" />
+                            <p>
+                              
+                                rotate for <br />fullscreen gallery
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                @Html.Partial("Partial/_pNews")
+
+
+            </div>
+
+
+
+        </div>
+
+
+        @Html.Partial("Partial/_pFooter")
+    </div>
+</div>
+<script>
+
+
+
+</script>
+@{
+
+    string titleMeta = (ViewBag.TitleMeta.Length < 48 ? ViewBag.TitleMeta + " | Lamos.vn" : ViewBag.TitleMeta).ToString();
+    string descriptionMeta = ViewBag.DescriptionMeta.Length > 170 ? ViewBag.DescriptionMeta.Substring(0, 170) : ViewBag.DescriptionMeta;
+    string keyWordMeta = ViewBag.KeyWordMeta;
+    string urlMeta = ViewBag.UrlMeta;
+    string imageMeta = ViewBag.ImageMeta;
+}
+
+@section share_fb{
+
+    <title>@Html.RawFixDecodeUTF8(titleMeta)</title>
+    <meta name="title" @Html.RawFixDecodeUTF8(titleMeta, true) />
+    <meta name="description" @Html.RawFixDecodeUTF8(descriptionMeta, true) />
+    <meta name="keywords" @Html.RawFixDecodeUTF8(keyWordMeta, true) />
+    <lin />
+    <link rel="canonical" href="@urlMeta" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" @Html.RawFixDecodeUTF8(titleMeta, true) />
+    <meta property="og:description" @Html.RawFixDecodeUTF8(descriptionMeta, true) />
+    <meta property="og:url" content="@urlMeta" />
+    <meta property="og:site_name" content="Lamos.vn" />
+    <meta property="article:publisher" content="https://www.facebook.com/" />
+    <meta property="article:section" content="Confessions" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" @Html.RawFixDecodeUTF8(descriptionMeta, true) />
+    <meta name="twitter:title" @Html.RawFixDecodeUTF8(titleMeta, true) />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="315" />
+    <meta name="author" content="Lamos">
+    <meta property="og:image" content="@imageMeta" />
+}
+
+

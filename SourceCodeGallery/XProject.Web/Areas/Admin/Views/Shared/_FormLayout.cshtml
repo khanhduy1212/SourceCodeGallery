@@ -1,0 +1,100 @@
+﻿@using System
+@using System.Web
+@using XProject.Web.Areas.Admin.Helper
+@using Resources
+
+
+<div class="page-header">
+    <h1>
+        @ViewBag.Title
+    </h1>
+</div>
+@using (Html.BeginForm(HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString(), HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString(),FormMethod.Post, new {@id= "validation-form", enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-horizontal">
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-5 col-md-7">
+                        @Html.Bootstrap().ActionLinkButton(Resource.ButtonBackToList, "Index").PrependIcon(Icons.arrow_left)
+                        &nbsp; &nbsp;
+                        @Html.Bootstrap().SubmitButton().Id("submitbutton1").Text(Resource.Save).PrependIcon("<i class='ace-icon fa fa-check bigger-110'></i>").Style(ButtonStyle.Info)
+
+                    </div>
+                </div>
+                @{
+
+                    String name = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+                    if (ViewBag.HideBase == null ||  ViewBag.HideBase == false)
+                    {
+                        @Html.Partial("/Areas/Admin/Views/Shared/_BaseFormInput.cshtml")
+                    }
+                    @Html.Partial("/Areas/Admin/Views/" + name + "/_Input.cshtml")
+                    @Html.Partial("/Areas/Admin/Views/Shared/_BaseFormHistory.cshtml")
+                }
+               
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-5 col-md-7">
+                        @Html.Bootstrap().ActionLinkButton(Resource.ButtonBackToList, "Index").PrependIcon(Icons.arrow_left)
+                        &nbsp; &nbsp;
+                        @Html.Bootstrap().SubmitButton().Id("submitbutton2").Text(Resource.Save).PrependIcon("<i class='ace-icon fa fa-check bigger-110'></i>").Style(ButtonStyle.Info)
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@Html.Script(
+    @<script>
+
+      
+        
+        $("#submitbutton1,#submitbutton2").on('click', function (e) {
+            e.preventDefault();
+            if ($('#validation-form').valid())
+            {
+                 bootbox.confirm("@Resource.ConfirmCreate", function (isOK) {
+                     if (isOK) {
+                         if ($('input[name="_Type"]').val()=='ajax')
+                         {
+                             var formData = new FormData($('#validation-form')[0]);
+
+                             $.ajax({
+                                 url: window.location.pathname,
+                                 type: 'POST',
+                                 data: formData,                                
+                                 cache: false,
+                                 contentType: false,
+                                 processData: false,
+                                 success: function (data) {
+                                     if (parent != null && parent.__callBack!=null)
+                                     {
+                                         parent.__callBack(data);
+                                     }                                  
+                                 },
+                                 error: function (data) {
+                                    
+                                 },
+                             });
+                         } else
+                         {
+                             $('#submitbutton1').parents("form").submit();
+                             
+                         }
+                       
+                    }
+                });
+            }
+
+        });
+
+        $(document).ready(function () {
+            $('input[type=text]').css("text-transform", "none");
+        });
+        //HRGLOBAL.AUTO_UPPERCASE = false;
+
+
+    </script>)

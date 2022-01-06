@@ -1,0 +1,318 @@
+﻿@using System.Configuration
+@using XProject.Domain.Abstract
+@using XProject.Domain.Entities
+@using XProject.Web
+@using XProject.Web.Infrastructure;
+@model XProject.Web.Models.AllModel
+@{
+    ViewBag.Title = "ListCategoy";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+    var pictureRepository = DependencyHelper.GetService<IGeneralRepository<XPicture>>();
+}
+
+<div id="main">
+    <div id="main_scroller" class="scroll_transition">
+        <div id="content" data-current="facilities" data-controller="panel" class="scroll_transition">
+
+            <div id="section_scroller">
+                <div id="section_scroller_container" class="scroll_transition forced transform_only">
+                    <div class="section_panel intro has_transition_1500 transform_only">
+                        <div class="loading_cover has_transition_1000_inout_quint"></div>
+                        <div class="panel_start has_transition_800"></div>
+                        <div class="panel_intro">
+                            <div class="subsection_num">
+
+                                <span class="number1" style="display: none;">
+                                    @{
+                                        if (Model.TblMenu.Order != null)
+                                        {
+                                            switch (Model.TblMenu.Order)
+                                            {
+                                                case 1:
+                                                    @("I")
+                                                    break;
+                                                case 2:
+                                                    @("II")
+                                                    break;
+                                                case 3:
+                                                    @("III")
+                                                    break;
+                                                case 4:
+                                                    @("IV")
+                                                    break;
+                                                case 5:
+                                                    @("V")
+                                                    break;
+                                                case 6:
+                                                    @("VI")
+                                                    break;
+                                                case 7:
+                                                    @("VII")
+                                                    break;
+                                                case 8:
+                                                    @("VIII")
+                                                    break;
+                                            }
+
+                                        }
+                                    }
+
+                                    .
+                                </span>
+                                
+                              
+                                    <span class="number2">@{
+                                        if (Model.TblMenu.Order != null)
+                                        {
+                                            switch (Model.TblMenu.Order)
+                                            {
+                                                case 1:
+                                                    @("I")
+                                                    break;
+                                                case 2:
+                                                    @("II")
+                                                    break;
+                                                case 3:
+                                                    @("III")
+                                                    break;
+                                                case 4:
+                                                    @("IV")
+                                                    break;
+                                                case 5:
+                                                    @("V")
+                                                    break;
+                                                case 6:
+                                                    @("VI")
+                                                    break;
+                                                case 7:
+                                                    @("VII")
+                                                    break;
+                                                case 8:
+                                                    @("VIII")
+                                                    break;
+                                            }
+
+                                        }
+                                    }</span>
+</div>
+
+                            <div class="no_overflow cus-no_overflow">
+                                <h1 class="panel_section_title has_transition_1000 top_hidden text-menu-list">@Model.TblMenu.Name</h1>
+                            </div>
+                            <div class="no_overflow">
+                                <h2 class="panel_section_subtitle has_transition_1000 top_hidden">@Model.TblMenu.ShortDescription</h2>
+                            </div>
+                            <div class="panel_section_text_container top_translated has_transition_2000 content-about">
+                            
+                                @Html.Raw(Model.TblMenu.Description)
+                                <div id="section_text_scrollbar" class="menu_panel_scrollbar">
+                                    <div class="pointer has_transition_1000"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel_separator">
+                            <div class="line_1 has_transition_1500"></div>
+                            <div class="line_2 has_transition_1500"></div>
+                        </div>
+                        <div class="swipe_ad mobile_only">
+                            <div class="no_overflow">
+                                <p class="controller_text top_hidden has_transition_1000 clswipe">swipe</p>
+                            </div>
+                            <div class="circle_button right ">
+                                <div class="back hidden_by_scaling_full has_transition_1000 transform_all"></div>
+                                <div class="arrow hidden has_transition_800">
+                                    <span class="fadeOutRight">
+                                        <span class="fadeOutRight">
+                                            <img src="~/Template/images/tiny_arrow.png" style="margin-top: 15px;" />
+                                        </span>
+                                    </span>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                    @{
+                        foreach (var item in Model.ListMenu.OrderBy(x => x.Order).ToList())
+                        {
+                            var listPic = pictureRepository.GetIQueryableItems().FirstOrDefault(x => x.ProductsId == item.CurrentId && x.TypeId == 3 && x.Position == 0);
+                            var img = item.UrlImage != null ? (ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 853)) : "/Template/images/wellness_2400x1350_963a88d969d0edb63172bf1a620ac990.jpg";
+                            var img2 = listPic != null ? (ConfigurationManager.AppSettings["UrlImage"] + listPic.ConvertedFilename.Split('_')[0] + "/" + String.Format(listPic.ConvertedFilename, 853)) : "/Template/images/wellness_2400x1350_963a88d969d0edb63172bf1a620ac990.jpg";
+
+                            if (item.Active != 0)
+                            {
+                                <a href="@Url.Action("DetailCategoy","Home",new {id=item.Name.UrlFrendly()+"-"+item.CurrentId})" class="category-hover section_panel has_transition_1500 transform_only" rel="wellness">
+                                    <div class="loading_cover has_transition_1000_inout_quint"></div>
+                                    <div class="section_pic has_transition_1000_inout_quint scaled_full">
+                                        <div class="section_veil has_transition_800"></div>
+                                        <img class="scroll_transition pic-1" src="@img" />
+
+                                        <img class="scroll_transition pic-2" src="@(img2)" />
+                                    </div>
+                                    <div class="info has_transition_1500 top_double">
+                                        <div class="num_back has_transition_1500_inout"></div>
+                                        <img class="section_triangle full_width" src="~/Template/images/1_1.png" style="visibility:hidden">
+                                        <div class="info_data has_transition_1500_inout">
+                                            <div class="section_panel_title text-menu-list"><h1>@item.Name</h1></div>
+                                            <div class="section_separator">
+                                                <div class="pointer"></div>
+                                            </div>
+                                            <div class="section_subtitle"><h2></h2></div>
+                                        </div>
+                                    </div>
+                                    @*<div class="details has_transition_600_quint no_opacity">
+                                        <div class="info_details">
+                                            <div class="panel_detail">
+                                                <div class="no_overflow">
+                                                    <p class="det_num top_hidden has_transition_1500">&nbsp;</p>
+                                                </div>
+
+                                                <div class="no_overflow">
+                                                    <div class="det_white top_hidden has_transition_1000">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel_detail">
+                                                <div class="no_overflow">
+                                                    <p class="det_black top_hidden has_transition_1000"></p>
+                                                </div>
+                                                <div class="no_overflow">
+                                                    <div class="det_white top_hidden has_transition_1000"></div>
+                                                </div>
+                                            </div>
+                                            <div class="instructions mobile_only hidden">
+                                                <p class="clTap">tap to enter or swipe to move</p>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                    <div class="panel_separator">
+                                        <div class="line_1 has_transition_1500"></div>
+                                        <div class="line_2 has_transition_1500"></div>
+                                    </div>
+                                </a>
+                            }
+                            else
+                            {
+                                <a style="pointer-events: none;" class="category-hover section_panel has_transition_1500 transform_only">
+                                    <div class="loading_cover has_transition_1000_inout_quint"></div>
+                                    <div class="section_pic has_transition_1000_inout_quint scaled_full">
+                                        <div class="section_veil has_transition_800"></div>
+                                        <img class="scroll_transition pic-1" src="@img" />
+
+                                        <img class="scroll_transition pic-2" src="@(img2)" />
+                                    </div>
+                                    <div class="info has_transition_1500 top_double">
+                                        <div class="num_back has_transition_1500_inout"></div>
+                                        <img class="section_triangle full_width" src="~/Template/images/1_1.png" style="visibility:hidden">
+                                        <div class="info_data has_transition_1500_inout">
+                                            <div class="section_panel_title text-menu-list"><h1>@item.Name</h1></div>
+                                            <div class="section_separator">
+                                                <div class="pointer"></div>
+                                            </div>
+                                            <div class="section_subtitle"><h2></h2></div>
+                                        </div>
+                                    </div>
+                                    @*<div class="details has_transition_600_quint no_opacity">
+                                        <div class="info_details">
+                                            <div class="panel_detail">
+                                                <div class="no_overflow">
+                                                    <p class="det_num top_hidden has_transition_1500">&nbsp;</p>
+                                                </div>
+
+                                                <div class="no_overflow">
+                                                    <div class="det_white top_hidden has_transition_1000">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel_detail">
+                                                <div class="no_overflow">
+                                                    <p class="det_black top_hidden has_transition_1000"></p>
+                                                </div>
+                                                <div class="no_overflow">
+                                                    <div class="det_white top_hidden has_transition_1000"></div>
+                                                </div>
+                                            </div>
+                                            <div class="instructions mobile_only hidden">
+                                                <p class="clTap">tap to enter or swipe to move</p>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                    <div class="panel_separator">
+                                        <div class="line_1 has_transition_1500"></div>
+                                        <div class="line_2 has_transition_1500"></div>
+                                    </div>
+                                </a>
+                            }
+                        }
+                    }
+
+
+
+                </div>
+
+                <div id="panel_controls" class="has_transition_1000 transform_only">
+                    <div class="prev has_transition_1000 hidden transform_only">
+                        <div class="panel_back has_transition_1000"></div>
+                        <div class="panel_circle has_transition_1000 hidden_by_scaling_full">
+                            <img class="has_transition_1000" src="~/Template/images/left_arrow.png" />
+                        </div>
+                        @*<p class="panel_text has_transition_1000">@Model.TblMenu.Name</p>*@
+                        <p class="panel_text has_transition_1000 clNext">Back</p>
+
+                    </div>
+                    @Html.Partial("Partial/_pMenuChild")
+                    <div class="next hidden has_transition_1000 transform_only">
+                        <div class="panel_back has_transition_1000"></div>
+                        <div class="panel_circle has_transition_1000 hidden_by_scaling_full">
+                            <img class="has_transition_1000" src="https://lamos.vn/Template/images/right_arrow.png" />
+                        </div>
+                        @*<p class="panel_text has_transition_1000">@Model.TblMenu.Name</p>*@
+                        <p class="panel_text has_transition_1000 clNext">Next</p>
+                       
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="section_animation" class="has_transition_1500_quint no_transition"></div>
+            <div id="section_content"></div>
+        </div>
+
+        @Html.Partial("Partial/_pFooter")
+    </div>
+</div>
+@Html.Partial("Partial/_pMainMenu")
+@{
+
+    string titleMeta = (ViewBag.TitleMeta.Length < 48 ? ViewBag.TitleMeta + " | Lamos.vn" : ViewBag.TitleMeta).ToString();
+    string descriptionMeta = ViewBag.DescriptionMeta.Length > 170 ? ViewBag.DescriptionMeta.Substring(0, 170) : ViewBag.DescriptionMeta;
+    string keyWordMeta = ViewBag.KeyWordMeta;
+    string urlMeta = ViewBag.UrlMeta;
+    string imageMeta = ViewBag.ImageMeta ;
+}
+
+@section share_fb{
+
+  <title>@Html.RawFixDecodeUTF8(titleMeta)</title>
+<meta name="title" @Html.RawFixDecodeUTF8(titleMeta, true) />
+<meta name="description" @Html.RawFixDecodeUTF8(descriptionMeta, true) />
+<meta name="keywords" @Html.RawFixDecodeUTF8(keyWordMeta, true) />
+<lin />
+<link rel="canonical" href="@urlMeta" />
+<meta property="og:locale" content="vi_VN" />
+<meta property="og:type" content="article" />
+<meta property="og:title" @Html.RawFixDecodeUTF8(titleMeta, true) />
+<meta property="og:description" @Html.RawFixDecodeUTF8(descriptionMeta, true) />
+<meta property="og:url" content="@urlMeta" />
+<meta property="og:site_name" content="Lamos.vn" />
+<meta property="article:publisher" content="https://www.facebook.com/" />
+<meta property="article:section" content="Confessions" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" @Html.RawFixDecodeUTF8(descriptionMeta, true) />
+<meta name="twitter:title" @Html.RawFixDecodeUTF8(titleMeta, true) />
+<meta property="og:image:width" content="600" />
+<meta property="og:image:height" content="315" />
+<meta name="author" content="Lamos">
+<meta property="og:image" content="@imageMeta" />
+}

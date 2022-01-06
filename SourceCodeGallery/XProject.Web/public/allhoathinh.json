@@ -1,0 +1,122 @@
+{
+  "version": "1.4.9",
+  "activeMiniStore": true,
+  "listInApp": ["1MONTH", "3MONTH", "6MONTH", "12MONTH"],
+  "appItems": [
+    {
+      "appTilte": "Dragon Ball Episodes Full",
+      "headLine": "UPDATE TO LATEST MOVIES",
+      "url": "http://ec2-52-74-248-127.ap-southeast-1.compute.amazonaws.com/public/dragonball.json",
+      "urlBackup": "http://nauyshop.net/powerpoint/dragonball.json",
+      "imageCover": "https://store-images.s-microsoft.com/image/apps.50574.13510798887587921.76cd64c6-77bb-42d9-9bef-5a984b2685ed.4e75cdc3-98b2-4e54-9ca9-7009e02144fe?w=180&h=180&q=60",
+      "imageDetail": "https://store-images.s-microsoft.com/image/apps.59571.13510798887587921.9295b762-335f-4e57-abe6-c691951afc5a.c85bdab7-fec9-4196-b278-a36310593509?w=1398&h=692&q=60",
+      "shortDescription": "",
+      "longDesription": "All over 500+ Dragon Ball episodes which including: - Dragon Ball Original - Dragon Ball Z - Dragon Ball GT - Dragon Ball Super and especially all other individual stand-alone movies."
+    },
+    {
+      "appTilte": "Pokemon Series",
+      "headLine": "Over 500+ movies",
+      "url": "http://ec2-52-74-248-127.ap-southeast-1.compute.amazonaws.com/public/pokemon.json",
+      "urlBackup": "http://nauyshop.net/powerpoint/pokemon.json",
+      "imageCover": "https://store-images.s-microsoft.com/image/apps.8931.13510798887625192.e80b6f5d-3508-4f91-a116-adda33094b60.45800f73-2103-4fba-ad47-2788b7213ed6?w=180&h=180&q=60",
+      "imageDetail": "https://store-images.s-microsoft.com/image/apps.37375.13510798887625192.3120d104-f8f4-44cd-9a1e-9fcf0912d8b8.b5cdb275-af25-4398-9fde-64c18a9c4eb7?w=1399&h=801&q=60",
+      "shortDescription": "",
+      "longDesription": "Enjoy all over 500+ Pokemon episodes.  -New movies in season will be updated as long as you own the app."
+    },
+    {
+      "appTilte": "Naruto Shippuden",
+      "headLine": "UPDATE NEW SEASON WEEKLY",
+      "url": "http://ec2-52-74-248-127.ap-southeast-1.compute.amazonaws.com/public/naruto.json",
+      "urlBackup": "http://nauyshop.net/powerpoint/naruto.json",
+      "imageCover": "http://cdn.zonarutoppuden.com/ns/peliculas-naruto-shippuden.jpg",
+      "imageDetail": "https://i.ytimg.com/vi/TFltIYOUbbo/maxresdefault.jpg",
+      "shortDescription": "",
+      "longDesription": "Naruto Shippuden series. Add new season weekly."
+    },
+	{
+      "appTilte": "Detective Conan",
+      "headLine": "UPDATE NEW SEASON WEEKLY",
+      "url": "http://ec2-52-74-248-127.ap-southeast-1.compute.amazonaws.com/public/conan2.json",
+      "urlBackup": "http://nauyshop.net/powerpoint/conan2.json",
+      "imageCover": "http://www.geek-anime.com/wp-content/uploads/2016/11/Detective-conan-534x330.jpg",
+      "imageDetail": "https://images2-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&gadget=a&no_expand=1&refresh=604800&url=http://animehay.com/uploads/images/2016/03/tham-tu-lung-danh-conan-439-cover.jpg",
+      "shortDescription": "",
+      "longDesription": "Naruto Shippuden series. Add new season weekly."
+    },
+    {
+      "appTilte": "Yu-Gi-Oh! Episodes",
+      "headLine": "UPDATE TO LATEST MOVIES - FREE TRIAL",
+      "url": "http://ec2-52-74-248-127.ap-southeast-1.compute.amazonaws.com/public/yugioh.json",
+      "urlBackup": "http://nauyshop.net/powerpoint/yugioh.json",
+      "imageCover": "https://store-images.s-microsoft.com/image/apps.47346.13510798887588000.1627dc69-917b-4f01-b0de-eaa8a782053b.341e83ab-eed5-4f25-86ea-0ffafbc6bbe2?w=180&h=180&q=60",
+      "imageDetail": "https://store-images.s-microsoft.com/image/apps.12890.13510798887588000.2269b86e-a6dc-46fa-b52c-3726a4c04edd.8e93a240-e6d0-46dd-bc49-b846f67214f9?w=1398&h=725&q=60",
+      "shortDescription": "",
+      "longDesription": "This apps allow you to watch all Yu-Gi-Oh! movie episodes on tables or mobile devices. The price of this app is just less than haft of a movie ticket but you can enjoy all over 200+ Yu-Gi-Oh! episodes.  Yu-Gi-Oh! tells the tale of Yugi Mutou, a timid young boy who loves all sorts of games, but is often bullied around. One day, he solves an ancient artifact known as the Millennium Puzzle (千年パズル Sennen Pazuru?), causing his body to play host to a mysterious spirit with the personality of a gambler. From that moment onwards, whenever Yugi or one of his friends is threatened by those with darkness in their hearts, this other Yugi shows himself and challenges them to dangerous Shadow Games"
+    },
+    {
+      "appTilte": "DeathNote Series",
+      "headLine": "UPDATE TO LATEST MOVIES",
+      "url": "http://ec2-52-74-248-127.ap-southeast-1.compute.amazonaws.com/public/deathnote.json",
+      "urlBackup": "http://nauyshop.net/powerpoint/deathnote.json",
+      "imageCover": "https://store-images.s-microsoft.com/image/apps.9725.13510798887592855.9bc0b55b-34fc-4b5c-86bb-7b7bc92964dc.67f1b832-bc07-4920-bf95-277ad74c29d2?w=180&h=180&q=60",
+      "imageDetail": "https://store-images.s-microsoft.com/image/apps.41173.13510798887592855.3d05119c-9e94-425e-b6a9-9f28b93d5416.d8262495-973d-4c3f-874f-4f02d25718ec?w=1398&h=863&q=60",
+      "shortDescription": "",
+      "longDesription": "All the episodes including short and long movies check it out."
+    },
+    {
+      "appTilte": "Doreamon Series",
+      "headLine": "UPDATE TO LATEST MOVIES",
+      "url": "http://ec2-52-74-248-127.ap-southeast-1.compute.amazonaws.com/public/domon.json",
+      "urlBackup": "http://nauyshop.net/powerpoint/domon.json",
+      "imageCover": "https://store-images.s-microsoft.com/image/apps.8474.13510798887592912.57acc495-b9fc-45f6-9d60-6f51f45317bc.852c2b78-1d31-4c53-8f5f-47a106242cca?w=180&h=180&q=60",
+      "imageDetail": "https://store-images.s-microsoft.com/image/apps.56825.13510798887592912.ade4f7a0-fffa-48ed-93dc-b23dafd84b09.4d0b7804-b466-40a3-873f-9381afd39e8a?w=1399&h=787&q=60",
+      "shortDescription": "",
+      "longDesription": "All the episodes including short and long ones check it out."
+
+    },
+    {
+      "appTilte": "One Piece",
+      "headLine": "Weekly Adding New Season",
+      "url": "http://ec2-52-74-248-127.ap-southeast-1.compute.amazonaws.com/public/onepiece.json",
+      "urlBackup": "http://nauyshop.net/powerpoint/onepiece.json",
+      "imageCover": "https://i.kinja-img.com/gawker-media/image/upload/s--ifwZ44Rs--/c_fill,fl_progressive,g_center,h_450,q_80,w_800/wxdgwzjs9tzfzbqsqf8e.jpg",
+      "imageDetail": "https://i.kinja-img.com/gawker-media/image/upload/vhiivlckpf3mricwkxu1.png",
+      "shortDescription": "",
+      "longDesription": "Full HD quality 1920 x 1080 "
+
+    },
+    {
+      "appTilte": "Larva",
+      "headLine": "Weekly Adding New Season",
+      "url": "http://ec2-52-74-248-127.ap-southeast-1.compute.amazonaws.com/public/larva.json",
+      "urlBackup": "http://nauyshop.net/powerpoint/larva.json",
+      "imageCover": "http://static2.wikia.nocookie.net/__cb20130602040448/ideas/images/4/40/Characters_of_Larva.jpg",
+      "imageDetail": "https://i.ytimg.com/vi/NkQK6boZNLg/maxresdefault.jpg",
+      "shortDescription": "",
+      "longDesription": "Full set ever"
+
+    },
+    {
+      "appTilte": "Marvel x-Men Series",
+      "headLine": "",
+      "url": "http://ec2-52-74-248-127.ap-southeast-1.compute.amazonaws.com/public/xmen-marvel.json",
+      "urlBackup": "http://nauyshop.net/powerpoint/xmen-marvel.json",
+      "imageCover": "http://www.audienceseverywhere.net/wp-content/uploads/2015/04/AvX-2.jpg",
+      "imageDetail": "http://www.audienceseverywhere.net/wp-content/uploads/2015/04/AvX-2.jpg",
+      "shortDescription": "",
+      "longDesription": ""
+
+    },
+    {
+      "appTilte": "X-Men Cartoon",
+      "headLine": "",
+      "url": "http://ec2-52-74-248-127.ap-southeast-1.compute.amazonaws.com/public/xmen-cartoon.json",
+      "urlBackup": "http://nauyshop.net/powerpoint/xmen-cartoon.json",
+      "imageCover": "http://cdn-static.denofgeek.com/sites/denofgeek/files/2015/10/x-men_tv_show.jpeg",
+      "imageDetail": "http://cdn-static.denofgeek.com/sites/denofgeek/files/2015/10/x-men_tv_show.jpeg",
+      "shortDescription": "",
+      "longDesription": ""
+
+    }
+  ]
+}

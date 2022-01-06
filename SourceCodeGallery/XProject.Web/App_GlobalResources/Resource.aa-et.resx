@@ -1,0 +1,1988 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Add</comment>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
+    <comment>Balance</comment>
+  </data>
+  <data name="DeletedDate" xml:space="preserve">
+    <value>Deleted Date</value>
+    <comment>Deleted Date</comment>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Change</value>
+    <comment>Change</comment>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+    <comment>Clear</comment>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+    <comment>Color</comment>
+  </data>
+  <data name="StyleColor" xml:space="preserve">
+    <value>Style Color</value>
+    <comment>Style Color</comment>
+  </data>
+  <data name="ConfirmDeleteGroup" xml:space="preserve">
+    <value>Are you sure you want to delete this group?</value>
+    <comment>Are you sure you want to delete this group?</comment>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Are you sure you want to delete?</value>
+    <comment>Are you sure you want to delete?</comment>
+  </data>
+  <data name="ConfirmUnarchive" xml:space="preserve">
+    <value>Are you sure you want to unarchive?</value>
+    <comment>Are you sure you want to unarchive?</comment>
+  </data>
+  <data name="ConfirmArchive" xml:space="preserve">
+    <value>Are you sure you want to archive?</value>
+    <comment>Are you sure you want to archive?</comment>
+  </data>
+  <data name="ConfirmCancel" xml:space="preserve">
+    <value>Are you sure you want to cancel?</value>
+    <comment>Are you sure you want to cancel?</comment>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Create New</value>
+    <comment>Create New</comment>
+  </data>
+  <data name="CreateSuccessful" xml:space="preserve">
+    <value>Create Successful</value>
+    <comment>Create Successful</comment>
+  </data>
+  <data name="DeleteSuccessful" xml:space="preserve">
+    <value>Delete Successful</value>
+    <comment>Delete Successful</comment>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+    <comment>Code</comment>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>Date Of Birth</value>
+    <comment>Date Of Birth</comment>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>Delete</comment>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Cost</value>
+    <comment>Cost</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>Description</comment>
+  </data>
+  <data name="HowToUse" xml:space="preserve">
+    <value>How To Use</value>
+    <comment>How To Use</comment>
+  </data>
+  <data name="WhereToUse" xml:space="preserve">
+    <value>Where To Use</value>
+    <comment>Where To Use</comment>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+    <comment>Details</comment>
+  </data>
+  <data name="Picture" xml:space="preserve">
+    <value>Picture</value>
+    <comment>Picture</comment>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+    <comment>Email</comment>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>End Time</value>
+    <comment>End Time</comment>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax</value>
+    <comment>Fax</comment>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
+    <comment>First Name</comment>
+  </data>
+  <data name="Fri" xml:space="preserve">
+    <value>Fri</value>
+    <comment>Fri</comment>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>From Date</value>
+    <comment>From Date</comment>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+    <comment>Gender</comment>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last Name</value>
+    <comment>Last Name</comment>
+  </data>
+  <data name="Mon" xml:space="preserve">
+    <value>Mon</value>
+    <comment>Mon</comment>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>N/A</value>
+    <comment>N/A</comment>
+  </data>
+  <data name="NIL" xml:space="preserve">
+    <value>NIL</value>
+    <comment>NIL</comment>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No.</value>
+    <comment>No.</comment>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+    <comment>Back</comment>
+  </data>
+  <data name="ColorDetails" xml:space="preserve">
+    <value>Color Details</value>
+    <comment>Color Details</comment>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Payment</value>
+    <comment>Payment</comment>
+  </data>
+  <data name="ReasonCancel" xml:space="preserve">
+    <value>Reason Cancel</value>
+    <comment>Reason Cancel</comment>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Please Select</value>
+    <comment>Please Select</comment>
+  </data>
+  <data name="PressKeyDown" xml:space="preserve">
+    <value>Press key down to show list</value>
+    <comment>Press key down to show list</comment>
+  </data>
+  <data name="YearOfManufacture" xml:space="preserve">
+    <value>Year Of Manufacture</value>
+    <comment>Year Of Manufacture</comment>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End Date</value>
+    <comment>End Date</comment>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start Date</value>
+    <comment>Start Date</comment>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+    <comment>Price</comment>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Remarks</value>
+    <comment>Remarks</comment>
+  </data>
+  <data name="Sat" xml:space="preserve">
+    <value>Sat</value>
+    <comment>Sat</comment>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Save</comment>
+  </data>
+  <data name="SaveSuccessful" xml:space="preserve">
+    <value>Save Successful</value>
+    <comment>Save Successful</comment>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+    <comment>Search</comment>
+  </data>
+  <data name="ServicePackage" xml:space="preserve">
+    <value>Service Package</value>
+    <comment>Service Package</comment>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Start Time</value>
+    <comment>Start Time</comment>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+    <comment>Status</comment>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+    <comment>Created By</comment>
+  </data>
+  <data name="Sun" xml:space="preserve">
+    <value>Sun</value>
+    <comment>Sun</comment>
+  </data>
+  <data name="Thu" xml:space="preserve">
+    <value>Thu</value>
+    <comment>Thu</comment>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>To Date</value>
+    <comment>To Date</comment>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+    <comment>Total</comment>
+  </data>
+  <data name="Tue" xml:space="preserve">
+    <value>Tue</value>
+    <comment>Tue</comment>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+    <comment>Type</comment>
+  </data>
+  <data name="ArchitectureItemType" xml:space="preserve">
+    <value>Architecture Item Type</value>
+    <comment>Architecture Item Type</comment>
+  </data>
+  <data name="Unspecified" xml:space="preserve">
+    <value>Unspecified</value>
+    <comment>Unspecified</comment>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>UserLogin name</value>
+    <comment>UserLogin name</comment>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>UserLogins</value>
+    <comment>UserLogins</comment>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
+    <comment>Year</comment>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Add New</value>
+    <comment>Add New</comment>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+    <comment>Language</comment>
+  </data>
+  <data name="AddOrModify" xml:space="preserve">
+    <value>Add Or Modify</value>
+    <comment>Add Or Modify</comment>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+    <comment>Address</comment>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+    <comment>Amount</comment>
+  </data>
+  <data name="EnterReasonDeleteHere" xml:space="preserve">
+    <value>Enter reason why to delete here...</value>
+    <comment>Enter reason why to delete here...</comment>
+  </data>
+  <data name="EnterReasonCancelHere" xml:space="preserve">
+    <value>Enter reason why to cancel here...</value>
+    <comment>Enter reason why to cancel here...</comment>
+  </data>
+  <data name="ConfirmApprove" xml:space="preserve">
+    <value>Do you want to Approve this item?</value>
+    <comment>Do you want to Approve this item?</comment>
+  </data>
+  <data name="ArrivalDate" xml:space="preserve">
+    <value>Arrival Date</value>
+    <comment>Arrival Date</comment>
+  </data>
+  <data name="ButtonBackToList" xml:space="preserve">
+    <value>Back to List</value>
+    <comment>Back to List</comment>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="ProductCategory" xml:space="preserve">
+    <value>Product Category</value>
+    <comment>Product Category</comment>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+    <comment>Category</comment>
+  </data>
+  <data name="ChooseStatus" xml:space="preserve">
+    <value>Choose Status ...</value>
+    <comment>Choose Status ...</comment>
+  </data>
+  <data name="Closing" xml:space="preserve">
+    <value>Closing</value>
+    <comment>Closing</comment>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+    <comment>Confirm</comment>
+  </data>
+  <data name="ConfirmClear" xml:space="preserve">
+    <value>Are you sure you want to clear?</value>
+    <comment>Confirm Clear</comment>
+  </data>
+  <data name="ConfirmConfirm" xml:space="preserve">
+    <value>Do you sure you want to confirm this?</value>
+    <comment>Do you sure you want to confirm this?</comment>
+  </data>
+  <data name="ConfirmCreate" xml:space="preserve">
+    <value>Do you want to add this item?</value>
+    <comment>Do you want to add this item?</comment>
+  </data>
+  <data name="ConfirmDate" xml:space="preserve">
+    <value>Confirm Date</value>
+    <comment>Confirm Date</comment>
+  </data>
+  <data name="ConfirmGenerate" xml:space="preserve">
+    <value>Are you sure you want to generate?</value>
+    <comment>Confirm Generate</comment>
+  </data>
+  <data name="ConfirmSave" xml:space="preserve">
+    <value>Do you want to Save changes?</value>
+    <comment>Do you want to save changes?</comment>
+  </data>
+  <data name="ConfirmSubmit" xml:space="preserve">
+    <value>Are you sure you want to submit?</value>
+    <comment>Are you sure you want to submit?</comment>
+  </data>
+  <data name="ConfirmUpload" xml:space="preserve">
+    <value>Are you sure you want to upload?</value>
+    <comment>Are you sure you want to upload?</comment>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+    <comment>Country</comment>
+  </data>
+  <data name="CountriesToSales" xml:space="preserve">
+    <value>Countries to sales</value>
+    <comment>Countries to sales</comment>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+    <comment>Currency</comment>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+    <comment>Date</comment>
+  </data>
+  <data name="DateFrom" xml:space="preserve">
+    <value>Date(From)</value>
+    <comment>Date(From)</comment>
+  </data>
+  <data name="DateTo" xml:space="preserve">
+    <value>Date(To)</value>
+    <comment>Date(To)</comment>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Deleted</value>
+    <comment>Deleted</comment>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detail</value>
+    <comment>Detail</comment>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+    <comment>Error</comment>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Failed!</value>
+    <comment>Failed!</comment>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+    <comment>Filter</comment>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+    <comment>From</comment>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Items</value>
+    <comment>Items</comment>
+  </data>
+  <data name="KeyNo" xml:space="preserve">
+    <value>Key No.</value>
+    <comment>Key No.</comment>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+    <comment>Location</comment>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Management</value>
+    <comment>Management</comment>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modify</value>
+    <comment>Modify</comment>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+    <comment>Month</comment>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>Name</comment>
+  </data>
+  <data name="OutputDate" xml:space="preserve">
+    <value>Output Date</value>
+    <comment>Output Date</comment>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Client</value>
+    <comment>Client</comment>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>Project Name</value>
+    <comment>Project Name</comment>
+  </data>
+  <data name="SKU" xml:space="preserve">
+    <value>SKU</value>
+    <comment>SKU</comment>
+  </data>
+  <data name="NoRecordFound" xml:space="preserve">
+    <value>No record found</value>
+    <comment>No record found</comment>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Number</value>
+    <comment>Number</comment>
+  </data>
+  <data name="ReasonReject" xml:space="preserve">
+    <value>Reason reject</value>
+    <comment>Reason reject</comment>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+    <comment>Phone Number</comment>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+    <comment>Print</comment>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+    <comment>Quantity</comment>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate</value>
+    <comment>Rate</comment>
+  </data>
+  <data name="ReadyDate" xml:space="preserve">
+    <value>Ready Date</value>
+    <comment>Ready Date</comment>
+  </data>
+  <data name="Renference" xml:space="preserve">
+    <value>Renference</value>
+    <comment>Renference</comment>
+  </data>
+  <data name="RequestApprove" xml:space="preserve">
+    <value>Do you want to Request to Approve this item?</value>
+    <comment>Do you want to Request to Approve this item?</comment>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>Results</value>
+    <comment>Results</comment>
+  </data>
+  <data name="SaveChange" xml:space="preserve">
+    <value>Save changes</value>
+    <comment>Save Change</comment>
+  </data>
+  <data name="SNo" xml:space="preserve">
+    <value>S/No.</value>
+    <comment>S/No</comment>
+  </data>
+  <data name="Stock" xml:space="preserve">
+    <value>Stock</value>
+    <comment>Stock</comment>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+    <comment>Submit</comment>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>Successful!</value>
+    <comment>Successful!</comment>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Summary</value>
+    <comment>Summary</comment>
+  </data>
+  <data name="SummaryOnly" xml:space="preserve">
+    <value>Summary Only?</value>
+    <comment>Summary Only?</comment>
+  </data>
+  <data name="SystemName" xml:space="preserve">
+    <value>Subaru</value>
+    <comment>System Name</comment>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+    <comment>To</comment>
+  </data>
+  <data name="TopUp" xml:space="preserve">
+    <value>Top-Up</value>
+    <comment>Top-Up</comment>
+  </data>
+  <data name="UsedAmount" xml:space="preserve">
+    <value>Used amount</value>
+    <comment>Used amount</comment>
+  </data>
+  <data name="PresentAddress" xml:space="preserve">
+    <value>Present Address</value>
+    <comment>Present Address</comment>
+  </data>
+  <data name="Vessel" xml:space="preserve">
+    <value>Vessel</value>
+    <comment>Vessel</comment>
+  </data>
+  <data name="Voucher" xml:space="preserve">
+    <value>Voucher</value>
+    <comment>Voucher</comment>
+  </data>
+  <data name="SerialNumber" xml:space="preserve">
+    <value>Serial Number</value>
+    <comment>Serial Number</comment>
+  </data>
+  <data name="FileImport" xml:space="preserve">
+    <value>File Import</value>
+    <comment>File Import</comment>
+  </data>
+  <data name="FileToLarge" xml:space="preserve">
+    <value>Your file is too large, please choose another photo</value>
+    <comment>Your file is too large, please choose another photo</comment>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+    <comment>Actions</comment>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+    <comment>Active</comment>
+  </data>
+  <data name="AddTemporaryPlate" xml:space="preserve">
+    <value>Add Temporary Plate</value>
+    <comment>Add Temporary Plate</comment>
+  </data>
+  <data name="Assign" xml:space="preserve">
+    <value>Assign</value>
+    <comment>Assign</comment>
+  </data>
+  <data name="BeginUpload" xml:space="preserve">
+    <value>Begin Upload</value>
+    <comment>Begin Upload</comment>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+    <comment>Close</comment>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+    <comment>Confirm Password</comment>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirm new password</value>
+    <comment>Confirm new password</comment>
+  </data>
+  <data name="ConfirmReActive" xml:space="preserve">
+    <value>Are you sure you want to re-active this account?</value>
+    <comment>Are you sure you want to re-active this account?</comment>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+    <comment>Create</comment>
+  </data>
+  <data name="CreateUser" xml:space="preserve">
+    <value>Create UserLogin</value>
+    <comment>Create UserLogin</comment>
+  </data>
+  <data name="DontHavePermission" xml:space="preserve">
+    <value>You don't have permission to view this page</value>
+    <comment>You don't have permission to view this page</comment>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Edit UserLogin</value>
+    <comment>Edit UserLogin</comment>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Full Name</value>
+    <comment>Full Name</comment>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+    <comment>ID</comment>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Log out</value>
+    <comment>Log out</comment>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>My Profile</value>
+    <comment>My Profile</comment>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+    <comment>Password</comment>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New password</value>
+    <comment>New password</comment>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Old password</value>
+    <comment>Old password</comment>
+  </data>
+  <data name="ReActive" xml:space="preserve">
+    <value>Re-IsActive</value>
+    <comment>Re-IsActive</comment>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+    <comment>Role</comment>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+    <comment>Roles</comment>
+  </data>
+  <data name="SelectFilestoUpload" xml:space="preserve">
+    <value>Select Files to Upload</value>
+    <comment>Select Files to Upload</comment>
+  </data>
+  <data name="UsersDeleted" xml:space="preserve">
+    <value>UserLogins Deleted</value>
+    <comment>UserLogins Deleted</comment>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+    <comment>Message</comment>
+  </data>
+  <data name="Settinglist" xml:space="preserve">
+    <value>Setting list</value>
+    <comment>Setting list</comment>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="AddNewRole" xml:space="preserve">
+    <value>Add New Role</value>
+    <comment>Add New Role</comment>
+  </data>
+  <data name="EditRole" xml:space="preserve">
+    <value>Edit Role</value>
+    <comment>Edit Role</comment>
+  </data>
+  <data name="Rights" xml:space="preserve">
+    <value>Rights</value>
+    <comment>Rights</comment>
+  </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>Role's name</value>
+    <comment>Role's name</comment>
+  </data>
+  <data name="RoleLevel" xml:space="preserve">
+    <value>Role level</value>
+    <comment>Role level</comment>
+  </data>
+  <data name="RolesManagement" xml:space="preserve">
+    <value>Roles Management</value>
+    <comment>Roles Management</comment>
+  </data>
+  <data name="ServicePackagManagement" xml:space="preserve">
+    <value>Service Package Management</value>
+    <comment>Service Package Management</comment>
+  </data>
+  <data name="Target" xml:space="preserve">
+    <value>Target</value>
+    <comment>Target</comment>
+  </data>
+  <data name="EndDateIsInvalid" xml:space="preserve">
+    <value>End Date is invalid.</value>
+    <comment>End Date is invalid.</comment>
+  </data>
+  <data name="StartDateIsInvalid" xml:space="preserve">
+    <value>Start Date is invalid.</value>
+    <comment>Start Date is invalid.</comment>
+  </data>
+  <data name="YearOfManufactureIsInvalid" xml:space="preserve">
+    <value>Year Of Manufacture is invalid.</value>
+    <comment>Year Of Manufacture is invalid.</comment>
+  </data>
+  <data name="AddStandardAccessories" xml:space="preserve">
+    <value>Add Standard Accessories</value>
+    <comment>Add Standard Accessories</comment>
+  </data>
+  <data name="AddSuccessful" xml:space="preserve">
+    <value>Add successful!</value>
+    <comment>Add successful!</comment>
+  </data>
+  <data name="CannotAddItem" xml:space="preserve">
+    <value>Cannot add this Item! \nPlease check data field again!</value>
+    <comment>Cannot add this Item! \nPlease check data field again!</comment>
+  </data>
+  <data name="CannotDeleteItem" xml:space="preserve">
+    <value>Cannot delete this item, please try again!</value>
+    <comment>Cannot delete this item, please try again!</comment>
+  </data>
+  <data name="CannotSaveItem" xml:space="preserve">
+    <value>Cannot save this Item! \nPlease check data field again!</value>
+    <comment>Cannot save this Item! \nPlease check data field again!</comment>
+  </data>
+  <data name="FormatFile" xml:space="preserve">
+    <value>Format file</value>
+    <comment>Format file</comment>
+  </data>
+  <data name="ReUpload" xml:space="preserve">
+    <value>Re-Upload</value>
+    <comment>Re-Upload</comment>
+  </data>
+  <data name="TheFileMustBeExcelFile" xml:space="preserve">
+    <value>The file must be excel file!</value>
+    <comment>The file must be excel file!</comment>
+  </data>
+  <data name="TheFileMustNotBeEmpty" xml:space="preserve">
+    <value>The file must not be empty!</value>
+    <comment>The file must not be empty!</comment>
+  </data>
+  <data name="TheItemReallyExisting" xml:space="preserve">
+    <value>The item is really existing in system.</value>
+    <comment>The item is really existing in system.</comment>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+    <comment>Upload</comment>
+  </data>
+  <data name="UploadPictures" xml:space="preserve">
+    <value>Upload Pictures</value>
+    <comment>Upload Pictures</comment>
+  </data>
+  <data name="UploadPicturesForOutput" xml:space="preserve">
+    <value>Upload Pictures For Output</value>
+    <comment>Upload Pictures For Output</comment>
+  </data>
+  <data name="UploadPicturesForStore" xml:space="preserve">
+    <value>Upload Pictures For Store</value>
+    <comment>Upload Pictures For Store</comment>
+  </data>
+  <data name="ViewUploadExcelFile" xml:space="preserve">
+    <value>View Upload Excel File</value>
+    <comment>View Upload Excel File</comment>
+  </data>
+  <data name="DeleteFailed" xml:space="preserve">
+    <value>Delete Failed!</value>
+    <comment>Delete Failed!</comment>
+  </data>
+  <data name="YouMustChooseTheCountryFirst" xml:space="preserve">
+    <value>You must choose the country first!</value>
+    <comment>You must choose the country first!</comment>
+  </data>
+  <data name="YourProfileHasBeenUpdated" xml:space="preserve">
+    <value>Your profile has been updated</value>
+    <comment>Your profile has been updated</comment>
+  </data>
+  <data name="CancelFailed" xml:space="preserve">
+    <value>Cancel Failed!</value>
+    <comment>Cancel Failed!</comment>
+  </data>
+  <data name="CancelReason" xml:space="preserve">
+    <value>Cancel Reason</value>
+    <comment>Cancel Reason</comment>
+  </data>
+  <data name="OopsSomethingWentWrong" xml:space="preserve">
+    <value>Oops! Something went wrong.</value>
+    <comment>Oops! Something went wrong.</comment>
+  </data>
+  <data name="SelectedDate" xml:space="preserve">
+    <value>Selected Date</value>
+    <comment>Selected Date</comment>
+  </data>
+  <data name="ClickToViewAttachFile" xml:space="preserve">
+    <value>Click to view attach file</value>
+    <comment>Click to view attach file</comment>
+  </data>
+  <data name="CancelledWithReason" xml:space="preserve">
+    <value>Cancelled with reason</value>
+    <comment>Cancelled with reason</comment>
+  </data>
+  <data name="ErrorPermission" xml:space="preserve">
+    <value>Error! You don't have permission.</value>
+    <comment>Error! You don't have permission.</comment>
+  </data>
+  <data name="ColorsManagement" xml:space="preserve">
+    <value>Colors Management</value>
+    <comment>Colors Management</comment>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Is Active</value>
+    <comment>Is Active</comment>
+  </data>
+  <data name="Archive" xml:space="preserve">
+    <value>Archive</value>
+    <comment>Archive</comment>
+  </data>
+  <data name="Archived" xml:space="preserve">
+    <value>Archived</value>
+    <comment>Archived</comment>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>Service</value>
+    <comment>Service</comment>
+  </data>
+  <data name="Unarchive" xml:space="preserve">
+    <value>Unarchive</value>
+    <comment>Unarchive</comment>
+  </data>
+  <data name="UpdateModel" xml:space="preserve">
+    <value>Update Model</value>
+    <comment>Update Model</comment>
+  </data>
+  <data name="AddToSystem" xml:space="preserve">
+    <value>Add to system</value>
+    <comment>Add to system</comment>
+  </data>
+  <data name="EditType" xml:space="preserve">
+    <value>Edit Type</value>
+    <comment>Edit Type</comment>
+  </data>
+  <data name="Attach" xml:space="preserve">
+    <value>Attach</value>
+    <comment>Attach</comment>
+  </data>
+  <data name="AttachItem" xml:space="preserve">
+    <value>Attach Item</value>
+    <comment>Attach Item</comment>
+  </data>
+  <data name="Body" xml:space="preserve">
+    <value>Body</value>
+    <comment>Body</comment>
+  </data>
+  <data name="CountriesManagement" xml:space="preserve">
+    <value>Countries Management</value>
+    <comment>Countries Management</comment>
+  </data>
+  <data name="CurrenciesManagement" xml:space="preserve">
+    <value>Currencies Management</value>
+    <comment>Currencies Management</comment>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+    <comment>Default</comment>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Error Message</value>
+    <comment>Error Message</comment>
+  </data>
+  <data name="IsDefault" xml:space="preserve">
+    <value>Is Default</value>
+    <comment>Is Default</comment>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Languages</value>
+    <comment>Languages</comment>
+  </data>
+  <data name="Symbol" xml:space="preserve">
+    <value>Symbol</value>
+    <comment>Symbol</comment>
+  </data>
+  <data name="TheCodeAlreadyExists" xml:space="preserve">
+    <value>The code already exists</value>
+    <comment>The code already exists</comment>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Total Amount</value>
+    <comment>Total Amount</comment>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+    <comment>Action </comment>
+  </data>
+  <data name="AddCharges" xml:space="preserve">
+    <value>Add Charges</value>
+    <comment>Add Charges</comment>
+  </data>
+  <data name="ColorDescription" xml:space="preserve">
+    <value>Color Description</value>
+    <comment>Color Description</comment>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+    <comment>Created Date</comment>
+  </data>
+  <data name="EditResource" xml:space="preserve">
+    <value>Edit Resource</value>
+    <comment>Edit Resource</comment>
+  </data>
+  <data name="EmailBCC" xml:space="preserve">
+    <value>Email BCC</value>
+    <comment>Email BCC</comment>
+  </data>
+  <data name="EmailCC" xml:space="preserve">
+    <value>Email CC</value>
+    <comment>Email CC</comment>
+  </data>
+  <data name="EmailTo" xml:space="preserve">
+    <value>Email To</value>
+    <comment>Email To</comment>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
+    <comment>Reason</comment>
+  </data>
+  <data name="DeletedBy" xml:space="preserve">
+    <value>Deleted By</value>
+    <comment>Deleted By</comment>
+  </data>
+  <data name="RemainQuantity" xml:space="preserve">
+    <value>Remain Quantity</value>
+    <comment>Remain Quantity</comment>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+    <comment>Remove</comment>
+  </data>
+  <data name="ReportScheduleManagement" xml:space="preserve">
+    <value>Report Schedule Management</value>
+    <comment>Report Schedule Management</comment>
+  </data>
+  <data name="RunTime" xml:space="preserve">
+    <value>Run Time</value>
+    <comment>Run Time</comment>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+    <comment>View</comment>
+  </data>
+  <data name="SorryPageNotFound" xml:space="preserve">
+    <value>Sorry, Page Not Found</value>
+    <comment>Sorry, Page Not Found</comment>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>Years</value>
+    <comment>Years</comment>
+  </data>
+  <data name="Bypassed" xml:space="preserve">
+    <value>Bypassed</value>
+    <comment>Bypassed</comment>
+  </data>
+  <data name="NoOfRecords" xml:space="preserve">
+    <value>No. of records</value>
+    <comment>No. of records</comment>
+  </data>
+  <data name="AddMenu" xml:space="preserve">
+    <value>Add Menu</value>
+    <comment>Add Menu</comment>
+  </data>
+  <data name="Attachment" xml:space="preserve">
+    <value>Attachment</value>
+    <comment>Attachment</comment>
+  </data>
+  <data name="DeleteMenu" xml:space="preserve">
+    <value>Delete Menu</value>
+    <comment>Delete Menu</comment>
+  </data>
+  <data name="EditMenu" xml:space="preserve">
+    <value>Edit Menu</value>
+    <comment>Edit Menu</comment>
+  </data>
+  <data name="Feature" xml:space="preserve">
+    <value>Feature</value>
+    <comment>Feature</comment>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>Manager</value>
+    <comment>Manager</comment>
+  </data>
+  <data name="MenuManagement" xml:space="preserve">
+    <value>Menu Management</value>
+    <comment>Menu Management</comment>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+    <comment>Order</comment>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+    <comment>Title</comment>
+  </data>
+  <data name="UpdatedTime" xml:space="preserve">
+    <value>Updated Time</value>
+    <comment>Updated Time</comment>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
+    <comment>Url</comment>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+    <comment>Value</comment>
+  </data>
+  <data name="Bypass" xml:space="preserve">
+    <value>Bypass</value>
+    <comment>Bypass</comment>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Complete</value>
+    <comment>Complete</comment>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Completed</value>
+    <comment>Completed</comment>
+  </data>
+  <data name="AttachFile" xml:space="preserve">
+    <value>Attach File</value>
+    <comment>Attach File</comment>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+    <comment>All</comment>
+  </data>
+  <data name="FormPrinting" xml:space="preserve">
+    <value>Form Printing</value>
+    <comment>Form Printing</comment>
+  </data>
+  <data name="AlreadyExist" xml:space="preserve">
+    <value>already exist!</value>
+    <comment>already exist!</comment>
+  </data>
+  <data name="ENTERSEARCHTEXT" xml:space="preserve">
+    <value>ENTER SEARCH TEXT</value>
+    <comment>ENTER SEARCH TEXT</comment>
+  </data>
+  <data name="TheFieldPasswordMustBeaMinimumLengthOf6" xml:space="preserve">
+    <value>*Password must be a string with a minimum length of '6'.</value>
+    <comment>*Password must be a string with a minimum length of '6'.</comment>
+  </data>
+  <data name="TheOldPasswordDoNotMatch" xml:space="preserve">
+    <value>The Old Password do not match.</value>
+    <comment>The Old Password do not match.</comment>
+  </data>
+  <data name="ConfirmPasswordAndPasswordDoNotMatch" xml:space="preserve">
+    <value>'Retype Password' and 'Password' do not match.</value>
+    <comment>'Retype Password' and 'Password' do not match.</comment>
+  </data>
+  <data name="TheFieldShouldNotBeEmpty" xml:space="preserve">
+    <value>*Required</value>
+    <comment>*Required</comment>
+  </data>
+  <data name="TheEmailAddessMustNotBeEmpty" xml:space="preserve">
+    <value>The email address must not be empty.</value>
+    <comment>The email address must not be empty.</comment>
+  </data>
+  <data name="FileTypeNotAllowed" xml:space="preserve">
+    <value>File type not allowed</value>
+    <comment>File type not allowed</comment>
+  </data>
+  <data name="StartDateNotLessThanEndDate" xml:space="preserve">
+    <value>Start date not less than End date.</value>
+    <comment>Start date not less than End date.</comment>
+  </data>
+  <data name="ToDateMustGreaterThanFromDate" xml:space="preserve">
+    <value>To date must greater than from date.</value>
+    <comment>To date must greater than from date.</comment>
+  </data>
+  <data name="TheInterestedRateMustLessThan100" xml:space="preserve">
+    <value>The interested rate must less than 100</value>
+    <comment>The interested rate must less than 100</comment>
+  </data>
+  <data name="ResearchDataIsInvalid" xml:space="preserve">
+    <value>Research data is invalid.</value>
+    <comment>Research data is invalid.</comment>
+  </data>
+  <data name="AddError" xml:space="preserve">
+    <value>Add error.</value>
+    <comment>Add error.</comment>
+  </data>
+  <data name="AllStatus" xml:space="preserve">
+    <value>All Status</value>
+    <comment>All Status</comment>
+  </data>
+  <data name="ConfirmSubmitCommentSendEmail" xml:space="preserve">
+    <value>Are you sure you want submit comment and send email to Salesman?</value>
+    <comment>Are you sure you want submit comment and send email to Salesman?</comment>
+  </data>
+  <data name="ConfirmSubmitCommentSendEmailToManager" xml:space="preserve">
+    <value>Are you sure you want submit comment and send email to manager?</value>
+    <comment>Are you sure you want submit comment and send email to manager?</comment>
+  </data>
+  <data name="Emailhadsent" xml:space="preserve">
+    <value>Email had been sent!</value>
+    <comment>Email had been sent!</comment>
+  </data>
+  <data name="ENTERCOMMENTTEXTHERE" xml:space="preserve">
+    <value>ENTER COMMENT TEXT HERE....</value>
+    <comment>ENTER COMMENT TEXT HERE....</comment>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Find</value>
+    <comment>Find</comment>
+  </data>
+  <data name="KeyInDate" xml:space="preserve">
+    <value>Key In Date</value>
+    <comment>Key In Date</comment>
+  </data>
+  <data name="KeyInTime" xml:space="preserve">
+    <value>Key In Time</value>
+    <comment>Key In Time</comment>
+  </data>
+  <data name="Months" xml:space="preserve">
+    <value>Months</value>
+    <comment>Months</comment>
+  </data>
+  <data name="PreviousComments" xml:space="preserve">
+    <value>Previous Comments</value>
+    <comment>Previous Comments</comment>
+  </data>
+  <data name="RequiredField" xml:space="preserve">
+    <value>The field is required.</value>
+    <comment>The field is required.</comment>
+  </data>
+  <data name="SelectStatus" xml:space="preserve">
+    <value>Choose Status...</value>
+    <comment>Choose Status...</comment>
+  </data>
+  <data name="Sendemailerror" xml:space="preserve">
+    <value>Email had been sent!</value>
+    <comment>Email had been sent!</comment>
+  </data>
+  <data name="SendEmailToCustomer" xml:space="preserve">
+    <value>Send Email To Customer</value>
+    <comment>Send Email To Customer</comment>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+    <comment>Update</comment>
+  </data>
+  <data name="Upto5comments" xml:space="preserve">
+    <value>Up to 5 comments</value>
+    <comment>Up to 5 comments</comment>
+  </data>
+  <data name="viewallcomments" xml:space="preserve">
+    <value>view all comments</value>
+    <comment>view all comments</comment>
+  </data>
+  <data name="StartTimeNotLessThanTheEndTime" xml:space="preserve">
+    <value>Start Time not less than the End Time</value>
+    <comment>Start Time not less than the End Time</comment>
+  </data>
+  <data name="ColorCodeExists" xml:space="preserve">
+    <value>Color with same code already exists</value>
+    <comment>Color with same code already exists</comment>
+  </data>
+  <data name="EmailFormatInvalid" xml:space="preserve">
+    <value>Email format invalid.</value>
+    <comment>Email format invalid.</comment>
+  </data>
+  <data name="FieldNumber" xml:space="preserve">
+    <value>The field is must number.</value>
+    <comment>The field is must number.</comment>
+  </data>
+  <data name="OnlyCharactersAllowed" xml:space="preserve">
+    <value>Only characters input allowed.</value>
+    <comment>Only characters input allowed.</comment>
+  </data>
+  <data name="OnlyEmailFormat" xml:space="preserve">
+    <value>Only email format.</value>
+    <comment>Only email format.</comment>
+  </data>
+  <data name="OnlyNumberAllowed" xml:space="preserve">
+    <value>Only number allowed.</value>
+    <comment>Only number allowed.</comment>
+  </data>
+  <data name="TheAmountBeforeGSTMustGreaterThan0" xml:space="preserve">
+    <value>The amount before GST must greater than 0</value>
+    <comment>The amount before GST must greater than 0</comment>
+  </data>
+  <data name="TheAmountSmallerBalance" xml:space="preserve">
+    <value>The Amount value must be smaller than the balance</value>
+    <comment>The Amount value must be smaller than the balance</comment>
+  </data>
+  <data name="TheFieldGreaterThanOrSame" xml:space="preserve">
+    <value>The field must greater than or same</value>
+    <comment>The field must greater than or same</comment>
+  </data>
+  <data name="TheFieldNotEqualTo0" xml:space="preserve">
+    <value>The field must not equal to 0</value>
+    <comment>The field must not equal to 0</comment>
+  </data>
+  <data name="TheFieldShouldGreaterThan" xml:space="preserve">
+    <value>The field should greater than</value>
+    <comment>The field should greater than</comment>
+  </data>
+  <data name="TheEmailAddressEnteredIsInvalid" xml:space="preserve">
+    <value>The email address entered is invalid.</value>
+    <comment>The email address entered is invalid.</comment>
+  </data>
+  <data name="TheNumberFormatIsInvalid" xml:space="preserve">
+    <value>The number format is invalid.</value>
+    <comment>The number format is invalid.</comment>
+  </data>
+  <data name="CannotReactiveUser" xml:space="preserve">
+    <value>Can't Reactive this UserLogin</value>
+    <comment>Can't Reactive this UserLogin</comment>
+  </data>
+  <data name="PasswordMismatch" xml:space="preserve">
+    <value>Password mismatch</value>
+    <comment>Password mismatch</comment>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>Save error.</value>
+    <comment>Save error.</comment>
+  </data>
+  <data name="UploadFailed" xml:space="preserve">
+    <value>Upload Failed!</value>
+    <comment>Upload Failed!</comment>
+  </data>
+  <data name="UserEmailActive" xml:space="preserve">
+    <value>UserLogin with the same email already active</value>
+    <comment>UserLogin with the same email already active</comment>
+  </data>
+  <data name="UserEmailExists" xml:space="preserve">
+    <value>UserLogin with same email already exists</value>
+    <comment>UserLogin with same email already exists</comment>
+  </data>
+  <data name="AccountIsNotExist" xml:space="preserve">
+    <value>Account is not exist</value>
+    <comment>Account is not exist</comment>
+  </data>
+  <data name="UserNameExists" xml:space="preserve">
+    <value>UserLogin with same UserLoginname already exists</value>
+    <comment>UserLogin with same UserLoginname already exists</comment>
+  </data>
+  <data name="UserSalesmanCodeExists" xml:space="preserve">
+    <value>UserLogin with same Salesman Code already exists.</value>
+    <comment>UserLogin with same Salesman Code already exists.</comment>
+  </data>
+  <data name="Added" xml:space="preserve">
+    <value>added!</value>
+    <comment>added!</comment>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>cancelled</value>
+    <comment>cancelled</comment>
+  </data>
+  <data name="ChangeSuccessful" xml:space="preserve">
+    <value>Change successful.</value>
+    <comment>Change successful.</comment>
+  </data>
+  <data name="DateIsInvalid" xml:space="preserve">
+    <value>Date is invalid</value>
+    <comment>Date is invalid</comment>
+  </data>
+  <data name="PasswordIsIncorrect" xml:space="preserve">
+    <value>Password is incorrect.</value>
+    <comment>Password is incorrect.</comment>
+  </data>
+  <data name="ReasonDeleteMustBeNotEmpty" xml:space="preserve">
+    <value>Reason delete must be not empty.</value>
+    <comment>Reason delete  must be not empty.</comment>
+  </data>
+  <data name="ReasonCancelMustBeNotEmpty" xml:space="preserve">
+    <value>Reason cancel must be not empty.</value>
+    <comment>Reason cancel  must be not empty.</comment>
+  </data>
+  <data name="SessionIsExpired" xml:space="preserve">
+    <value>Session is expired.</value>
+    <comment>Session is expired.</comment>
+  </data>
+  <data name="UpdateSuccessful" xml:space="preserve">
+    <value>Update successful.</value>
+    <comment>Update successful.</comment>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Update failed.</value>
+    <comment>Update failed.</comment>
+  </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>Mobile Number</value>
+    <comment>Mobile Number</comment>
+  </data>
+  <data name="UploadFileIsRequired" xml:space="preserve">
+    <value>Upload file is required.</value>
+    <comment>Upload file is required.</comment>
+  </data>
+  <data name="CannotDelete" xml:space="preserve">
+    <value>Cannot delete</value>
+    <comment>Cannot delete</comment>
+  </data>
+  <data name="FullDay" xml:space="preserve">
+    <value>Full Day</value>
+    <comment>Full Day</comment>
+  </data>
+  <data name="YearAlreadyGenerate" xml:space="preserve">
+    <value>Year already generate.</value>
+    <comment>Year already generate.</comment>
+  </data>
+  <data name="DoesnotExist" xml:space="preserve">
+    <value>doesn't exist</value>
+    <comment>doesn't exist</comment>
+  </data>
+  <data name="EmailHasBeenSentSuccessfully" xml:space="preserve">
+    <value>Email has been sent successfully!</value>
+    <comment>Email has been sent successfully!</comment>
+  </data>
+  <data name="ReasonRejectMustBeNotEmpty" xml:space="preserve">
+    <value>Reason Reject must be not empty.</value>
+    <comment>Reason Reject must be not empty.</comment>
+  </data>
+  <data name="SaveFailed" xml:space="preserve">
+    <value>Save failed</value>
+    <comment>Save failed</comment>
+  </data>
+  <data name="SuccessfullyTheRequestHasBeenSent" xml:space="preserve">
+    <value>Successfully! The Request has been sent.</value>
+    <comment>Successfully! The Request has been sent.</comment>
+  </data>
+  <data name="TypeFieldShouldNotBeEmpty" xml:space="preserve">
+    <value>Type field should not be empty.</value>
+    <comment>Type field should not be empty.</comment>
+  </data>
+  <data name="TheDescriptionAlreadyExists" xml:space="preserve">
+    <value>The description already exists.</value>
+    <comment>The description already exists.</comment>
+  </data>
+  <data name="TheNameAlreadyExists" xml:space="preserve">
+    <value>The name already exists</value>
+    <comment>The name already exists</comment>
+  </data>
+  <data name="TheFieldIsInvalid" xml:space="preserve">
+    <value>The field is invalid.</value>
+    <comment>The field is invalid.</comment>
+  </data>
+  <data name="SaveDraft" xml:space="preserve">
+    <value>Save Draft</value>
+    <comment>Save Draft</comment>
+  </data>
+  <data name="YouHaveUnsavedChanges" xml:space="preserve">
+    <value>You have unsaved changes.</value>
+    <comment>You have unsaved changes.</comment>
+  </data>
+  <data name="AddressEnglish" xml:space="preserve">
+    <value>Address (English)</value>
+    <comment>Address (English)</comment>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>Website</value>
+    <comment>Website</comment>
+  </data>
+  <data name="SaveDraftSuccessful" xml:space="preserve">
+    <value>Save draft successful!</value>
+    <comment>Save draft successful!</comment>
+  </data>
+  <data name="TimeZoneHour" xml:space="preserve">
+    <value>Time Zone (h)</value>
+    <comment>Time Zone (h)</comment>
+  </data>
+  <data name="FindbyCustomer" xml:space="preserve">
+    <value>Find by Customer</value>
+    <comment>Find by Customer</comment>
+  </data>
+  <data name="PreviousCommentsUpto5comments" xml:space="preserve">
+    <value>Previous Comments (Up to 5 comments)</value>
+    <comment>Previous Comments (Up to 5 comments)</comment>
+  </data>
+  <data name="LOGIN" xml:space="preserve">
+    <value>LOGIN</value>
+    <comment>LOGIN</comment>
+  </data>
+  <data name="Rememberme" xml:space="preserve">
+    <value>Remember me?</value>
+    <comment>Remember me?</comment>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Enable</value>
+    <comment>Enable</comment>
+  </data>
+  <data name="UpdateLanguageResources" xml:space="preserve">
+    <value>Update Language Resources</value>
+    <comment>Update Language Resources</comment>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>Icon</value>
+    <comment>Icon</comment>
+  </data>
+  <data name="ChangeColor" xml:space="preserve">
+    <value>Change Color</value>
+    <comment>Change Color</comment>
+  </data>
+  <data name="CreateTemplate" xml:space="preserve">
+    <value>Create Template</value>
+    <comment>Create Template</comment>
+  </data>
+  <data name="EditTemplate" xml:space="preserve">
+    <value>Edit Template</value>
+    <comment>Edit Template</comment>
+  </data>
+  <data name="SeparatedContentManagement" xml:space="preserve">
+    <value>Separated Content Management</value>
+    <comment>Separated Content Management</comment>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+    <comment>Image</comment>
+  </data>
+  <data name="StyleImage" xml:space="preserve">
+    <value>Hinh bìa của phong cách</value>
+    <comment>Style Image</comment>
+  </data>
+  <data name="ArchitetureItemImage" xml:space="preserve">
+    <value>Hinh bìa của Mini Store</value>
+    <comment>Architeture Item Image</comment>
+  </data>
+  <data name="PdfUploads" xml:space="preserve">
+    <value>Đoạn văn giới thiệu phong cách</value>
+    <comment>Pdf Uploads</comment>
+  </data>
+  <data name="StyleMaterialImage" xml:space="preserve">
+    <value>Hinh bìa của vật liệu</value>
+    <comment>Style Material Image</comment>
+  </data>
+  <data name="SubTitle" xml:space="preserve">
+    <value>Sub Title</value>
+    <comment>Sub Title</comment>
+  </data>
+  <data name="CreateMiniBanner1" xml:space="preserve">
+    <value>Create Mini Banner 1</value>
+    <comment>Create Mini Banner 1</comment>
+  </data>
+  <data name="MiniBanner1Manager" xml:space="preserve">
+    <value>Mini Banner 1 Manager</value>
+    <comment>Mini Banner 1 Manager</comment>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>Template</value>
+    <comment>Template</comment>
+  </data>
+  <data name="EditMiniBanner1" xml:space="preserve">
+    <value>Edit Mini Banner 1</value>
+    <comment>Edit Mini Banner 1</comment>
+  </data>
+  <data name="Background" xml:space="preserve">
+    <value>Background</value>
+    <comment>Background</comment>
+  </data>
+  <data name="CreateMiniBanner2" xml:space="preserve">
+    <value>Create Mini Banner 2</value>
+    <comment>Create Mini Banner 2</comment>
+  </data>
+  <data name="EditMiniBanner2" xml:space="preserve">
+    <value>Edit Mini Banner 2</value>
+    <comment>Edit Mini Banner 2</comment>
+  </data>
+  <data name="CreateMiniBanner3" xml:space="preserve">
+    <value>Create Mini Banner 3</value>
+    <comment>Create Mini Banner 3</comment>
+  </data>
+  <data name="CreateMiniBanner4" xml:space="preserve">
+    <value>Create Mini Banner 4</value>
+    <comment>Create Mini Banner 4</comment>
+  </data>
+  <data name="EditMiniBanner3" xml:space="preserve">
+    <value>Edit Mini Banner 3</value>
+    <comment>Edit Mini Banner 3</comment>
+  </data>
+  <data name="MiniBanner3Manager" xml:space="preserve">
+    <value>Mini Banner 3 Manager</value>
+    <comment>Mini Banner 3 Manager</comment>
+  </data>
+  <data name="MiniBanner4Manager" xml:space="preserve">
+    <value>Mini Banner 4 Manager</value>
+    <comment>Mini Banner 4 Manager</comment>
+  </data>
+  <data name="EditMiniBanner4" xml:space="preserve">
+    <value>Edit Mini Banner 4</value>
+    <comment>Edit Mini Banner 4</comment>
+  </data>
+  <data name="CreatePageSetting" xml:space="preserve">
+    <value>Create Page Setting</value>
+    <comment>Create Page Setting</comment>
+  </data>
+  <data name="PageSettingManager" xml:space="preserve">
+    <value>Page Setting Manager</value>
+    <comment>Page Setting Manager</comment>
+  </data>
+  <data name="UpdateTime" xml:space="preserve">
+    <value>Update Time</value>
+    <comment>Update Time</comment>
+  </data>
+  <data name="AlbumManager" xml:space="preserve">
+    <value>Album Manager</value>
+    <comment>Album Manager</comment>
+  </data>
+  <data name="EditPageSetting" xml:space="preserve">
+    <value>Edit Page Setting</value>
+    <comment>Edit Page Setting</comment>
+  </data>
+  <data name="EditSeparatedContent1" xml:space="preserve">
+    <value>Edit Separated Content 1</value>
+    <comment>Edit Separated Content 1</comment>
+  </data>
+  <data name="SeparatedContent1Manager" xml:space="preserve">
+    <value>Separated Content 1 Manager</value>
+    <comment>Separated Content 1 Manager</comment>
+  </data>
+  <data name="CreateSeparatedContent1" xml:space="preserve">
+    <value>Create Separated Content 1</value>
+    <comment>Create Separated Content 1</comment>
+  </data>
+  <data name="CreateSeparatedContent2" xml:space="preserve">
+    <value>Create Separated Content 2</value>
+    <comment>Create Separated Content 2</comment>
+  </data>
+  <data name="EditSeparatedContent2" xml:space="preserve">
+    <value>Edit Separated Content 2</value>
+    <comment>Edit Separated Content 2</comment>
+  </data>
+  <data name="MiniSeparatedContent2" xml:space="preserve">
+    <value>Mini Separated Content 2</value>
+    <comment>Mini Separated Content 2</comment>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Display Name</value>
+    <comment>Display Name</comment>
+  </data>
+  <data name="CreateTopBanner" xml:space="preserve">
+    <value>Create Top Banner</value>
+    <comment>Create Top Banner</comment>
+  </data>
+  <data name="EditTopBanner" xml:space="preserve">
+    <value>Edit Top Banner</value>
+    <comment>Edit Top Banner</comment>
+  </data>
+  <data name="TopBannerManager" xml:space="preserve">
+    <value>Top Banner Manager</value>
+    <comment>Top Banner Manager</comment>
+  </data>
+  <data name="Video" xml:space="preserve">
+    <value>Video</value>
+    <comment>Video</comment>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+    <comment>Position</comment>
+  </data>
+  <data name="TemplateHtml" xml:space="preserve">
+    <value>Template Html</value>
+    <comment>Template Html</comment>
+  </data>
+  <data name="InvalidEmailOrPassword" xml:space="preserve">
+    <value>*Invalid email or password</value>
+    <comment>*Invalid email or password</comment>
+  </data>
+  <data name="TemplateManagement" xml:space="preserve">
+    <value>Template Management</value>
+    <comment>Template Management</comment>
+  </data>
+  <data name="CreateAlbum" xml:space="preserve">
+    <value>Create Album</value>
+    <comment>Create Album</comment>
+  </data>
+  <data name="EditAlbum" xml:space="preserve">
+    <value>Edit Album</value>
+    <comment>Edit Album</comment>
+  </data>
+  <data name="AddChild" xml:space="preserve">
+    <value>Add Child</value>
+    <comment>Add Child</comment>
+  </data>
+  <data name="LayoutManagement" xml:space="preserve">
+    <value>Layout Management</value>
+    <comment>Layout Management</comment>
+  </data>
+  <data name="CreateLayout" xml:space="preserve">
+    <value>Create Layout</value>
+    <comment>Create Layout</comment>
+  </data>
+  <data name="EditLayout" xml:space="preserve">
+    <value>Edit Layout</value>
+    <comment>Edit Layout</comment>
+  </data>
+  <data name="OriginalName" xml:space="preserve">
+    <value>Original Name</value>
+    <comment>Original Name</comment>
+  </data>
+  <data name="Precision" xml:space="preserve">
+    <value>Precision</value>
+    <comment>Precision</comment>
+  </data>
+  <data name="ContentHtml" xml:space="preserve">
+    <value>Content Html</value>
+    <comment>Content Html</comment>
+  </data>
+  <data name="Album" xml:space="preserve">
+    <value>Album</value>
+    <comment>Album</comment>
+  </data>
+  <data name="Review" xml:space="preserve">
+    <value>Review</value>
+    <comment>Review</comment>
+  </data>
+  <data name="Logviewer" xml:space="preserve">
+    <value>Log viewer</value>
+    <comment>Log viewer</comment>
+  </data>
+  <data name="StyleAdditional" xml:space="preserve">
+    <value>Style Additional</value>
+    <comment>Style Additional</comment>
+  </data>
+  <data name="ScriptAdditional" xml:space="preserve">
+    <value>Script Additional</value>
+    <comment>Script Additional</comment>
+  </data>
+  <data name="RoomCategoryManagement" xml:space="preserve">
+    <value>Room Category Management</value>
+    <comment>Room Category Management</comment>
+  </data>
+  <data name="RoomCategory" xml:space="preserve">
+    <value>Room Category</value>
+    <comment>Room Category</comment>
+  </data>
+  <data name="FurnitureCategory" xml:space="preserve">
+    <value>Furniture Category</value>
+    <comment>Furniture Category</comment>
+  </data>
+  <data name="FurnitureCategoryManagement" xml:space="preserve">
+    <value>Furniture Category Management</value>
+    <comment>Furniture Category Management</comment>
+  </data>
+  <data name="CostLevel" xml:space="preserve">
+    <value>Cost Level</value>
+    <comment>Cost Level</comment>
+  </data>
+  <data name="CostLevelManagement" xml:space="preserve">
+    <value>Cost Level Management</value>
+    <comment>Cost Level Management</comment>
+  </data>
+  <data name="StyleType" xml:space="preserve">
+    <value>Style Type</value>
+    <comment>Style Type</comment>
+  </data>
+  <data name="ArchitectureItem" xml:space="preserve">
+    <value>Architecture Item</value>
+    <comment>Architecture Item</comment>
+  </data>
+  <data name="PageType" xml:space="preserve">
+    <value>Page Type</value>
+    <comment>Page Type</comment>
+  </data>
+  <data name="AddCurrency" xml:space="preserve">
+    <value>Add Currency</value>
+    <comment>Add Currency</comment>
+  </data>
+  <data name="AddStypeType" xml:space="preserve">
+    <value>Add Style Type</value>
+    <comment>Add Style Type</comment>
+  </data>
+  <data name="EditCurrency" xml:space="preserve">
+    <value>Edit Currency</value>
+    <comment>Edit Currency</comment>
+  </data>
+  <data name="EditStyleType" xml:space="preserve">
+    <value>Edit Style Type</value>
+    <comment>Edit Style Type</comment>
+  </data>
+  <data name="CreateStyleMaterial" xml:space="preserve">
+    <value>Create Style Material</value>
+    <comment>Create Style Material</comment>
+  </data>
+  <data name="EditStyleMaterial" xml:space="preserve">
+    <value>Edit Style Material</value>
+    <comment>Edit Style Material</comment>
+  </data>
+  <data name="LicenseInfo" xml:space="preserve">
+    <value>License Info</value>
+    <comment>License Info</comment>
+  </data>
+  <data name="StyleMaterialManagement" xml:space="preserve">
+    <value>Style Material Management</value>
+    <comment>Style Material Management</comment>
+  </data>
+  <data name="MaterialCategory" xml:space="preserve">
+    <value>Material Category</value>
+    <comment>Material Category</comment>
+  </data>
+  <data name="MaterialCategoryManagement" xml:space="preserve">
+    <value>Material Category Management</value>
+    <comment>Material Category Management</comment>
+  </data>
+  <data name="CreateMaterial" xml:space="preserve">
+    <value>Create Material</value>
+    <comment>Create Material</comment>
+  </data>
+  <data name="EditMaterial" xml:space="preserve">
+    <value>Edit Material</value>
+    <comment>Edit Material</comment>
+  </data>
+  <data name="MaterialManagement" xml:space="preserve">
+    <value>Material Management</value>
+    <comment>Material Management</comment>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Unit</value>
+    <comment>Unit</comment>
+  </data>
+  <data name="UnitManagement" xml:space="preserve">
+    <value>Unit Management</value>
+    <comment>Unit Management</comment>
+  </data>
+  <data name="ColorManagement" xml:space="preserve">
+    <value>Color Management</value>
+    <comment>Color Management</comment>
+  </data>
+  <data name="StyleColorManagement" xml:space="preserve">
+    <value>Style Color Management</value>
+    <comment>Style Color Management</comment>
+  </data>
+  <data name="AddItem" xml:space="preserve">
+    <value>Add Item</value>
+    <comment>Add Item</comment>
+  </data>
+  <data name="BasicPrice" xml:space="preserve">
+    <value>Basic Price</value>
+    <comment>Basic Price</comment>
+  </data>
+  <data name="Flexibility" xml:space="preserve">
+    <value>Flexibility</value>
+    <comment>Flexibility</comment>
+  </data>
+  <data name="IsMiniStore" xml:space="preserve">
+    <value>Is Mini Store</value>
+    <comment>Is Mini Store</comment>
+  </data>
+  <data name="MadeIn" xml:space="preserve">
+    <value>Made in</value>
+    <comment>Made in</comment>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>Material</value>
+    <comment>Material</comment>
+  </data>
+  <data name="SellingPrice" xml:space="preserve">
+    <value>Selling Price</value>
+    <comment>Selling Price</comment>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size</value>
+    <comment>Size</comment>
+  </data>
+  <data name="ItemManagement" xml:space="preserve">
+    <value>Item Management</value>
+    <comment>Item Management</comment>
+  </data>
+  <data name="EditItem" xml:space="preserve">
+    <value>Edit Item</value>
+    <comment>Edit Item</comment>
+  </data>
+  <data name="ItemCategory" xml:space="preserve">
+    <value>Item Category</value>
+    <comment>Item Category</comment>
+  </data>
+  <data name="ItemCategoryManagement" xml:space="preserve">
+    <value>Item Category Management</value>
+    <comment>Item Category Management</comment>
+  </data>
+  <data name="EmailIsInUsePlsTryToLogin" xml:space="preserve">
+    <value>Email is in use. Pls try to login by this email first.</value>
+    <comment>Email is in use. Pls try to login by this email first.</comment>
+  </data>
+  <data name="EmailIsInUse" xml:space="preserve">
+    <value>Email is in use.</value>
+    <comment>Email is in use.</comment>
+  </data>
+  <data name="ErrorYourFileIsTooLarge" xml:space="preserve">
+    <value>Error! Your file is too large</value>
+    <comment>Error! Your file is too large</comment>
+  </data>
+  <data name="EmailIsNotInUser" xml:space="preserve">
+    <value>*Email is not in use</value>
+    <comment>*Email is not in use</comment>
+  </data>
+  <data name="PasswordIsNotCorrect" xml:space="preserve">
+    <value>* Password is not correct</value>
+    <comment>* Password is not correct</comment>
+  </data>
+  <data name="RequireVerifyEmail" xml:space="preserve">
+    <value>*Email has not verified yet! Please verify this email by clicking the activation link that has been send to your email</value>
+    <comment>*Email has not verified yet! Please verify this email by clicking the activation link that has been send to your email</comment>
+  </data>
+  <data name="GoHome" xml:space="preserve">
+    <value>Go Home</value>
+    <comment>Go Home</comment>
+  </data>
+  <data name="HolidayDescription" xml:space="preserve">
+    <value>Holiday Description</value>
+    <comment>Holiday Description</comment>
+  </data>
+  <data name="HolidayManagement" xml:space="preserve">
+    <value>Holiday Management</value>
+    <comment>Holiday Management</comment>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Customer</value>
+    <comment>Customer</comment>
+  </data>
+  <data name="OrderDate" xml:space="preserve">
+    <value>Order Date</value>
+    <comment>Order Date</comment>
+  </data>
+  <data name="OrderNumber" xml:space="preserve">
+    <value>Order Number</value>
+    <comment>Order Number</comment>
+  </data>
+  <data name="OrderStatus" xml:space="preserve">
+    <value>Order Status</value>
+    <comment>Order Status</comment>
+  </data>
+  <data name="SearchForCustomer" xml:space="preserve">
+    <value>Search For Customer</value>
+    <comment>Search For Customer</comment>
+  </data>
+  <data name="CreateCountry" xml:space="preserve">
+    <value>Create Country</value>
+    <comment>Create Country</comment>
+  </data>
+  <data name="DistributorCode" xml:space="preserve">
+    <value>Distributor Code</value>
+    <comment>Distributor Code</comment>
+  </data>
+  <data name="EditCountry" xml:space="preserve">
+    <value>Edit Country</value>
+    <comment>Edit Country</comment>
+  </data>
+  <data name="SubmitApproval" xml:space="preserve">
+    <value>Once you submit this record for approval, you might not be able to edit it or recall it from the approval process depending on your settings. Continue?</value>
+    <comment>Once you submit this record for approval, you might not be able to edit it or recall it from the approval process depending on your settings. Continue?</comment>
+  </data>
+</root>

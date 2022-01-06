@@ -1,0 +1,124 @@
+﻿@using System.Configuration
+@using XProject.Domain.Entities
+@using XProject.Web.Models
+@model XProject.Web.Areas.Admin.Models.UploadModel
+
+
+
+
+
+@if (ViewBag.MultiImage ==true)
+{
+   
+    <div class="col-md-11">
+        @{
+
+            var listImg = "";
+            var listImgKey = "";
+            if (ViewBag.ListImages != null)
+            {
+                var listPicture = ((List<XPicture>)ViewBag.ListImages).ToList();
+
+
+                if (listPicture.Count > 0)
+                {
+                    for (int i = 0; i < listPicture.Count; i++)
+                    {
+                        listImgKey+=listPicture[i].ConvertedFilename;
+                        listImg += ConfigurationManager.AppSettings["UrlImage"] + listPicture[i].ConvertedFilename.Split('_')[0] + "/" + String.Format(listPicture[i].ConvertedFilename, 853);
+
+                        if (i < listPicture.Count - 1)
+                        {
+                            listImg = listImg + ",";
+                            listImgKey += ",";
+
+                        }
+
+
+                    }
+                    {
+                        Model.ValueField = listImgKey;
+                    }
+            
+
+                }
+            }
+            <script>
+                var listImg ="@(listImg)"!==""? ("@(listImg)").split(','):[];
+                var listImgKey ="@( Model.ValueField)"!==""? ("@( Model.ValueField)").split(','):[];
+                var _listImgConfig = new Array();
+                for (var i = 0; i < listImg.length; i++) {
+                    _listImgConfig.push({ "caption": listImg[i].substring(listImg[i].lastIndexOf("/")+1), "url": listImg[i], "key": listImgKey[i] });
+                }
+                if (_listImgConfig.length > 0) {
+                    var myJSON = JSON.stringify(listImg);
+                    window["@(Model.NameField.Replace(".", "_"))_input"] = '{"showCaption":true,"showBrowse":true,"showRemove":true,"showUpload":false,"overwriteInitial":false,"initialPreviewAsData":true,"initialPreview":' +
+                        myJSON +
+                        ',"initialPreviewConfig":' + JSON.stringify(_listImgConfig) + ' }';
+                } else {
+
+                    window["@(Model.NameField.Replace(".", "_"))_input"] = '{"showCaption":true,"showBrowse":true,"showRemove":true,"showUpload":false,"overwriteInitial":false,"initialPreviewAsData":true,"initialPreview":[],"initialPreviewConfig":[] }';
+                }
+
+            </script>
+            <div class="hidden field-file_image">
+                <input type="hidden" id="@Model.NameField" class="form-control file-upload" name="@Model.NameField" value="@Model.ValueField">
+            </div>
+            <div class="form-group field-file_image_input">
+                <label class="col-md-2 control-label no-padding-right" for="@(Model.NameField.Replace(".", "_"))_input">@Model.LabelField</label>
+                <div class='col-md-10'>
+                    <input type="file" name="@(Model.NameField.Replace(".","_"))_input"  id="@(Model.NameField.Replace(".", "_"))_input" multiple="" class="file" accept="image/*">
+                </div>
+            </div>
+
+        }
+       
+    </div>
+}
+else
+{
+    <div class="col-md-11">
+        <div class="hidden field-file_image">
+            <input type="hidden" id="@Model.NameField" class="form-control file-upload" name="@Model.NameField" value="@Model.ValueField">
+        </div>
+
+        @if (!string.IsNullOrWhiteSpace(Model.ValueField))
+        {
+            <script>
+                window["@(Model.NameField.Replace(".", "_"))_input"] = '{"showCaption":true,"showRemove":true,"showUpload":false,"overwriteInitial":false,"initialPreviewAsData":true,"initialPreview":["@(ConfigurationManager.AppSettings["UrlImage"]+Model.ValueFieldUrl.Split('_')[0]+"/"+String.Format(Model.ValueFieldUrl,853))"],"initialPreviewConfig":[{"caption":"@(String.IsNullOrWhiteSpace(Model.ValueField) ? "" : Model.ValueField)"}]}';
+            </script>
+        }
+        else
+        {
+            <script>
+                window["@(Model.NameField.Replace(".", "_"))_input"] = '{"showCaption":true,"showRemove":true,"showUpload":false,"overwriteInitial":false,"initialPreviewAsData":true,"initialPreview":[],"initialPreviewConfig":[]}';
+            </script>
+        }
+        <div class="form-group field-file_image_input">
+            <label class="col-md-2 control-label no-padding-right" for="@(Model.NameField.Replace(".","_"))_input">@Model.LabelField</label>
+            <div class='col-md-10'>
+               
+                <input type="file" id="@(Model.NameField.Replace(".","_"))_input" class="file" name="@(Model.NameField.Replace(".","_"))_input" value="@Model.ValueField" accept="image/*">
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    .krajee-default.file-preview-frame {
+        margin: 7px !important;
+    }
+</style>
+@Html.Script(
+    @<script>
+         //$(document).on('click',
+         //    '.kv-file-remove',
+         //    function() {
+         //        alert($(this).parent('.file-preview-frame').find('img').attr('src'));
+         //    });
+
+               
+     </script>)
+
+
+

@@ -1,0 +1,83 @@
+﻿@using System.Configuration
+@using XProject.Domain.Abstract
+@using XProject.Domain.Entities
+@using XProject.Web
+@using XProject.Web.Infrastructure;
+@{
+    var lang = "";
+
+
+    var newRepository = DependencyHelper.GetService<IGeneralRepository<XNew>>();
+    var httpCookie = Request.Cookies["Language"];
+    if (httpCookie != null)
+    {
+        lang = httpCookie.Value;
+    }
+    else
+    {
+        lang = ConfigurationManager.AppSettings["Culture"];
+    }
+    var listNews = newRepository.GetIQueryableItems().Where(x => x.Active == 1 && x.Type==1 && x.CodeLanguage == lang);
+}
+<div class="row">
+    <div id="latest_journal" class="">
+        <div class="no_overflow">
+            <h3 class="section_title has_transition_1500 langInsightBlog"> Insight Blog</h3>
+        </div>
+        <div class="journal_container">
+          
+                @{
+                    var index = 1;
+                }
+                @foreach (var item in listNews.Take(3).ToList())
+                {
+
+                    <a rel="@item.CurrentId" class="journal_record myBtnNew modal-toggle">
+                        <div class="pic_box covered">
+                            <div class="cover grey hidden has_transition_1000_inout"></div>
+                            <img class="content hidden has_transition_1000_inout" src="@(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 320320))">
+                        </div>
+                        <div class="journal_title has_transition_1000">
+
+                            <p class="j_title">
+
+                                @(item.Name != null ? (item.Name.Length > 560 ? item.Name.Substring(0, 550) : item.Name) : "")
+                            </p>
+
+                            <p class="j_time">
+                                @{
+                                        var date = new DateTime();
+                                        if (item.ModifiedDate != null)
+                                        {
+                                            date = (DateTime)item.ModifiedDate;
+                                        }
+                                        else
+                                        {
+                                            date = (DateTime)item.CreateDate;
+                                        }
+                                }
+
+
+                                @date
+                            </p>
+
+
+                        </div>
+                        <p class="text-shortdescription">
+                            @(item.ShortDescription != null ? (item.ShortDescription.Length > 72 ? item.ShortDescription.Substring(0, 72) : item.ShortDescription) : "")
+                        </p>
+
+                    </a>
+            index++;
+               }
+           
+
+
+
+
+        </div>
+
+
+
+    </div>
+</div>

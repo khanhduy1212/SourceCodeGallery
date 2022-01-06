@@ -1,0 +1,433 @@
+﻿@{
+    ViewBag.Title = "DetailCategoy";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+    var pictureRepository = DependencyHelper.GetService<IGeneralRepository<XPicture>>();
+    var productRepository = DependencyHelper.GetService<IGeneralRepository<XProduct>>();
+    var listPic = pictureRepository.GetIQueryableItems();
+}
+@using System.Configuration
+@using ServiceStack.Text
+@using XProject.Domain.Abstract
+@using XProject.Domain.Entities
+@using XProject.Web
+@using XProject.Web.Infrastructure;
+@model XProject.Domain.Entities.XMenu
+@{
+    XProject.Web.Models.AllModel all = ViewBag.AllModel;
+}
+<div id="main">
+    <div id="main_scroller" class="scroll_transition">
+        <div id="content" data-url-back="@Url.Action("ListCategoy","Home",new { id= all.TblMenu.Name.UrlFrendly()+"-"+ all.TblMenu.CurrentId})" data-current="lifestyle_detail" data-controller="panel_detail" class="scroll_transition subpanel">
+            <div id="section_scroller">
+                <div id="section_scroller_container" class="scroll_transition forced transform_only" style="width: 2560px; transform: translate(-400px, 0px) translateZ(0px);">
+                    <div class="section_panel intro has_transition_1500 transform_only">
+                        <div class="loading_cover has_transition_1000_inout_quint"></div>
+                        <div class="panel_start has_transition_800"></div>
+                        <div class="panel_intro">
+                            <div class="subsection_num">
+                                <img src="~/Template/images/1_2.png" />
+                            </div>
+
+                            <div class="no_overflow">
+                                <h1 class="panel_section_title list-panel_section_title  has_transition_1000 top_hidden">@all.TblMenu.Name</h1>
+                            </div>
+                            <div class="no_overflow">
+                                <h2 class="panel_section_subtitle has_transition_1000 top_hidden">@all.TblMenu.ShortDescription</h2>
+                            </div>
+                            <div class="panel_section_text_container top_translated has_transition_2000">
+                                <p class="panel_section_text">@Html.Raw(all.TblMenu.Description) </p>
+                                <div id="section_text_scrollbar" class="menu_panel_scrollbar">
+                                    <div class="pointer has_transition_1000"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel_separator">
+                            <div class="line_1 has_transition_1500"></div>
+                            <div class="line_2 has_transition_1500"></div>
+                        </div>
+                        <div class="swipe_ad mobile_only">
+                            <div class="no_overflow">
+                                <p class="controller_text top_hidden has_transition_1000 clswipe">swipe</p>
+                            </div>
+                            <div class="circle_button right ">
+                                <div class="back hidden_by_scaling_full has_transition_1000 transform_all"></div>
+                                <div class="arrow hidden has_transition_800">
+                                    <span class="fadeOutRight">
+                                        <img src="~/Template/images/tiny_arrow.png" style="margin-top: 15px;" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a style="display:none" href="@Url.Action("Index","Home")" class="section_panel has_transition_1500 transform_only home_f" rel="wellness"><div class="section_panel_title"><h1>Home</h1></div></a>
+                    @{
+
+                        foreach (var item in all.ListMenu.OrderBy(x=>x.Order).ToList())
+                        {
+                            var img = item.UrlImage != null ? (ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 853)) : "/Template/images/wellness_2400x1350_963a88d969d0edb63172bf1a620ac990.jpg";
+                            <a href="@Url.Action("DetailCategoy","Home",new {id=item.Name.UrlFrendly()+"-"+item.CurrentId})" class="section_panel has_transition_1500 transform_only @(item.CurrentId==Model.CurrentId?"active":"") " rel="wellness">
+                                <div class="loading_cover has_transition_1000_inout_quint"></div>
+                                <div class="section_pic has_transition_1000_inout_quint scaled_full">
+                                    <div class="section_veil has_transition_800"></div>
+                                    <img class="scroll_transition pic1" src="@img" />
+
+
+                                </div>
+                                <div class="info has_transition_1500 top_double">
+                                    <div class="num_back has_transition_1500_inout"></div>
+                                    <img class="section_triangle full_width" src="~/Template/images/1_1.png" style="visibility:hidden"/>
+                                  
+                                    <div class="info_data has_transition_1500_inout">
+                                        <div class="section_panel_title"><h1>@item.Name</h1></div>
+                                        <div class="section_separator">
+                                            <div class="pointer"></div>
+                                        </div>
+                                        <div class="section_subtitle"><h2></h2></div>
+                                    </div>
+                                </div>
+                                <div class="details has_transition_600_quint no_opacity">
+                                    <div class="info_details">
+                                        <div class="panel_detail">
+                                            <div class="no_overflow">
+                                                <p class="det_num top_hidden has_transition_1500">&nbsp;</p>
+                                            </div>
+
+                                            <div class="no_overflow">
+                                                <div class="det_white top_hidden has_transition_1000"> @item.ShortDescription</div>
+                                            </div>
+                                        </div>
+                                        <div class="panel_detail">
+                                            <div class="no_overflow">
+                                                <p class="det_black top_hidden has_transition_1000"></p>
+                                            </div>
+                                            <div class="no_overflow">
+                                                <div class="det_white top_hidden has_transition_1000"></div>
+                                            </div>
+                                        </div>
+                                        <div class="instructions mobile_only">
+                                            <p class="clTap">tap to enter or swipe to move</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel_separator">
+                                    <div class="line_1 has_transition_1500"></div>
+                                    <div class="line_2 has_transition_1500"></div>
+                                </div>
+                            </a>
+                        }
+                    }
+                    <a style="display:none" href="@Url.Action("Index","Home")" class="section_panel has_transition_1500 transform_only home_l" rel="wellness"><div class="section_panel_title"><h1>Home</h1></div></a>
+                  
+                </div>
+
+                <div id="panel_controls" class="has_transition_1000 transform_only">
+                    <div class="prev has_transition_1000 transform_only hidden">
+                        <div class="panel_back has_transition_1000"></div>
+                        <div class="panel_circle has_transition_1000">
+                            <img class="has_transition_1000" src="/Template/images/left_arrow.png">
+                        </div>
+                        <p class="panel_text has_transition_1000 clBack">Back</p>
+
+                    </div>
+                    @Html.Partial("Partial/_pMenuChild")
+                    <div class="next has_transition_1000 transform_only hidden">
+                        <div class="panel_back has_transition_1000"></div>
+                        <div class="panel_circle has_transition_1000">
+                            <img class="has_transition_1000" src="/Template/images/right_arrow.png">
+                        </div>
+                        <p class="panel_text has_transition_1000 clNext">Next</p>
+                    </div>
+                </div>
+
+            
+                <input type="hidden" id="hdNameMenu" value="@ViewBag.NameMenuCategory" />
+            </div>
+            <div id="section_animation" class="has_transition_1500_quint no_transition">
+                <div class="section_panel" rel="modern-art">
+                    <div class="section_pic first_run">
+                     
+                        @{
+                            var tbl = listPic.OrderBy(x => x.Position).FirstOrDefault(x => x.ProductsId == Model.CurrentId && x.Position==0);
+                            <img class="scroll_transition" src="@(tbl != null ? (ConfigurationManager.AppSettings["UrlImage"] + tbl.ConvertedFilename.Split('_')[0] + "/" + String.Format(tbl.ConvertedFilename, 853)) : "/Template/images/wellness_2400x1350_963a88d969d0edb63172bf1a620ac990.jpg")">
+                        }
+                      
+                    </div>
+                </div>
+                <div id="head_content" class="has_transition_1000_inout">
+                    <div class="back_1 no_width reverse has_transition_1000_inout"></div>
+                    <div class="back_2 no_width reverse has_transition_1000_inout"></div>
+
+                    <div class="panel_name has_date subsection has_transition_1000_inout">
+                        <div class="name_body">
+
+
+                            <div class="panel_intro">
+                                <div class="subsection_num">
+
+                                    <span class="number1 cusnumber">
+                                        @{
+                                            if (all.TblMenu.Order != null)
+                                            {
+
+
+                                                <span class="dark top_double has_transition_1500">
+                                                    @switch (all.TblMenu.Order)
+                                                    {
+                                                        case 1:
+                                                            @("I")
+                                                            break;
+                                                        case 2:
+                                                            @("II")
+                                                            break;
+                                                        case 3:
+                                                            @("III")
+                                                            break;
+                                                        case 4:
+                                                            @("IV")
+                                                            break;
+                                                        case 5:
+                                                            @("V")
+                                                            break;
+                                                        case 6:
+                                                            @("VI")
+                                                            break;
+                                                        case 7:
+                                                            @("VII")
+                                                            break;
+                                                        case 8:
+                                                            @("VIII")
+                                                            break;
+                                                    }
+                                                    .
+                                                </span>
+
+
+                                            }
+
+                                        }
+
+                                       
+                                    </span>
+
+
+                                    <span class="number2">
+                                        <span class="dark top_double has_transition_1500">
+
+                                            @Model.Order
+                                        </span>
+                                        </span>
+                                </div>
+
+                                <div class="no_overflow">
+                                    <h1 class="panel_section_title has_transition_1000" style="color: #ffffff;">@Model.Name</h1>
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="section_content">
+                <div class="row">
+                    <div class="paragraph_details">
+                        <div class="p_detail" style="white-space: pre-line;">
+                            @Html.Raw(Model.ShortDescription)
+                        </div>
+                    </div>
+                    <div class="paragraph first">
+                        <div class="no_overflow">
+                            <h1 class="big_title top_hidden has_transition_1000"></h1>
+                        </div>
+                        <div class="no_overflow big_subtitle ">
+                            <h2 class="big_subtitle top_hidden has_transition_1000"></h2>
+                        </div>
+                        <p class="body_text two_col top_translated has_transition_2000">
+
+
+                        </p>
+                        <div class="no_overflow"  style="width: 85%;" >
+                            @Html.Raw(Model.Description)
+                        </div>
+                    </div>
+                </div>
+                @{
+
+                    var index = 1;
+                    foreach (var item in ((List<XProduct>)ViewBag.Product).ToList())
+                    {
+
+                        var check = pictureRepository.GetIQueryableItems().OrderByDescending(o => o.Position).FirstOrDefault(x => x.ProductsId == item.CurrentId && x.TypeId == 1);
+                        item.UrlImage = check != null ? check.ConvertedFilename : "";
+                        if (index == 1)
+                        {
+
+
+                            <div class="row animated flexed grey first">
+                                <div class="pic_75 covered">
+
+                                    <div class="cover grey hidden has_transition_1500_inout"></div>
+                                    <a href="@(item.IsLink==1? Url.Action("DetailProduct","Home",new {id=item.Name.UrlFrendly()+"-"+item.CurrentId}) : "#" )">
+                                        <img class="full_width content hidden has_transition_1500_inout" src="@(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 19201280))" />
+                                    </a>
+                                </div>
+                                <div class="block_25 flexed grey">
+                                    <div class="diagonal_line hidden has_transition_1000_inout mobile_hidden">
+                                        <div class="_1"></div>
+                                        <div class="_2"></div>
+                                    </div>
+                                    <div class="usable_size">
+                                        <div class="block_title">
+                                            <div class="no_overflow">
+                                                <p class="desc_title top_hidden has_transition_1500">@item.Name</p>
+                                            </div>
+                                            <div class="no_overflow">
+                                                <p class="desc_text top_hidden has_transition_1500">@item.ShortDescription</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                        else if (index == 2)
+                        {
+                            <div class="row animated flexed switch">
+                                <div class="pic_66 relative">
+                                    <div class="grey_box">
+                                        <a href="@(item.IsLink==1? Url.Action("DetailProduct","Home",new {id=item.Name.UrlFrendly()+"-"+item.CurrentId}) : "#" )" style="width: 85%;">
+                                            <p class="des_tt desc_title top_hidden has_transition_1000" style="font-size: 40px;margin-bottom: 200px;">
+                                                @item.Name
+
+                                            <p>
+</a>
+                                        <div class="horizontal_line no_width has_transition_1000_inout mobile_hidden">
+                                            <div class="_1"></div>
+                                            <div class="_2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block_33 covered">
+                                    <div class="cover white hidden has_transition_1500_inout"></div>
+                                    <a href="@(item.IsLink==1? Url.Action("DetailProduct","Home",new {id=item.Name.UrlFrendly()+"-"+item.CurrentId}) : "#" )">
+                                        <img class="full_width content hidden has_transition_1500_inout" src="@(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 455683))" />
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        else if(index == 3)
+                        {
+                            <div class="row animated flexed switch">
+                                <div class="block_33 flexed centered">
+                                    <div class="block_title">
+                                        <div class="diagonal_line mobile_hidden">
+                                            <div class="_1"></div>
+                                        </div>
+                                        <a href="@(item.IsLink==1? Url.Action("DetailProduct","Home",new {id=item.Name.UrlFrendly()+"-"+item.CurrentId}) : "#" )">
+                                            <div class="no_overflow">
+
+                                                <p class="desc_title giant top_hidden has_transition_1500">@item.Name</p>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                </div>
+                                <div class="pic_66 covered">
+                                    <div class="cover white hidden has_transition_1500_inout"></div>
+                                    <img class="full_width content hidden has_transition_1500_inout" src="@(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 19201280))" />
+                                </div>
+                            </div>
+                        }
+
+                        if (index==3)
+                        {
+                            index = 0;
+                        }
+                        index++;
+                    }
+                }
+
+             
+                <div class="row">
+                    <div id="fullscreen_gallery">
+                        <div class="gallery_borders">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                            <div class="left"></div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="gallery_slider">
+                            @{
+                                            var countImg = 1;
+                                            var listProduct = productRepository.GetIQueryableItems().Where(x => x.TypeId == Model.CurrentId).Select(x => x.CurrentId).ToList();
+                                            if (listProduct.Count>0)
+                                            {
+                                                var cImages = pictureRepository.GetIQueryableItems().Where(x => listProduct.Contains((int)x.ProductsId) && x.TypeId == 1).ToList();
+cImages=cImages.OrderBy(x => Guid.NewGuid()).Take(21).ToList();
+                                               
+
+                                                for (int i = 0; i < cImages.Count; i++)
+                                                {
+                                                    var pic = cImages[i];
+                                                    if (i == 0)
+                                                    {
+                                            <div class="pic_big has_transition_1500 active">
+                                                <img src="@(ConfigurationManager.AppSettings["UrlImage"] + pic.ConvertedFilename.Split('_')[0] + "/" + String.Format(pic.ConvertedFilename, 853))" />
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="pic_big has_transition_1500">
+                                                <img src="@(ConfigurationManager.AppSettings["UrlImage"] + pic.ConvertedFilename.Split('_')[0] + "/" + String.Format(pic.ConvertedFilename, 853))" />
+                                            </div>
+                                        }
+
+                                    }
+                                    countImg = cImages.Count;
+                                }
+                                else
+                                {
+                                    <div class="pic_big has_transition_1500">
+                                        <img src="@(ConfigurationManager.AppSettings["UrlWeb"] + "/Template/images/head.jpg")" />
+                                    </div>
+                                }
+
+                            }
+                        </div>
+                        <div class="gallery_controller">
+                            <div class="button_right has_transition_800">
+                                <div class="circle has_transition_1000"><img class="has_transition_1000" src="https://lamos.vn/Template/images/white_right_arrow.png" /></div>
+                            </div>
+                            <div class="button_left has_transition_800">
+                                <div class="circle has_transition_1000"><img class="has_transition_1000" src="https://lamos.vn/Template/images/white_left_arrow.png" /></div>
+                            </div>
+                            <div class="btn-contact button_down has_transition_800">
+                                <div class="circle has_transition_1000"><img class="has_transition_1000" src="https://lamos.vn/Template/images/white_right_arrow.png" /></div>
+                            </div>
+                        </div>
+                        <div class="numbers">
+                            <p class="counter">1</p>
+                            <div class="gallery_diagonal"></div>
+                            <p class="total">@countImg<p>
+                        </div>
+                        <div class="advice">
+                            <img width=20 src="~/Template/images/rotate.png" />
+                            <p>
+                                rotate for <br />fullscreen gallery
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+       
+        @Html.Partial("Partial/_pFooter")
+    </div>
+</div>

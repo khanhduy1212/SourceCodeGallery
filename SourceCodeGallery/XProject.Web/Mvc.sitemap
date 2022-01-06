@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="Tìm việc làm" controller="Home" action="Index">
+    <mvcSiteMapNode title="Giới thiệu về chúng tôi" controller="Home" action="About"/>
+    <mvcSiteMapNode title="Liên hệ quảng cáo" controller="Home" action="Contact"/>
+    <mvcSiteMapNode title="Đổi DCoin" controller="Home" action="ChangeDCoin"/>
+    <mvcSiteMapNode title="Danh bạ việc làm" controller="Home" action="OrtherCarrer"/>
+    <mvcSiteMapNode title="Tìm việc nhanh" controller="Home" action="FindQuizJob"/>
+    <mvcSiteMapNode title="Việc là trong 24h" controller="Home" action="NewsIn24h"/>
+    <mvcSiteMapNode title="Tin tức" controller="Home" action="News" preservedRouteParameters="id">
+      <mvcSiteMapNode title="Chi tiết tin tức" controller="Home" action="DetailNews" preservedRouteParameters="id"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Đổi mật khẩu" controller="BDSAccounts" action="ChangePass"/>
+    <mvcSiteMapNode title="Thay đổi thông tin tài khoản" controller = "BDSEmployer" action = "EmployerEditInfo" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Tạo tin đăng nhà tuyển dụng" controller = "BDSEmployer" action = "NewsEmployerCreate" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Thông tin số dư" controller = "BDSEmployer" action = "BalanceInformation" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Giấy phép kinh doanh" controller = "BDSEmployer" action = "UpdateBussiness" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="lịch sử tin đăng" controller = "BDSEmployer" action = "ManagerHistoryNews" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Nạp tiền" controller = "BDSEmployer" action = "PaymentEmployer" preservedRouteParameters="id">
+      <mvcSiteMapNode title="Bước 1" controller = "BDSEmployer" action = "PaymentEmployer1" preservedRouteParameters="id"/>
+     
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Nhà tuyển dụng" controller = "BDSEmployer" action = "Index"/>
+    <mvcSiteMapNode title="Tìm hồ sơ ứng viên" controller = "BDSEmployer" action = "FindProfiler" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Hồ sơ đã lưu" controller = "BDSEmployer" action = "SavedProfiler" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Hồ sơ đã ứng tuyển" controller = "BDSEmployer" action = "ApplyProfiler" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Tin nháp" controller = "BDSEmployer" action = "ManagerNewsDrafts" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Thông tin công ty" controller = "BDSEmployer" action = "DetailCompany" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Chi tiết tin đăng" controller = "BDSEmployer" action = "DetailEmployerNews" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Cập nhật tin đăng" controller = "BDSEmployer" action = "NewsEmployerEdit" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Xem hồ sơ ứng viên" controller = "BDSEmployer" action = "ViewProfileByEmployer" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Lịch sử giao dịch"  controller = "BDSEmployer" action = "TransactionHistory"/>
+    
+
+    <mvcSiteMapNode title="Chỉnh sửa hồ sơ" controller = "BDSPersonal" action = "EditYourProfile" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Thông tin cá nhân" controller = "BDSPersonal" action = "EditPersonal" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Chi tiết hồ sơ" controller = "BDSPersonal" action = "ViewYourProfile" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Chi tiết người tìm việc" controller = "BDSPersonal" action = "PostJobView" preservedRouteParameters="id"/>
+    <mvcSiteMapNode title="Xem trước người tìm việc" controller = "BDSPersonal" action = "PostJobViewReview" preservedRouteParameters="id"/>
+
+    <mvcSiteMapNode title="Hồ sơ" controller = "BDSPersonal" action = "YourProfile" preservedRouteParameters="id">
+      <mvcSiteMapNode title="Tạo hồ sơ" controller = "BDSPersonal" action = "CreateYourProfile" preservedRouteParameters="id"/>
+    </mvcSiteMapNode>
+     <mvcSiteMapNode title="Việc làm đã lưu" controller = "BDSPersonal" action = "SaveJobs" preservedRouteParameters="id"/>
+     <mvcSiteMapNode title="Việc làm đã nộp" controller = "BDSPersonal" action = "ApplyJobs" preservedRouteParameters="id"/>
+     <mvcSiteMapNode title="Tin Nháp"  controller = "BDSPersonal" action = "YourDrafts" preservedRouteParameters="id"/>
+     <mvcSiteMapNode title="Lịch sử giao dịch"  controller = "BDSPersonal" action = "TransactionHistory" preservedRouteParameters="id"/>
+     <mvcSiteMapNode title="Thông tin số dư"  controller = "BDSPersonal" action = "BalanceInformation" preservedRouteParameters="id"/>
+     <mvcSiteMapNode title="Người tìm việc" controller = "BDSPersonal" action = "Index"/>
+    </mvcSiteMapNode>
+</mvcSiteMap>

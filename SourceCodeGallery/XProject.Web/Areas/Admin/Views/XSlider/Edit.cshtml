@@ -1,0 +1,14 @@
+﻿@using  XProject.Web.Areas.Admin.Helper
+@using Resources
+@model XProject.Domain.Entities.XSlider
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+{
+    using (Html.Bootstrap().Begin(new Alert().Style(AlertColor.Success).Closeable()))
+    {
+        <text>@ViewBag.Message</text>
+    }
+}
+@{
+    ViewBag.Title = Utilities.Resource("XSlider_Edit", "Update");
+}@Html.Partial("_FormLayout")

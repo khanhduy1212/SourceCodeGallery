@@ -1,0 +1,109 @@
+﻿
+<style>
+    text.highcharts-credits {
+        display: none !important;
+    }
+</style>
+<div class="row">
+   
+      
+    
+
+    <div style="clear:both;padding-top:10px"></div>
+
+    <div class="tabbable col-md-12">
+        <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+            <li class="active">
+                <a data-toggle="tab" href="#recent" aria-expanded="false">
+                    <i class="ace-icon fa fa-support"></i>
+                    Recent
+                </a>
+            </li>
+            
+        </ul>
+
+        <div class="tab-content">
+            <div id="recent" class="tab-pane active">
+                <div id="recent_item" style="min-width: 310px; margin: 0 auto">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="widget-box transparent" id="recent-box">
+                                <div class="widget-header">
+                                    <h4 class="widget-title lighter smaller">
+                                        <i class="ace-icon fa fa-rss orange"></i>RECENT
+                                    </h4>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="widget-main padding-4">
+                                        <div class="tab-content padding-8">
+                                            <div id="task-tab" class="tab-pane active">
+                                                <ul id="tasks" class="item-list ui-sortable">
+                                                    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.widget-main -->
+                                </div><!-- /.widget-body -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+@Html.Script(
+    @<script>
+
+        $(document).ready(function () {
+            loadTourItem();
+        });
+        // $(function() {
+        $("#dvLoading").css("display", "none");
+
+        var tabHotelStatus = 0;
+        $(document).on('click', '[href="#hotel"]', function (e) {
+            e.preventDefault();
+            var $self = $(this);
+
+            if (tabHotelStatus == 0) {
+                tabHotelStatus = 1;
+                loadTabHotel();
+            }
+        });
+
+        var tabVendorStatus = 0;
+        $(document).on('click', '[href="#vendorservice"]', function (e) {
+            e.preventDefault();
+            var $self = $(this);
+
+            if (tabVendorStatus == 0) {
+                tabVendorStatus = 1;
+                loadTabVendor();
+            }
+        });
+
+        ////=========================Customers 30 days===================================
+
+        function loadTourItem() {
+            
+        }
+
+        function loadTabVendor() {
+           
+        }
+
+        function loadTabHotel() {
+           
+        }
+
+
+
+
+
+        // });
+
+    </script>)

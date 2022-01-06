@@ -1,0 +1,125 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using System.Web
+@using XProject.Domain.Entities
+<div id="sidebar" class="sidebar responsive ace-save-state">
+    <script type="text/javascript">
+        try { ace.settings.loadState('sidebar') } catch (e) { }
+    </script>
+
+    <ul class="nav nav-list">
+        @{
+            HttpRequest request = HttpContext.Current.Request;
+            var controllerActive = "Admin/" + ViewContext.RouteData.Values["controller"].ToString();
+            var urlActive = controllerActive + "/" + ViewContext.RouteData.Values["action"].ToString();
+            IEnumerable<Menu> menus = XProject.Web.Infrastructure.Utility.MenuHelper.GetAll();
+            foreach (Menu item in menus.OrderBy(m=>m.Order).OrderBy(m=>m.Title))
+            {
+
+                List<Menu> children = XProject.Web.Infrastructure.Utility.MenuHelper.GetAll(item.ID).ToList();
+                bool isActiveBar = !string.IsNullOrEmpty(item.Url) && (item.Url == request.RawUrl ||
+                                                                       item.Url.Remove(0, 1) == controllerActive ||
+                                                                       item.Url.Remove(0, 1) == urlActive);
+                if (children.Count > 0)
+                {
+                    isActiveBar = false;
+                }
+                bool isOpen = false;
+                foreach (Menu childMenuItem in children)
+                {
+                    if (childMenuItem.Url != null &&
+                        (childMenuItem.Url == request.RawUrl ||
+                         childMenuItem.Url.Remove(0, 1).ToLower() == controllerActive.ToLower() ||
+                         childMenuItem.Url.Remove(0, 1).ToLower() == urlActive.ToLower()))
+                    {
+                        isOpen = true;
+                    }
+                }
+
+                var title = item.Title;
+                if (!string.IsNullOrEmpty(title))
+                {
+                    var resource = Resources.MenuResource.ResourceManager.GetString(("Menu" + XProject.Domain.Helpers.StringHelper.RemoveSpecialCharacters(title)).ToLower());
+                    if (resource != null)
+                    {
+                        title = resource;
+                    }
+                }
+                if (item.Title.ToUpper() == "MASTER FILE")
+                {
+                    children = children.OrderBy(m => m.Title).ToList();
+                }
+                
+
+                <li class="@(isActiveBar ? "active" : (isOpen?" open":""))">
+                    <a href="@(string.IsNullOrEmpty(item.Url) ? "#" : item.Url)" class="@(string.IsNullOrEmpty(item.Url) ? "dropdown-toggle" : "")">
+                        <i class="menu-icon @(string.IsNullOrEmpty(item.Icon) ? "fa fa-cube" : item.Icon)"></i>
+
+                        <span class="menu-text">
+                            @title
+                        </span>
+
+                        <b class="arrow @(string.IsNullOrEmpty(item.Url) ? "fa fa-angle-down" : "")"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+                    @if (children.Count > 0)
+                    {
+                        <ul class="submenu">
+                            @foreach (Menu childItem in children)
+                            {
+
+                                var childTitle = childItem.Title;
+                                if (!string.IsNullOrEmpty(childTitle))
+                                {
+                                    var childItemResource = Resources.MenuResource.ResourceManager.GetString(("Menu" + XProject.Domain.Helpers.StringHelper.RemoveSpecialCharacters(childTitle)).ToLower());
+                                    if (childItemResource != null)
+                                    {
+                                        childTitle = childItemResource;
+                                    }
+                                    else
+                                    {
+                                        var tmp = 0;
+                                    }
+                                }
+                                if (childItem.Url != null &&
+                                    (childItem.Url.Remove(0, 1).ToLower() == ("Admin/" + ViewContext.RouteData.Values["controller"].ToString()).ToLower() ||
+                                     childItem.Url.Remove(0, 1).ToLower() == ("Admin/" + ViewContext.RouteData.Values["controller"].ToString()
+                                     + "/" + ViewContext.RouteData.Values["action"]).ToLower()))
+                                {
+                                    <li class="active">
+                                        <a href="@childItem.Url">
+                                            <i class="menu-icon fa fa-caret-right"></i>
+                                            @childTitle
+                                        </a>
+
+                                        <b class="arrow"></b>
+                                    </li>
+
+                                }
+                                else
+                                {
+                                    <li class="">
+                                        <a href="@childItem.Url">
+                                            <i class="menu-icon fa fa-caret-right"></i>
+                                            @childTitle
+                                        </a>
+
+                                        <b class="arrow"></b>
+                                    </li>
+
+                                }
+                            }
+                        </ul>
+                    }
+                </li>
+
+            }
+        }
+
+    </ul>
+
+    <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+        <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+    </div>
+</div>

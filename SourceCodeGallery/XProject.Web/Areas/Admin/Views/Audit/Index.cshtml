@@ -1,0 +1,129 @@
+﻿@using Resources
+@using ServiceStack.Text
+@model IEnumerable<XProject.Domain.Entities.Audit>
+
+
+
+@{
+    ViewBag.Title = "Audit";
+}
+
+
+<div class="page-header">
+    <h1>
+        @ViewBag.Title
+    </h1>
+</div>
+
+
+<div class="row">
+
+
+</div>
+
+<div class="row">
+    <div class="col-sm-4 tableTools-container">
+        <input id="datemin" class="date-picker form-control" placeholder="mm/dd/yyyy" type="text" />
+    </div>
+    <div class="col-sm-4 tableTools-container">
+        <input id="datemax" class="date-picker form-control" placeholder="mm/dd/yyyy" type="text" />
+    </div>
+    <div class="col-sm-4">
+        <div class="clearfix">
+            <div class="pull-left tableTools-container">
+                <div class="dt-buttons btn-overlap btn-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <a id="btnSearch" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                                <span>
+                                    Search
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-8 tableTools-container">
+        <select id="userfilter" class="form-control" name="UserLoginname">
+            <option value=""></option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.Username" @(ViewBag.Username == item.Username ? "selected='true'" : "")>@item.Username</option>
+            }
+        </select>
+
+    </div>
+</div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="table-responsive">
+                    <table id="griddata2" class="table">
+                        <thead>
+                            
+                            <tr>
+                                <th>UserLogin name</th>
+                                <th>Time</th>
+                                <th>Message</th>
+                                <th>Url</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        @Html.Script(
+        @<script>
+
+            //var oTable = $("#griddata table");
+            var oTable = $("#griddata2");
+            oTable.dataTable({
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                "stateSave": false,
+                "ajax": {
+                    "url": "@Url.Action("AjaxGetAudits","Audit")",
+                    "type": "POST",
+                    "datatype": "json",
+                    "data": function (d) {
+                        d.selectUser = $('#userfilter').val();
+                        d.datefrom = $('#datemin').val();
+                        d.dateto = $('#datemax').val();
+                    }
+                },
+                "columns": [
+                        { "data": "Username", "name": "DisplayName", "orderable": true },
+                        { "data": "TimeAccessed", "name": "TimeAccessed", "orderable": true },
+                        { "data": "Message", "name": "Message", "orderable": true },
+                        { "data": "UrlAccessed", "name": "UrlAccessed", "orderable": true },
+                        { "data": "ID", "orderable": false }
+                ],
+                "iDisplayLength": 25,
+                "aaSorting": [[1, "desc"]],
+                "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                    $(nRow).find('td:eq(1)').attr("style", "text-align:center");
+                    $(nRow).find('td:eq(4)').html('<a href="@Url.Action("Detail","Audit")/' + aData["ID"] + '" target="_blank">Details</a>');
+                },
+            });
+
+            //Select UserLoginname event
+            $('#userfilter').change(function () {
+                oTable.fnDraw();
+            });
+            $('#btnSearch').click(function () {
+                oTable.fnDraw();
+            });
+
+        </script>
+                          )

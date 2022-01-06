@@ -1,0 +1,114 @@
+﻿@using NS.Mvc.Helpers
+@using XProject.Domain.Entities
+@using Resources
+@model IEnumerable<UserLogin>
+
+@*<h3 class="heading">UserLogins</h3>*@
+@{
+    var roles = ViewBag.roles;
+}
+@if (TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-block alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        @TempData["Message"]
+
+    </div>
+
+    TempData.Remove("Message");
+}
+
+<div class="page-header">
+    <h1>
+        @Resource.UsersDeleted
+    </h1>
+</div>
+<div class="row">
+    <div class="col-sm-4 tableTools-container">
+        @Html.Bootstrap().DropDownList(Resource.Role, new SelectList(roles, "ID", "Name")).Class("form-control").OptionLabel("SELECT ROLE").Id("role")
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <table id="users-table" class="table">
+                <thead>
+                    <tr>
+                        <th>@Resource.UserName</th>
+                        <th>@Resource.Email</th>
+                        <th>@Resource.PhoneNumber</th>
+                        <th class="text-center no-sort">@Resource.Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (UserLogin user in Model)
+                    {
+                        <tr data-roles="@(string.Join(" ", user.Roles.Select(m => m.ID)))">
+                            <td>
+                                @if (user.Picture != null)
+                                {
+                                    <img src="~/data/user_img/@(user.Picture + "?" + Guid.NewGuid().ToString())" class="img-rounded UserLogin-picture-small" />
+                                }
+                                @user.DisplayName
+                            </td>
+                            <td>@user.Email</td>
+                            <td>@user.Phone</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("ReActive", new { id = user.ID })" data-action="reactive" data-id="@user.ID"><i class="fa fa-undo text-violet"></i> @Resource.ReActive</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@Html.Script(
+    @<script>
+
+        var $modelTable = $('#users-table').dataTable({
+            columnDefs: [
+          { targets: 'no-sort', orderable: false }
+            ]
+        });
+
+        $('[data-action="reactive"]').on('click', function (e) {
+            e.preventDefault();
+            var $self = $(this);
+            bootbox.confirm("@Resource.ConfirmReActive", function (isOK) {
+                if (isOK) {
+                    var id = $self.data('id');
+                    var index = $self.closest('tbody').find('tr').index($self.closest('tr'));
+
+                    $.ajax({
+                        url: '@Url.Action("ReActive", "Users")/' + id,
+                        type: 'POST',
+                        success: function () {
+                            $modelTable.fnDeleteRow(index);
+                        }
+                    });
+                }
+            });
+
+        });
+
+        $("#role").change(function () {
+            var roleID = $(this).val();
+            if (roleID == '') {
+                $('tbody tr').removeClass('hide');
+            } else {
+                $('tbody tr').addClass('hide');
+                $('tbody tr').each(function (index, value) {
+                    if ($(this).attr('data-roles').indexOf(roleID) != -1) {
+
+                        $(this).removeClass('hide');
+                    }
+                });
+            }
+        });
+
+    </script>
+              )

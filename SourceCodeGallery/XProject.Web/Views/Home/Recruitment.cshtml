@@ -1,0 +1,247 @@
+﻿@{
+    ViewBag.Title = "DetailCategoy";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+
+}
+@using System.Configuration
+@using ServiceStack.Text
+@using XProject.Domain.Abstract
+@using XProject.Domain.Entities
+@using XProject.Web
+@using XProject.Web.Infrastructure;
+
+<div id="main">
+    <div id="main_scroller" class="scroll_transition">
+        <div id="content"  data-current="lifestyle_detail" data-controller="panel_detail" class="scroll_transition subpanel">
+           
+            <div id="section_animation" class="has_transition_1500_quint no_transition">
+                <div class="section_panel" rel="modern-art">
+                    <div class="section_pic first_run">
+
+                        @{
+                           
+                            <img class="scroll_transition" src="/Template/images/wellness_2400x1350_963a88d969d0edb63172bf1a620ac990.jpg">
+                        }
+
+                    </div>
+                </div>
+                <div id="head_content" class="has_transition_1000_inout">
+                    <div class="back_1 no_width reverse has_transition_1000_inout"></div>
+                    <div class="back_2 no_width reverse has_transition_1000_inout"></div>
+
+                    <div class="panel_name has_date subsection has_transition_1000_inout">
+                        <div class="name_body">
+
+
+                            <div class="panel_intro">
+                
+
+                                <div class="no_overflow">
+                                    <h1 class="panel_section_title has_transition_1000 clRecruitment" style="color: #ffffff;">Tuyển Dụng</h1>
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="section_content">
+                <div class="row">
+                    <div class="paragraph_details">
+                        mo ta
+                    </div>
+                    <div class="paragraph first">
+                        <div class="no_overflow">
+                            <h1 class="big_title top_hidden has_transition_1000"></h1>
+                        </div>
+                        <div class="no_overflow big_subtitle ">
+                            <h2 class="big_subtitle top_hidden has_transition_1000"></h2>
+                        </div>
+                        <p class="body_text two_col top_translated has_transition_2000">
+                            Mo tả 
+
+                        </p>
+                        <div class="no_overflow">
+
+                        </div>
+                    </div>
+                </div>
+
+                @{
+
+                    var index = 1;
+                    foreach (var item in ((List<XNew>)ViewBag.ListNews).ToList())
+                    {
+
+
+                        if (index == 1)
+                        {
+
+
+                            <div class="row animated flexed grey first">
+                                <div class="pic_75 covered">
+
+                                    <div class="cover grey hidden has_transition_1500_inout"></div>
+                                    <a href="@(Url.Action("DetailProduct","Home",new {id=item.Name.UrlFrendly()+"-"+item.CurrentId}))">
+                                        <img class="full_width content hidden has_transition_1500_inout" src="@(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 853))" />
+                                    </a>
+                                </div>
+                                <div class="block_25 flexed grey">
+                                    <div class="diagonal_line hidden has_transition_1000_inout mobile_hidden">
+                                        <div class="_1"></div>
+                                        <div class="_2"></div>
+                                    </div>
+                                    <div class="usable_size">
+                                        <div class="block_title">
+                                            <div class="no_overflow">
+                                                <p class="desc_title top_hidden has_transition_1500">@item.Name</p>
+                                            </div>
+                                            <div class="no_overflow">
+                                                <p class="desc_text top_hidden has_transition_1500">@item.ShortDescription</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                        else if (index == 2)
+                        {
+                            <div class="row animated flexed switch">
+                                <div class="pic_66 relative">
+                                    <div class="grey_box">
+                                        <a href="@(Url.Action("DetailProduct","Home",new {id=item.Name.UrlFrendly()+"-"+item.CurrentId}))">
+                                            <p class="des_tt desc_title top_hidden has_transition_1000" style="font-size: 40px;margin-bottom: 200px;">
+                                                @item.Name
+
+                                            <p>
+                                        </a>
+                                        <div class="horizontal_line no_width has_transition_1000_inout mobile_hidden">
+                                            <div class="_1"></div>
+                                            <div class="_2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block_33 covered">
+                                    <div class="cover white hidden has_transition_1500_inout"></div>
+                                    <a href="@(Url.Action("DetailProduct","Home",new {id=item.Name.UrlFrendly()+"-"+item.CurrentId}) )">
+                                        <img class="full_width content hidden has_transition_1500_inout" src="@(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 455683))" />
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        else if (index == 3)
+                        {
+                            <div class="row animated flexed switch">
+                                <div class="block_33 flexed centered">
+                                    <div class="block_title">
+                                        <div class="diagonal_line mobile_hidden">
+                                            <div class="_1"></div>
+                                        </div>
+                                        <a href="@( Url.Action("DetailProduct","Home",new {id=item.Name.UrlFrendly()+"-"+item.CurrentId}) )">
+                                            <div class="no_overflow">
+
+                                                <p class="desc_title giant top_hidden has_transition_1500">@item.Name</p>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                </div>
+                                <div class="pic_66 covered">
+                                    <div class="cover white hidden has_transition_1500_inout"></div>
+                                    <img class="full_width content hidden has_transition_1500_inout" src="@(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 853))" />
+                                </div>
+                            </div>
+                        }
+
+                        if (index == 3)
+                        {
+                            index = 0;
+                        }
+                        index++;
+                    }
+                }
+
+                @*<div class="row">
+            <div id="fullscreen_gallery">
+                <div class="gallery_borders">
+                    <div class="top"></div>
+                    <div class="bottom"></div>
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+                <div class="gallery_slider">
+                    @{
+                        var countImg = 1;
+                        var listProduct = productRepository.GetIQueryableItems().Where(x => x.TypeId == Model.CurrentId).Select(x => x.CurrentId).ToList();
+                        if (listProduct.Count > 0)
+                        {
+                            var cImages = pictureRepository.GetIQueryableItems().Where(x => listProduct.Contains((int)x.ProductsId) && x.TypeId == 1).ToList();
+                            cImages = cImages.OrderBy(x => Guid.NewGuid()).Take(21).ToList();
+
+
+                            for (int i = 0; i < cImages.Count; i++)
+                            {
+                                var pic = cImages[i];
+                                if (i == 0)
+                                {
+                                    <div class="pic_big has_transition_1500 active">
+                                        <img src="@(ConfigurationManager.AppSettings["UrlImage"] + pic.ConvertedFilename.Split('_')[0] + "/" + String.Format(pic.ConvertedFilename, 853))" />
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="pic_big has_transition_1500">
+                                        <img src="@(ConfigurationManager.AppSettings["UrlImage"] + pic.ConvertedFilename.Split('_')[0] + "/" + String.Format(pic.ConvertedFilename, 853))" />
+                                    </div>
+                                }
+
+                            }
+                            countImg = cImages.Count;
+                        }
+                        else
+                        {
+                            <div class="pic_big has_transition_1500">
+                                <img src="@(ConfigurationManager.AppSettings["UrlWeb"] + "/Template/images/head.jpg")" />
+                            </div>
+                        }
+
+                    }
+                </div>
+                <div class="gallery_controller">
+                    <div class="button_right has_transition_800">
+                        <div class="circle has_transition_1000"><img class="has_transition_1000" src="https://lamos.vn/Template/images/white_right_arrow.png" /></div>
+                    </div>
+                    <div class="button_left has_transition_800">
+                        <div class="circle has_transition_1000"><img class="has_transition_1000" src="https://lamos.vn/Template/images/white_left_arrow.png" /></div>
+                    </div>
+                    <div class="btn-contact button_down has_transition_800">
+                        <div class="circle has_transition_1000"><img class="has_transition_1000" src="https://lamos.vn/Template/images/white_right_arrow.png" /></div>
+                    </div>
+                </div>
+                <div class="numbers">
+                    <p class="counter">1</p>
+                    <div class="gallery_diagonal"></div>
+                    <p class="total">@countImg<p>
+                </div>
+                <div class="advice">
+                    <img width=20 src="~/Template/images/rotate.png" />
+                    <p>
+                        rotate for <br />fullscreen gallery
+                    </p>
+                </div>
+            </div>
+        </div>*@
+
+            </div>
+
+        </div>
+
+        @Html.Partial("Partial/_pFooter")
+    </div>
+</div>

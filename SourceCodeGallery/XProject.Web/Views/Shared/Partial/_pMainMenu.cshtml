@@ -1,0 +1,301 @@
+﻿
+@using System.Configuration
+@using XProject.Domain.Abstract
+@using XProject.Domain.Entities
+@using XProject.Web
+@using XProject.Web.Infrastructure;
+@{
+    var lang = "";
+    var countryRepository = DependencyHelper.GetService<IGeneralRepository<XCountry>>();
+    var listCountry = countryRepository.GetIQueryableItems().Where(x => x.IsLangauge == true && x.Active == 1).ToList();
+    var menuRepository = DependencyHelper.GetService<IGeneralRepository<XMenu>>();
+    var httpCookie = Request.Cookies["Language"];
+    if (httpCookie != null)
+    {
+        lang = httpCookie.Value;
+    }
+    else
+    {
+        lang = ConfigurationManager.AppSettings["Culture"];
+    }
+    var listMenu = menuRepository.GetIQueryableItems().Where(x => x.CodeLanguage == lang);
+}
+
+<div id="main_menu" class="mobile_hidden">
+    <div id="menu_back" class="no_opacity has_transition_1000 transform_all"></div>
+    @{
+        var listMenuCategory = listMenu.Where(x => x.IdParentMenu == 0 && x.IsCategoryMenu == 1).ToList();
+        var i = 1;
+        var idName = "";
+    }
+    @foreach (var item in listMenuCategory.OrderBy(x => x.Order).ToList())
+    {
+        <div class="menu_panel">
+            <div class="menu_panel_container hidden has_transition_1500">
+                <div class="upper">
+                    <p class="menu_number has_transition_806 transform_all">
+                        @{
+                            switch (i)
+                            {
+                                case 1:
+                                    @("I")
+                                    break;
+                                case 2:
+                                    @("II")
+                                    break;
+                                case 3:
+                                    @("III")
+                                    break;
+                                case 4:
+                                    @("IV")
+                                    break;
+                                case 5:
+                                    @("V")
+                                    break;
+                                case 6:
+                                    @("VI")
+                                    break;
+                                case 7:
+                                    @("VII")
+                                    break;
+                                case 8:
+                                    @("VIII")
+                                    break;
+                            }
+                        }
+                        .@*<span>0</span>*@
+                    </p>
+                    <div class="menu_hide_content hidden_by_scaling_full has_transition_800">
+                        <div class="cross btnCrossHide">
+                            <div class="line_1 has_transition_800"></div>
+                            <div class="line_2 has_transition_800"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="center has_transition_1500">
+                    <div class="menu_title_open">
+                        <h1 class="menu_title">@item.Name</h1>
+                        @if (item.IsParent == 1)
+                        {
+                            <div class="menu_show_content has_transition_800 hidden_by_scaling_full transform_all">
+                                <div class="cross btnCross" rel="0">
+                                    <div class="line_1 has_transition_800"></div>
+                                    <div class="line_2 has_transition_800"></div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <img class="text_shadow_upper scroll_transition no_opacity" src="~/Template/images/text_shadow_upper.png" />
+                    @switch (i)
+                    {
+                        case 1:
+                            idName = "menu_panel_hotel";
+                            break;
+                        case 2:
+                            idName = "menu_panel_rooms";
+                            break;
+                        case 3:
+                            idName = "menu_panel_dining";
+                            break;
+                        case 4:
+                            idName = "menu_panel_experience";
+                            break;
+                        case 5:
+                            idName = "menu_panel_experience5";
+                            break;
+                        case 6:
+                            idName = "menu_panel_experience6";
+                            break;
+                        case 7:
+                            idName = "menu_panel_experience7";
+                            break;
+                        case 8:
+                            idName = "menu_panel_experience8";
+                            break;
+
+
+                    }
+                    <div class="menu_panel_content" id="@idName">
+                        <div class="menu_panel_content_container scroll_transition">
+
+                            @{
+                                var listMenuChildCategory = listMenu.Where(x => x.IsCategoryMenu == 1 && x.IdParentMenu == item.CurrentId).ToList();
+                                var ichild = 1;
+                                var idChildName = "";
+                            }
+                            @foreach (var itemChild in listMenuChildCategory.OrderBy(x => x.Order).ToList())
+                            {
+                                if (itemChild.Order==1)
+                                {
+                                    <a class="menu_paragraph" href="@(!string.IsNullOrEmpty(item.LinkMenu) ? item.LinkMenu : Url.Action("ListCategoy", "Home", new {id = item.Name.UrlFrendly() + "-" + item.CurrentId}))" rel="@item.Name">
+                                        <p class="par_number no_opacity has_transition_800">.@ichild</p>
+                                        <div class="menu_titles">
+                                            <div class="no_overflow">
+                                                <h2 class="menu_title top_hidden has_transition_800 menu_title_child">@itemChild.Name</h2>
+                                                <div class="underline has_transition_600_inout"></div>
+
+                                            </div>
+                                            <div class="no_overflow">
+                                                <h3 class="menu_subtitle top_hidden has_transition_800">@itemChild.SmallDescription</h3>
+                                            </div>
+                                        </div>
+                                    </a>
+                                }
+                                else
+                                {
+                                    if (itemChild.Active == 0)
+                                    {
+                                        <a class="menu_paragraph" href="@(!string.IsNullOrEmpty(item.LinkMenu) ? item.LinkMenu : Url.Action("ListCategoy", "Home", new {id = item.Name.UrlFrendly() + "-" + item.CurrentId}))" rel="@item.Name">
+                                            <p class="par_number no_opacity has_transition_800">.@ichild</p>
+                                            <div class="menu_titles">
+                                                <div class="no_overflow">
+                                                    <h2 class="menu_title top_hidden has_transition_800 menu_title_child">@itemChild.Name</h2>
+                                                    <div class="underline has_transition_600_inout"></div>
+
+                                                </div>
+                                                <div class="no_overflow">
+                                                    <h3 class="menu_subtitle top_hidden has_transition_800">@itemChild.SmallDescription</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="menu_paragraph" href="@(!string.IsNullOrEmpty(itemChild.LinkMenu) ? itemChild.LinkMenu : Url.Action("DetailCategoy", "Home", new {id = itemChild.Name.UrlFrendly() + "-" + itemChild.CurrentId}))" rel="@itemChild.Name">
+                                            <p class="par_number no_opacity has_transition_800">.@ichild</p>
+                                            <div class="menu_titles">
+                                                <div class="no_overflow">
+                                                    <h2 class="menu_title top_hidden has_transition_800 menu_title_child">@itemChild.Name</h2>
+                                                    <div class="underline has_transition_600_inout"></div>
+
+                                                </div>
+                                                <div class="no_overflow">
+                                                    <h3 class="menu_subtitle top_hidden has_transition_800">@itemChild.SmallDescription</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    }
+
+                                }
+
+
+
+                                ichild++;
+                            }
+
+
+                        </div>
+                        <img class="text_shadow_lower" src="~/Template/images/text_shadow.png" />
+
+
+                        @*@if (i == 2)
+                        {
+                            <div id="rooms_scrollbar" class="menu_panel_scrollbar has_transition_1500_inout iScrollLoneScrollbar">
+                                <div class="pointer scroll_transition" style="display: block; transform: translate(0px, 153px) translateZ(0px);"></div>
+                            </div>
+                        }
+
+                        @if (i == 3)
+                        {
+                            <div id="dining_scrollbar" class="menu_panel_scrollbar no_height has_transition_1500_inout iScrollLoneScrollbar">
+                                <div class="pointer scroll_transition" style="display: block; transform: translate(0px, 0px) translateZ(0px);"></div>
+                            </div>
+                        }
+                        @if (i == 4)
+                        {
+                            <div id="experience_scrollbar" class="menu_panel_scrollbar no_height has_transition_1500_inout iScrollLoneScrollbar">
+                                <div class="pointer scroll_transition" style="display: block; transform: translate(0px, 0px) translateZ(0px);"></div>
+                            </div>
+                        }
+                        @if (i == 5)
+                        {
+                            <div id="experience_scrollbar5" class="menu_panel_scrollbar no_height has_transition_1500_inout iScrollLoneScrollbar">
+                                <div class="pointer scroll_transition" style="display: block; transform: translate(0px, 0px) translateZ(0px);"></div>
+                            </div>
+                        }
+                        @if (i == 6)
+                        {
+                            <div id="experience_scrollbar6" class="menu_panel_scrollbar no_height has_transition_1500_inout iScrollLoneScrollbar">
+                                <div class="pointer scroll_transition" style="display: block; transform: translate(0px, 0px) translateZ(0px);"></div>
+                            </div>
+                        }
+                        @if (i == 7)
+                        {
+                            <div id="experience_scrollbar7" class="menu_panel_scrollbar no_height has_transition_1500_inout iScrollLoneScrollbar">
+                                <div class="pointer scroll_transition" style="display: block; transform: translate(0px, 0px) translateZ(0px);"></div>
+                            </div>
+                        }
+                        @if (i == 8)
+                        {
+                            <div id="experience_scrollbar8" class="menu_panel_scrollbar no_height has_transition_1500_inout iScrollLoneScrollbar">
+                                <div class="pointer scroll_transition" style="display: block; transform: translate(0px, 0px) translateZ(0px);"></div>
+                            </div>
+                        }*@
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+                                    i++;
+                                }
+    <div class="menu_panel final">
+        <div class="menu_panel_container hidden has_transition_1500">
+            <div class="upper">
+                <p id="lang_button" class="has_transition_800 transform_all menu_small_button smaller">
+                    <span class="lang_label clLanguage">LANGUAGES</span><br/>
+                    <span class="lang_button_container">
+                        @{
+                            foreach (var item in listCountry)
+                            {
+
+                                <a data-language="@item.Code" class="_1 btn-language">@(item.Code.Split('-')[1] == "GB" ? "EN" : item.Code.Split('-')[1])</a>
+                            }
+                        }
+
+                    </span>
+
+                </p>
+                <div class="menu_close">
+                    <div class="line_1 has_transition_800"></div>
+                    <div class="line_2 has_transition_800"></div>
+                </div>
+
+
+
+            </div>
+            <div class="center clLogoMenu" style="">
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/Template/images/logo-menu.png"/>
+                </a>
+              
+
+            </div>
+            <div class="center clMenu">
+           
+             
+                <a href="@Url.Action("Index", "Home")" class="menu_small_button clHome">Home</a>
+                <a href="tel:1900636980"> <p id="book_menu_button" class="menu_small_button clHotline">Hotline</p></a>
+                <a href="@Url.Action("Recruitment", "Home")"> <p id="book_menu_button" class="menu_small_button clRecruitment">Recruitment</p></a>
+                <p id="btn-contact" class="menu_small_button btn-contact clContacts">Contacts</p>
+               
+
+            </div>
+            <div class="lower" style="opacity: 0;">
+
+                <span id="credits_button" class="menu_small_button smaller">Credits</span>
+                <p id="thanks_button" class="has_transition_800 transform_all menu_small_button smaller">Special Thanks<br/><span class="_1">Mr. Tonino Cappiello </span><br/><span>Mr. Kjeld</span><br/><span>Ms. Dina Schiotz</span></p>
+                <a target="_blank" href="/privacy_policy_en.htm" class="menu_small_button smaller">Privacy Policy</a>
+                <p class="copyright">© 2019 Lamos Artistic Advertising<br/>&nbsp;&nbsp;&nbsp;&nbsp;All rights reserved
+                </p>
+            </div>
+            <p class="copyright clCopyright1"style="color: #ffffff;">© Lamos Artistic Advertising 2019</p>
+        </div>
+    </div>
+
+
+</div>

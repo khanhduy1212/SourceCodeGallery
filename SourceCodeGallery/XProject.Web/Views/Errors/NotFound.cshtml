@@ -1,0 +1,32 @@
+﻿@using Resources
+@model dynamic
+<section class="body-content ">
+    <!--error-->
+    <div class="page-content">
+        <div class="container">
+            <div class="row page-content">
+                <div class="col-md-5 text-center">
+                    <div class="error-avatar">
+                        <img src="/Content/img/error-avatar.png" alt="" />
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="error-info">
+                        <div class="error404">
+                            404
+                        </div>
+                        <div class="error-txt">
+                            @FontendResource.wellshucks... <br />
+                            @FontendResource.pagenotfound
+                        </div>
+                        <a href="@Url.Action("index","home")" class="btn btn-medium  btn-theme-color "> @FontendResource.gotohomepage</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--error-->
+
+
+</section>

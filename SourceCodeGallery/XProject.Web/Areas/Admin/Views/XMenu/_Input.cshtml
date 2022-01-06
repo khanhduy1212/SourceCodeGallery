@@ -1,0 +1,355 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Configuration
+@using System.Globalization
+@using Resources
+@using XProject.Domain.Entities
+@using XProject.Web.Areas.Admin.Helper
+@model XMenu
+
+
+<div class="widget-box">
+    <div class="widget-header">
+        <h5 class="widget-title">@Utilities.Resource("XMenu_Title", "Infomation")</h5>
+    </div>
+    <div class="widget-body">
+        <div class="widget-main">
+            <div class="tabbable">
+                @{
+                    var indexTab = 1;
+                    var indexTab1 = 1;
+                }
+                @{
+                    if (Model.ID == 0)
+                    {
+                        <ul class="nav nav-tabs padding-12 tab-color-blue background-blue">
+                            @foreach (var item in ((List<XCountry>)ViewBag.Country))
+                            {
+                                <li class="@(indexTab == 1 ? "active" : "")">
+                                    <a data-toggle="tab" href="#@(item.Code)" title="@item.Name" aria-expanded="false">@item.Code</a>
+                                </li>
+                                indexTab++;
+                            }
+                        </ul>
+
+                        <div class="tab-content">
+                            @foreach (var item in ((List<XCountry>)ViewBag.Country))
+                            {
+                                var guid = Guid.NewGuid().ToString();
+                                <input type="hidden" class="hdCodeLanguage" value="@item.Code" />
+                                <input type="hidden" name="XMenusArray.Index" value="@(guid)" />
+                                <div id="@item.Code" class="tab-pane @(indexTab1 == 1 ? "active" : "")">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="hidden" value="@item.Code" name="XMenusArray[@guid].CodeLanguage" />
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XMenu_Name", "Tên") @item.Code <span class="required">*</span></label>
+                                                    <div class="col-md-10">
+                                                        @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control", Name = "XMenusArray[" + guid + "].Name" }).ShowValidationMessage(true)
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XMenu_ShortDescription", "Tóm tắt") @item.Code </label>
+                                                    <div class="col-md-10">
+                                                        @Html.Bootstrap().TextAreaFor(m => m.ShortDescription).HtmlAttributes(new { @class = "form-control", Name = "XMenusArray[" + guid + "].ShortDescription" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XMenu_Description", "Mô tả") @item.Code </label>
+                                                    <div class="col-md-10">
+                                                        @Html.Bootstrap().TextAreaFor(m => m.Description).HtmlAttributes(new { @class = "form-control", Name = "XMenusArray[" + guid + "].Description", id = "Description_" + item.Code })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XMenuLinkMenu", "Link Menu") @item.Code</label>
+                                                    <div class="col-md-10">
+                                                        @Html.Bootstrap().TextBoxFor(m => m.LinkMenu).HtmlAttributes(new { @class = "form-control", Name = "XMenusArray[" + guid + "].LinkMenu" }).ShowValidationMessage(true)
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                indexTab1++;
+
+                            }
+
+
+                           
+                        </div>
+                    }
+                    else
+                    {
+                        <ul class="nav nav-tabs padding-12 tab-color-blue background-blue">
+                           @foreach (var item in Model.XMenusList.ToList())
+                           {
+                                <li class="@(indexTab == 1 ? "active" : "")">
+                                    <a data-toggle="tab" href="#@(item.CodeLanguage)" aria-expanded="false">@item.CodeLanguage</a>
+                                </li>
+                                indexTab++;
+                            }
+                        </ul>
+
+                        <div class="tab-content">
+                          @foreach (var item in Model.XMenusList.ToList())
+                          {
+                              var guid = Guid.NewGuid().ToString();
+                            <input type="hidden" class="hdCodeLanguage" value="@item.CodeLanguage" />
+                                <input type="hidden" name="XMenusArray.Index" value="@(guid)" />
+                                <div id="@item.CodeLanguage" class="tab-pane @(indexTab1 == 1 ? "active" : "")">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="hidden" value="@item.CodeLanguage" name="XMenusArray[@guid].CodeLanguage"/>
+                                                    <input type="hidden" value="@item.ID" name="XMenusArray[@guid].ID"/>
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XMenu_Name", "Tên") @item.CodeLanguage <span class="required">*</span></label>
+                                                    <div class="col-md-10">
+                                                        @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new {@class = "form-control", Name = "XMenusArray[" + guid + "].Name", Value = item.Name}).ShowValidationMessage(true)
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XMenu_ShortDescription", "Tóm tắt") @item.CodeLanguage </label>
+                                                    <div class="col-md-10">
+                                                      
+                                                        @Html.TextArea("ShortDescription", item.ShortDescription, new { @class = "form-control", Name = "XMenusArray[" + guid + "].ShortDescription", id = "ShortDescription_" + item.CodeLanguage })
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XMenu_Description", "Mô tả") @item.CodeLanguage </label>
+                                                    <div class="col-md-10">
+                                                        @Html.TextArea("Description",item.Description, new { @class = "form-control", Name = "XMenusArray[" + guid + "].Description", id = "Description_" + item.CodeLanguage })
+                                                     
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">@Utilities.Resource("XMenuLinkMenu", "Link Menu") @item.CodeLanguage</label>
+                                                    <div class="col-md-10">
+                                                        @Html.Bootstrap().TextBoxFor(m => m.LinkMenu).HtmlAttributes(new { @class = "form-control", Name = "XMenusArray[" + guid + "].LinkMenu", Value = item.LinkMenu }).ShowValidationMessage(true)
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                indexTab1++;
+
+                            }
+
+
+
+                        </div>
+                    }
+
+                }
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="col-md-12">
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">@Utilities.Resource("XMenusIsParent", "Is Parent")</label>
+                                <div class="col-md-3">
+
+
+                                    @Html.Bootstrap().DropDownListFor(m => m.IsParent, new List<SelectListItem>
+                                                    {
+                                                        new SelectListItem {Text = "Yes", Value = "1"},
+                                                        new SelectListItem {Text = "No", Value = "0"},
+                                                    }).OptionLabel("").Class("form-control").ShowValidationMessage(false)
+                                </div>
+                                <label class="control-label col-md-2">@Utilities.Resource("XMenusIdParentMenu", "Parent Menu")</label>
+                                <div class="col-md-5">
+
+                                    @Html.Bootstrap().DropDownListFor(m => m.IdParentMenu,
+
+                                                        new SelectList((List<XMenu>)ViewBag.ListMenu, "ID", "Name", "Select parent menu")
+
+                                                        ).OptionLabel("Chọn menu").Class("form-control").ShowValidationMessage(false)
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">@Utilities.Resource("XMenusOrderMenu", "Order")</label>
+                                <div class="col-md-2">
+                                    @Html.Bootstrap().TextBoxFor(m => m.Order).HtmlAttributes(new { @class = "form-control"}).ShowValidationMessage(true)
+                                    @*@Html.Bootstrap().DropDownListFor(m => m.Order,
+
+                                                        new List<SelectListItem>
+                                                        {
+                                                            new SelectListItem {Text = "Order", Value = "9999999"},
+                                                            new SelectListItem {Text = "1", Value = "1"},
+                                                            new SelectListItem {Text = "2", Value = "2"},
+                                                            new SelectListItem {Text = "3", Value = "3"},
+                                                            new SelectListItem {Text = "4", Value = "4"},
+                                                            new SelectListItem {Text = "5", Value = "5"},
+                                                            new SelectListItem {Text = "6", Value = "6"},
+                                                            new SelectListItem {Text = "7", Value = "7"},
+                                                            new SelectListItem {Text = "8", Value = "8"},
+                                                            new SelectListItem {Text = "9", Value = "9"},
+                                                            new SelectListItem {Text = "10", Value = "10"},
+                                                        }
+
+
+                                                        ).OptionLabel("").Class("form-control").ShowValidationMessage(false)*@
+
+                                </div>
+                                <label class="control-label col-md-2">@Utilities.Resource("XMenusIsCategoryMenu", "IsCategoryMenu")</label>
+                                <div class="col-md-2">
+
+
+                                    @Html.Bootstrap().DropDownListFor(m => m.IsCategoryMenu, new List<SelectListItem>
+                                                    {
+                                                        new SelectListItem {Text = "Yes", Value = "1"},
+                                                        new SelectListItem {Text = "No", Value = "0"},
+                                                       
+                                                    }).OptionLabel("").Class("form-control").ShowValidationMessage(false)
+                                </div>
+                                <label class="control-label col-md-2">@Utilities.Resource("XMenusShowHomeMenu", "ShowHomeMenu")</label>
+                                <div class="col-md-2">
+
+
+
+                                    @Html.Bootstrap().DropDownListFor(m => m.ShowHomeMenu, new List<SelectListItem>
+                                                    {
+                                                        new SelectListItem {Text = "Yes", Value = "1"},
+                                                        new SelectListItem {Text = "No", Value = "0"},
+                                                    }).OptionLabel("").Class("form-control").ShowValidationMessage(false)
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Partial("_pImage", new XProject.Web.Areas.Admin.Models.UploadModel("UrlImage", Model.UrlImage, Model.UrlImage, @Utilities.Resource("XMenu_Picture", "Images")))
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@Html.Script(
+    @<script>
+        $(function () {
+            $('.hdCodeLanguage').each(function (e) {
+                CKEDITOR.replace("Description_" + $(this).val(), { height: '300px' });
+            });
+        });
+         $(".selectMenu").on('change',function() {
+             var code= $(this).val();
+             var name = $(this).find('option:selected').text().trim();
+             $('#Name').val(name);
+             $('#Code').val(code);
+         });
+         function formatState(state) {
+             if (!state.id) { return state.text; }
+             var $state = $(
+                 '<span><img style="height: 20px;width:25px;margin-top: -2px;" class="img-flag ' + state.element.getAttribute('dataimage') + '" /> ' + state.text + '</span>'
+             );
+             return $state;
+         };
+
+         function formatStateSelection(state) {
+             if (!state.id) { return state.text; }
+             var $state = $(
+                 '<span style="margin-left: -10px;"><img style="height: 20px;width:25px;margin-top: -2px;" class="img-flag ' + state.element.getAttribute('dataimage') + '" /> ' + state.text + '</span>'
+             );
+             return $state;
+         };
+         $(".selectMenu").select2({
+             placeholder: "@Resource.PleaseSelect",
+             templateResult: formatState,
+             templateSelection: formatStateSelection,
+         });
+         $('#validation-form').validate({
+             errorElement: 'div',
+             errorClass: 'help-block',
+             focusInvalid: false,
+             ignore: "",
+             rules: {
+                 Name: {
+                     required: true
+                 },
+                 Picture: {
+                     file: 'required'
+                 }
+             },
+
+             messages: {
+                 Name: "Name not empty.",
+
+             },
+
+
+             highlight: function (e) {
+
+                 if ($(e).is('.file-upload')) {
+                     $(e).parents('div').eq(1).find('.form-group').removeClass('has-info').addClass('has-error');
+                 } else {
+                     $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+                 }
+
+
+             },
+
+             success: function (e) {
+
+                 if ($(e).is('.file-upload')) {
+                     $(e).parents('div').eq(1).find('.form-group').removeClass('has-error').addClass('has-info');
+                     $(e).parents('div').eq(1).find('.form-group .help-block').remove();
+                 }
+                 else {
+                     $(e).closest('.form-group').removeClass('has-error').addClass('has-info');
+                     $(e).closest('.form-group').find('.help-block').remove();
+                 }
+
+             },
+
+             errorPlacement: function (error, element) {
+
+                 if (element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                     var controls = element.closest('div[class*="col-"]');
+                     if (controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                     else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+                 }
+                 else if (element.is('.select2')) {
+                     error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+                 }
+                 else if (element.is('.file-upload')) {
+                     error.insertAfter(element.parents('div').eq(1).find('.file-caption-main'));
+                 }
+                 else if (element.is('.chosen-select')) {
+                     error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+                 }
+                 else error.insertAfter(element);
+             },
+
+             submitHandler: function (form) {
+             },
+             invalidHandler: function (form) {
+             }
+         });
+
+
+     </script>)

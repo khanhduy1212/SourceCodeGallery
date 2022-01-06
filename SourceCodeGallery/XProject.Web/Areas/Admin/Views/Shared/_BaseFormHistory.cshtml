@@ -1,0 +1,75 @@
+﻿@using XProject.Web.Areas.Admin.Helper
+@using Resources
+@model XProject.Domain.XBaseEntiry
+
+<div class="widget-box">
+    <div class="widget-header">
+        <h5 class="widget-title">@Utilities.Resource("Form_History", "Lịch sử chỉnh sửa")</h5>
+        @Html.HiddenFor(t => t.ModifiedUser)
+        @Html.HiddenFor(t => t.CreateUser)
+    </div>
+    <div class="widget-body">
+        <div class="widget-main">
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Utilities.Resource("Key_Search", "Tìm kiếm") </label>
+                            <div class="col-md-8">
+                                @Html.Bootstrap().TextAreaFor(m => m.KeySearch).HtmlAttributes(new { @readonly = "readonly",@class = "form-control" })
+                            </div>
+                           
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          
+                            <label class="control-label col-md-4">@Utilities.Resource("FormBase_Active", "Tình trạng")</label>
+                            <div class="col-md-8">
+                                @Html.Bootstrap().DropDownListFor(m => m.Active, new List<SelectListItem> { new SelectListItem { Text = "Active", Value = "1", Selected = true }, new SelectListItem { Text = "Not Active", Value = "0", Selected = false } }).OptionLabel("").Class("form-control").ShowValidationMessage(false)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+
+                </div>
+                </div>
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Utilities.Resource("Created_User", "Người tạo") </label>
+                            <div class="col-md-8">
+                                @Html.Bootstrap().TextBoxFor(m => m.CreateUserName).HtmlAttributes(new { @readonly = "readonly", @class = "form-control" }).ShowValidationMessage(true)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Utilities.Resource("Created_Date", "Ngày tạo") </label>
+                            <div class="col-md-8">
+                                @Html.Bootstrap().TextBoxFor(m => m.CreateDate).HtmlAttributes(new { @readonly = "readonly", @class = "form-control" }).ShowValidationMessage(true)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Utilities.Resource("Modified_User", "Người sửa") </label>
+                            <div class="col-md-8">
+                                @Html.Bootstrap().TextBoxFor(m => m.ModifiedUserName).HtmlAttributes(new { @readonly = "readonly", @class = "form-control" }).ShowValidationMessage(true)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">@Utilities.Resource("Modified_Date", "Ngày sửa") </label>
+                            <div class="col-md-8">
+                                @Html.Bootstrap().TextBoxFor(m => m.ModifiedDate).HtmlAttributes(new { @readonly = "readonly", @class = "form-control" }).ShowValidationMessage(true)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+          
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+﻿
+@using Resources
+@model XProject.Web.Areas.Admin.Models.RoleModel
+@{
+    ViewBag.Title = Resource.AddNewRole;
+}
+
+
+<div class="page-header">
+    <h1>
+        @ViewBag.Title
+    </h1>
+</div>
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-horizontal">
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-5 col-md-7">
+                        @Html.Bootstrap().ActionLinkButton(Resource.ButtonBackToList, "Index").PrependIcon(Icons.arrow_left)
+                        &nbsp; &nbsp;
+                        @Html.Bootstrap().SubmitButton().Id("submitbutton1").Text(Resource.Save).PrependIcon("<i class='ace-icon fa fa-check bigger-110'></i>").Style(ButtonStyle.Info)
+
+                    </div>
+                </div>
+                @Html.Partial("_RoleEditor", Model)
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-5 col-md-7">
+                        @Html.Bootstrap().ActionLinkButton(Resource.ButtonBackToList, "Index").PrependIcon(Icons.arrow_left)
+                        &nbsp; &nbsp;
+                        @Html.Bootstrap().SubmitButton().Id("submitbutton2").Text(Resource.Save).PrependIcon("<i class='ace-icon fa fa-check bigger-110'></i>").Style(ButtonStyle.Info)
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@Html.Script(
+    @<script>
+        $("#submitbutton").on('click', function (e) {
+            e.preventDefault();
+            bootbox.confirm("@Resource.ConfirmCreate", function (isOK) {
+                if (isOK) {
+                    $('#submitbutton').parents("form").submit();
+                }
+            });
+        });
+    </script>)

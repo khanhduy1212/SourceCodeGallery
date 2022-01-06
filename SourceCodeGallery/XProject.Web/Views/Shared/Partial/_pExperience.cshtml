@@ -1,0 +1,90 @@
+﻿@using System.Configuration
+@using XProject.Domain.Abstract
+@using XProject.Domain.Entities
+@using XProject.Web
+@using XProject.Web.Infrastructure;
+@{
+    var lang = "";
+
+
+    var pictureRepository = DependencyHelper.GetService<IGeneralRepository<XPicture>>();
+    var productRepository = DependencyHelper.GetService<IGeneralRepository<XProduct>>();
+    var httpCookie = Request.Cookies["Language"];
+    lang = httpCookie != null ? httpCookie.Value : ConfigurationManager.AppSettings["Culture"];
+    var listProduct = productRepository.GetIQueryableItems().Where(x => x.Active == 1 && x.CodeLanguage == lang && x.IsLink==1);
+    var indexP = 1;
+}
+<div class="row stripe">
+    <div id="experience_box" class="top_translated has_transition_2000">
+        <div class="left pic">
+            <div id="experience_box_scroller" class="has_transition_2000">
+                @foreach (var item in listProduct.ToList())
+                {
+
+                    var pic = pictureRepository.GetIQueryableItems().FirstOrDefault(x => x.ProductsId == item.CurrentId && x.TypeId == 1);
+                    if (pic != null)
+                    {
+                        <div class="exp_box_pic">
+                            <img class="full_width has_transition_800" data-src="@(ConfigurationManager.AppSettings["UrlImage"] + pic.ConvertedFilename.Split('_')[0] + "/" + String.Format(pic.ConvertedFilename, 683384))" />
+                        </div>
+                    }
+
+                }
+
+              
+
+            </div>
+        </div>
+        <div class="right body">
+            <div class="no_overflow" style="margin-top: -19px;">
+                <div class="big_title has_transition_800">
+                    
+                    <h3 style="margin-top: 10px;" class="RemarkableCreations">@(("Remarkable Creations").ToUpper())</h3>
+                </div>
+            </div>
+            <div class="data_container">
+                @foreach (var item in listProduct.ToList())
+                {
+                    <div style="margin-top: -110px;" class="exp_data has_transition_1500_inout _@(indexP) @(indexP==1?"active":"")">
+                        <div class="section_panel_title no_overflow">
+                            <h1 class="desc_title top_hidden has_transition_1000">@item.Name</h1>
+                        </div>
+                        <div class="section_separator">
+                            <div class="pointer no_width has_transition_800_inout"></div>
+                        </div>
+                        <div class="section_subtitle no_overflow">
+                            <h2 class="desc_text bottom_hidden has_transition_1000">@item.ShortDescription</h2>
+                        </div>
+
+                        <a class="more" href="@Url.Action("DetailProduct","Home",new {id=item.Name.UrlFrendly()+"-"+item.CurrentId})">
+                            <div class="line no_height has_transition_1000"></div>
+                            <p class="top_single has_transition_1000 langMore">more</p>
+                        </a>
+                    </div>
+                    indexP++;
+                }
+
+            </div>
+            <div id="experience_controller">
+                <div class="controller_left">
+                    <div class="circle_button left ">
+                        <div class="back  hidden_by_scaling_full has_transition_1000"></div>
+                        <div class="arrow hidden has_transition_800"><span class="fadeOutLeft"><img data-src="/Template/images/tiny_arrow.png" /></span></div>
+                    </div>
+                    <div>
+                        <p style="width: 200px; text-align: left;" class="controller_text top_hidden has_transition_1000"></p>
+                    </div>
+                </div>
+                <div class="controller_right">
+                    <div class="circle_button right ">
+                        <div class="back hidden_by_scaling_full has_transition_1000 transform_all"></div>
+                        <div class="arrow hidden has_transition_800"><span class="fadeOutRight"><img data-src="/Template/images/tiny_arrow.png" /></span></div>
+                    </div>
+                    <div >
+                        <p style="width: 200px; text-align: right;" class="controller_text top_hidden has_transition_1500 Exploremore">Explore more</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

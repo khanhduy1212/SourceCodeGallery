@@ -1,0 +1,189 @@
+﻿@using NS.Entity
+@using NS.Mvc.Helpers
+@using XProject.Domain.Entities
+@using Resources
+@model IEnumerable<UserLogin>
+
+@*<h3 class="heading">UserLogins</h3>*@
+@{
+    var roles = ViewBag.roles;
+    var count = 0;
+}
+
+<div class="page-header">
+    <h1>
+        @Resource.Users
+    </h1>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        @Html.Bootstrap().DropDownList(Resource.Role, new SelectList(roles, "ID", "Name")).Class("form-control").OptionLabel("SELECT ROLE").Id("role")
+    </div>
+    <div class="col-sm-8">
+        <div class="clearfix">
+            <div class="pull-right tableTools-container">
+                <div class="dt-buttons btn-overlap btn-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="@Url.Action("ListDeletedUsers")" class="dt-button buttons-collection buttons-colvis btn btn-white btn-warning btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                                <span>
+                                    Users Delete
+                                </span>
+                            </a>
+                            &nbsp;
+                            <a href="@Url.Action("Create")" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                                <span>
+                                    Create New
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="users-table">
+                <thead>
+                    <tr>
+                        <th>@Resource.SNo</th>
+                        <th>@Resource.Name</th>
+                        <th>@Resource.Email</th>
+                        <th>@Resource.PhoneNumber</th>
+                        <th>@Resource.Roles</th>
+                        <th class="text-center no-sort">@Resource.Active</th>
+                        <th>Loger</th>
+                        <th class="no-sort text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (UserLogin user in Model)
+                    {
+                        count++;
+                        <tr data-roles="@(string.Join(" ", user.Roles.Select(m => m.ID)))">
+                            <td class="text-center">@count</td>
+                            <td>
+                                @if (user.Picture != null)
+                                {
+                                    <img src="~/data/user_img/@(user.Picture + "?" + Guid.NewGuid().ToString())" class="img-rounded UserLogin-picture-small" style=" max-width: 50px; max-height: 50px;" />
+                                }
+                                @user.DisplayName
+                            </td>
+                            <td>@user.Email</td>
+                            <td>@user.Phone</td>
+                            <td>@Html.Raw(string.Join("<br/>", user.Roles.Select(m => m.Name).ToArray()))</td>
+                            <td class="text-center">
+                                <div class="i-checks">
+                                    <label>
+                                        @if (user.Status == EntityStatus.Normal)
+                                        {
+                                            @Html.Bootstrap().CheckBox("active").IsChecked(true).Disabled()
+                                        }
+                                        else
+                                        {
+                                            @Html.Bootstrap().CheckBox("active").IsChecked(false).Disabled()
+                                        }
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                @Html.Bootstrap().ActionLink(Resource.Logviewer, "Index", "Audit").RouteValues(new { Username = user.DisplayName })
+                            </td>
+                            <td class="text-center">
+                                <div class="hidden-sm hidden-xs btn-group">
+                                    <a class="btn btn-xs btn-info" href="@Url.Action("Edit", new { Id = user.ID })">
+                                        <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                    </a>
+
+                                    <a class="btn btn-xs btn-danger" href="#" data-action="delete" data-id="@user.ID">
+                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                    </a>
+                                </div>
+                                <div class="hidden-md hidden-lg">
+                                    <div class="inline pos-rel">
+                                        <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                            <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                            <li>
+                                                <a href="@Url.Action("Edit", new { Id = user.ID })" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                    <span class="green">
+                                                        <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#" data-action="delete" data-id="@user.ID" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                    <span class="red">
+                                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@Html.Script(
+    @<script>
+
+        var $modelTable = $('#users-table').dataTable({
+            fixedHeader: true,
+            columnDefs: [
+    { targets: 'no-sort', orderable: false }
+            ]
+        });
+
+        $(document).on('click', '[data-action="delete"]', function (e) {
+            e.preventDefault();
+            var $self = $(this);
+            bootbox.confirm("@Resource.ConfirmDelete", function (isOK) {
+                if (isOK) {
+                    var id = $self.data('id');
+                    var index = $self.closest('tbody').find('tr').index($self.closest('tr'));
+
+                    $.ajax({
+                        url: '@Url.Action("Delete_keeptrack", "Users")/' + id,
+                        type: 'POST',
+                        success: function () {
+                            //$modelTable.fnDeleteRow(index);
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+
+        });
+
+        $("#role").change(function () {
+            var roleID = $(this).val();
+            //if (roleID == '') {
+            //    $('tbody tr').removeClass('hide');
+            //} else {
+            //    $('tbody tr').addClass('hide');
+            //    $('tbody tr').each(function (index, value) {
+            //        if ($(this).attr('data-roles').indexOf(roleID) != -1) {
+
+            //            $(this).removeClass('hide');
+            //        }
+            //    });
+            //}
+            if (roleID == '')
+                roleID = 0;
+            location.href = "@Url.Action("Index", "Users")?role=" + roleID;
+        });
+
+    </script>
+                     )

@@ -1,0 +1,14 @@
+﻿@using  XProject.Web.Areas.Admin.Helper
+@using Resources
+@model XProject.Domain.Entities.XCountry
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+{
+    using (Html.Bootstrap().Begin(new Alert().Style(AlertColor.Success).Closeable()))
+    {
+        <text>@ViewBag.Message</text>
+    }
+}
+@{
+    ViewBag.Title = Utilities.Resource("XCountries_Edit", "Update");
+}@Html.Partial("_FormLayout")

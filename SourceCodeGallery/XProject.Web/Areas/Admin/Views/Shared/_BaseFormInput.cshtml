@@ -1,0 +1,44 @@
+﻿@using XProject.Web.Areas.Admin.Helper
+@using Resources
+@model XProject.Domain.XBaseEntiry
+
+<div class="widget-box">
+    <div class="widget-header">
+        <h5 class="widget-title">@Utilities.Resource("FormBase_Title", "Thông tin cơ bản")</h5>
+        @Html.HiddenFor(t => t.ID)
+        @Html.Hidden("_Type", Request.QueryString.AllKeys.Any(x => x== "_type")? Request.QueryString["_type"]:"")
+    </div>
+    <div class="widget-body">
+        <div class="widget-main">
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">@Utilities.Resource("FormBase_Name", "Tên") <span class="required">*</span></label>
+                            <div class="col-md-10">
+                                @Html.Bootstrap().TextBoxFor(m => m.Name).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                            </div>
+                        </div>
+
+                    </div>
+                  
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-11">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">@Utilities.Resource("FormBase_Description", "Mô tả") </label>
+                            <div class="col-md-10">
+                                @Html.Bootstrap().TextAreaFor(m => m.Description).HtmlAttributes(new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

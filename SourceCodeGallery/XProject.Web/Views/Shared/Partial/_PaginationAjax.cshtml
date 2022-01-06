@@ -1,0 +1,120 @@
+﻿@using System
+@{ 
+    int length = ViewBag.View;
+    int total = ViewBag.Total;
+    int start = ViewBag.Start;
+    string more = ViewBag.More != null ? ViewBag.More : "";
+    string css = ViewBag.Css != null ? ViewBag.Css : "";
+    string function = ViewBag.OnPageChange != null ? ViewBag.OnPageChange : "onPageChange";
+}
+
+
+
+    
+
+<div class="page_links @(css)">
+	
+   @{
+	   int page = (int)Math.Ceiling((double)total / length);
+	   int currentPage = (start / length)+1 ;
+
+
+	   if (currentPage == 1)
+	   {
+
+                <a class="disabled">Trước</a>
+            }
+            else
+            {
+                <a class="previous" onclick="@(function)(this);" data-page="@(currentPage-1)">Trước</a>
+            }
+            if (currentPage > 4 && currentPage < page - 3)
+            {
+                <a class="" onclick="@(function)(this);" data-page="@(1)">1</a>
+                    <a class="disabled" href="javascript:void(0);">...</a>
+                    <a class="" onclick="@(function)(this);" data-page="@(currentPage-1)" >@(currentPage - 1)</a>
+                    <a class="active" data-page="@(currentPage)" href="javascript:void(0);">@(currentPage)</a>
+                    <a class="" onclick="@(function)(this);" data-page="@(currentPage+1)" >@(currentPage + 1)</a>
+
+                    <a class="disabled">...</a>
+                    <a class="" onclick="@(function)(this);" data-page="@(page)"  >@page</a>
+
+            }
+            else
+            {
+
+
+                if (currentPage < 5)
+                {
+
+                    for (int l = 1; l <= (page > 5 ? 5 : page); l++)
+                    {
+                      
+           
+                        <a class="@(currentPage == l ? "active" : "")" onclick="@(function)(this);" data-page="@(l)">@(l)</a>
+
+                    }
+                    if (page > 5)
+                    {
+
+                        <a class="disabled" href="javascript:void(0);">...</a>
+                            <a data-page="@(page)" onclick="@(function)(this);">@page</a>
+
+                      
+
+
+                    }
+                }
+                else if (page - 5 >= 0 && currentPage >= page - 5)
+                {
+                    if (page - 5 > 0)
+                    {
+
+                        <a data-page="@(1)"  onclick="@(function)(this);">1</a>
+                            <a class="disabled" href="javascript:void(0);">...</a>
+
+
+                           }
+                          
+
+                           for (int l = page - 4; l <= page; l++)
+                           {
+                        <a class="@(currentPage == l ? "active" : "")" onclick="@(function)(this);" data-page="@(l)">@(l)</a>
+                    }
+
+       }
+
+            }
+            if (currentPage == page)
+            {
+                <a class="disabled"  >Tiếp</a>
+
+            }
+            else
+            {
+                <a data-page="@(currentPage+1)" onclick="@(function)(this);" >Tiếp</a>
+
+	   }
+
+	   if (!String.IsNullOrWhiteSpace(more))
+	   {
+		<a class="more" href="@more"> Xem tất cả</a>
+	   }
+
+
+}
+</div>
+<div class="page_links_mobile">
+    <a class="@(currentPage == 1 ? "disabled" : "")" @(currentPage == 1 ? "" : "onclick="+function+"(this);")  data-page="@(currentPage-1)"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+    <span>Trang @(currentPage)</span>
+    <a class="@(currentPage == page ? "disabled" : "")"  @(currentPage  == page ? "" : "onclick=" + function + "(this);") data-page="@(currentPage+1)"  ><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+</div>
+<style>
+	a.disabled, a.disabled:hover {
+		text-decoration: none !important;
+		cursor: not-allowed !important;
+	}
+	.page_links .more {
+		float:right;
+	}
+</style>

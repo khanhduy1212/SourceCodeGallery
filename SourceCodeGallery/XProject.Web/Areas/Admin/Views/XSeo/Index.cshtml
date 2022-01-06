@@ -1,0 +1,151 @@
+﻿@using System
+@using System.Configuration
+@using System.Linq
+@using XProject.Web.Areas.Admin.Models
+@using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical
+@using XProject.Domain.Entities
+@using XProject.Web.Areas.Admin.Helper
+
+@using Resources
+@model System.Collections.Generic.IEnumerable<XSeo>
+@{
+    ViewBag.Title= Utilities.Resource("XSeo_Title", "List");
+
+}
+<div class="page-header">
+    <h1>
+        @ViewBag.Title
+    </h1>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="clearfix">
+            <div class="pull-right tableTools-container">
+                <div class="dt-buttons btn-overlap btn-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @if (CurrentUser.HasPermission("XSeo", "Create"))
+                            {
+                                <a href="@Url.Action("Create")" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                                    <span>
+                                        Create New
+                                    </span>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <table class="table  table-bordered table-hover" id="table_data">
+                <thead>
+                    <tr>
+                        <th>@Utilities.Resource("XSeo_ID", "ID")</th>   
+                        <th>@Utilities.Resource("XSeo_Name", "Name")</th>
+                        <th>@Utilities.Resource("XSeo_Active", "Status")</th>
+                        
+                        <th style="max-width: 150px"></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+@Html.Partial("_ListIndexAction")
+
+
+
+
+@Html.Script(
+    @<script>
+
+        var $modelTable = $('#table_data').dataTable({
+            fixedHeader: true,
+            processing: false,
+            serverSide: true,
+            searching: true,
+            ordering: true,
+            info: false,
+            stateSave: false,
+            lengthMenu: [[25, 50, -1], [25, 50, "All"]],
+            drawCallback: function (settings) {
+                $('.mt-action-dot').popover({ trigger: "hover" });
+            },
+            initComplete: function () {
+                $('#table_data_filter input').unbind();
+                var timeOutTyping;
+                $('#table_data_filter input').bind('keyup', function (e) {
+                    clearTimeout(timeOutTyping);
+                    timeOutTyping = setTimeout(function () {
+                        $modelTable.fnFilter($('#table_data_filter input').val());
+                    }, 600);
+                });
+            },
+            ajax: {
+                url: "/XSeo/IndexAjax",
+                type: "GET"
+            },
+            "columnDefs": [
+               
+                {
+                   
+                    "targets": 1,
+                    'className': 'text-center'
+                }, 
+                {
+                    "render": function (data, type, row) {
+                        var name = "";
+                        switch (data) {
+                        case 1:
+                            name = "Active";
+                            break;
+                        case 0:
+                            name = "Not Active";
+                            break;
+
+                        }
+                        return name;
+                    },
+                    "targets": 2,
+                    'className': 'text-center'
+                }, 
+          {
+              "render": function (data, type, row) {
+                  return $('#actionTemplate').html().replace(/{ID}/g, row.ID);
+              },
+              "targets": 3,
+              'className': 'text-center'
+          }
+
+            ],
+            columns: [
+                { "data": "ID", "orderable": true },
+                { "data": "Name", "orderable": true },
+                { "data": "Active", "orderable": true },
+                { "data": "ID", "orderable": false },
+
+
+            ],
+            order: [[0, "asc"]]
+        });
+
+
+
+
+    </script>
+                                                                         )

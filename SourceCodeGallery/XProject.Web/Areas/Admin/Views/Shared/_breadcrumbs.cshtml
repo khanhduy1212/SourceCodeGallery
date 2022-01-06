@@ -1,0 +1,45 @@
+﻿@using System.ComponentModel
+@using System.ComponentModel.DataAnnotations
+@using System.Reflection
+@using XProject.Web.Areas.Admin.Controllers
+@using UrlHelper = XProject.Web.Infrastructure.Helpers.UrlHelper
+@using MvcHelper = XProject.Web.Infrastructure.Utility.MvcHelper
+<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="@Url.Action("Index", "Dashboard")">Admin</a>
+        </li>
+
+        <li>
+            <a href="@Url.Action("Index", @ViewContext.RouteData.Values["controller"].ToString())">@XProject.Domain.Helpers.StringHelper.InsertSpaceByUpperCase(ViewContext.RouteData.Values["controller"].ToString())</a>
+        </li>
+        @{
+            var controller = MvcHelper.GetControllers().Where(c => c.Name.Replace("Controller", "").ToLower() == ViewContext.RouteData.Values["controller"].ToString().ToLower()).FirstOrDefault();
+            var action = MvcHelper.GetControllerActions(controller);
+            var displayname = action.Where(a => a.Item1 == ViewContext.RouteData.Values["action"].ToString()).FirstOrDefault();
+
+        }
+        <li class="active">@displayname.Item2</li>
+    </ul>
+    <div class="nav-search">
+        <form id="form-search" class="form-search" >
+            <span class="input-icon">
+                <input type="text" placeholder="Search ..." class="nav-search-input" name="query" id="nav-search-input1" autocomplete="off" />
+                <i class="ace-icon fa fa-search nav-search-icon"></i>
+            </span>
+        </form>
+    </div><!-- /.nav-search -->
+
+</div>
+
+
+
+@Html.Script(
+    @<script>
+         
+    
+
+
+     </script>
+    )

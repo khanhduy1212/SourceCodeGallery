@@ -1,0 +1,148 @@
+﻿@using XProject.Domain.Entities
+@using XProject.Domain.Enum
+@using XProject.Web.Areas.Admin.Models
+
+@using Org.BouncyCastle.Crypto.Prng
+@using Resources
+@model XProject.Web.Areas.Admin.Models.RoleModel
+
+
+@Html.HiddenFor(m => m.Role.ID)
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Information</div>
+    <div class="panel-body">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right">@Resource.RoleName <span class="required">*</span></label>
+                <div class="col-sm-6">
+                    @Html.Bootstrap().TextBoxFor(m => m.Role.Name).Class("form-control nouc").ShowValidationMessage(true)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right">@Resource.Description <span class="required">*</span></label>
+                <div class="col-sm-6">
+                    @Html.Bootstrap().TextBoxFor(m => m.Role.Description).Class("form-control nouc").ShowValidationMessage(true)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right">@Resource.RoleLevel <span class="required">*</span></label>
+                <div class="col-sm-6">
+                    @Html.Bootstrap().DropDownListFor(m => m.Role.RoleLevel, EnumerationHelper.ToSelectList<RoleLevel>().Where(m => m.Value != RoleLevel.None.Value)).OptionLabel("").Class("form-control").ShowValidationMessage(true)
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        @Resource.Rights
+    </div>
+    <div class="panel-body">
+        <div class="col-sm-12">
+            @foreach (string target in Model.Permissions.Keys.OrderBy(m => m))
+            {
+                  <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right">@target</label>
+                <div class="col-sm-6">
+                  @foreach (Permission permission in Model.Permissions[target])
+{
+
+   
+       
+    var name = RoleModel.PermissionNamePrefix + permission.Target + "." + permission.Right;
+    var val = Model.Role.Permissions.Any(p => p.Target == permission.Target && p.Right == permission.Right);
+    if (val)
+    {
+        <div class="input-list-container">
+            <label class="checkbox" for="@name">
+                <input class="ace" type="checkbox" id="@name" name="@name" checked="checked"/>
+                <span class='lbl'> @permission.DisplayName</span>
+            </label>
+        </div>
+                      
+       
+
+    }
+    else
+    {
+          <div class="input-list-container">
+                            <label class="checkbox" for="@name">
+                                <input class="ace" type="checkbox" id="@name" name="@name" />
+                                <span class='lbl'> @permission.DisplayName</span>
+                            </label>
+                        </div>
+    }
+        }
+
+
+                </div>
+            </div>
+                
+   
+}
+        </div>
+    </div>
+</div>
+ 
+        <div class="panel panel-primary">
+            <div class="panel-heading">@Resource.Settings</div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+               
+                    <div class="form-group">
+                        @{
+                            var settings = Model.SettingPermissions.Keys.OrderBy(m => m).ToList();
+                            for (var i = 0; i < settings.Count(); i++)
+                            {
+                                if (i % 2 == 0)
+                                {
+                                 
+        }
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right">@settings[i]</label>
+            <div class="col-sm-9">
+                @foreach (Permission permission in Model.SettingPermissions[settings[i]])
+                {
+
+
+                    var name = RoleModel.SettingPermissionNamePrefix + permission.Target + "." + permission.Right;
+                    var val = Model.Role.Permissions.Any(p => p.Target == permission.Target && p.Right == permission.Right && p.Description == PermissionType.SettingPermission);
+                    if (val)
+                    {
+
+                        <div class="input-list-container">
+                            <label class="checkbox" for="@name">
+                                <input class="ace" type="checkbox" id="@name" name="@name" checked="checked" />
+                                <span class='lbl'> @permission.DisplayName</span>
+                            </label>
+                        </div>
+
+                       
+                    }
+                    else
+                    {
+                        <div class="input-list-container">
+                            <label class="checkbox" for="@name">
+                                <input class="ace" type="checkbox" id="@name" name="@name" />
+                                <span class='lbl'> @permission.DisplayName</span>
+                            </label>
+                        </div>
+                    
+                      
+                    }
+                }
+            </div>
+        </div>
+                            <hr />
+                  
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+

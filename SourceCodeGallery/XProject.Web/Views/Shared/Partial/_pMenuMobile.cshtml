@@ -1,0 +1,299 @@
+﻿@using System.Configuration
+@using XProject.Domain.Abstract
+@using XProject.Domain.Entities
+@using XProject.Web
+@using XProject.Web.Infrastructure;
+@{
+    var countryRepository = DependencyHelper.GetService<IGeneralRepository<XCountry>>();
+    var listCountry = countryRepository.GetIQueryableItems().Where(x => x.IsLangauge == true && x.Active==1).ToList();
+    var lang = "";
+    var menuRepository = DependencyHelper.GetService<IGeneralRepository<XMenu>>();
+    var httpCookie = Request.Cookies["Language"];
+    if (httpCookie != null)
+    {
+        lang = httpCookie.Value;
+    }
+    else
+    {
+        lang = ConfigurationManager.AppSettings["Culture"];
+    }
+    var listMenu = menuRepository.GetIQueryableItems().Where(x => x.CodeLanguage == lang);
+}
+
+<div id="menu_mobile" class="mobile_only hidden has_transition_1500 transform_all">
+    <div id="menu_mobile_scroller" class="has_transition_1000">
+
+        <div class="first_panel">
+            <div class="upper">
+                <a class="no_link phone_ico"  href="tel:+84931801313">
+                    <img src="~/Template/images/icon-keep.png" width="25"/>
+                </a>
+                <p id="" class="menu_small_button smaller only">
+                    @{
+                        var menu = "";
+                        for (int i = 0; i < listCountry.Count(); i++)
+                        {
+                            var l = "";
+                            l = i==0 ? "EN" : "VI";
+                            menu += "<a data-language=\"" + listCountry[i].Code + "\" class=\""+l + " _1 btn-language\">" + (listCountry[i].Code.Split('-')[1] == "GB" ? "EN" : listCountry[i].Code.Split('-')[1]) + "</a>";
+                            if (i < listCountry.Count() - 1)
+                            {
+                                menu = menu + " | ";
+
+                            }
+                        }
+                        @Html.Raw(menu) 
+                    }
+                   
+                </p>
+            </div>
+            <div class="center">
+
+                @foreach (var item in listMenu.Where(x => x.IsParent == 0 && x.ShowHomeMenu == 1).ToList())
+                {
+                    <a href="@(!string.IsNullOrEmpty(item.LinkMenu)?item.LinkMenu:Url.Action("ListCategoy","Home",new {id=item.Name.UrlFrendly()+"-"+item.CurrentId}))" class="menu_small_button smaller">@item.Name</a>
+                }
+               
+                <div id="chapters">
+
+                    @{
+                        var listMenuCategory = listMenu.Where(x => x.IdParentMenu == 0 && x.IsCategoryMenu == 1).OrderBy(x => x.Order).ToList();
+                        var index = 1;
+
+                    }
+                    @foreach (var item in listMenuCategory)
+                    {
+                        <div class="chapter">
+                            <div class="par_number has_transition_800">@{
+                                switch (index)
+                                {
+                                    case 1:
+                                        @("I")
+                                        break;
+                                    case 2:
+                                        @("II")
+                                        break;
+                                    case 3:
+                                        @("III")
+                                        break;
+                                    case 4:
+                                        @("IV")
+                                        break;
+                                    case 5:
+                                        @("V")
+                                        break;
+                                    case 6:
+                                        @("VI")
+                                        break;
+                                    case 7:
+                                        @("VII")
+                                        break;
+                                    case 8:
+                                        @("VIII")
+                                        break;
+                                }
+                            }.</div>
+                            <div class="menu_title has_transition_800">@item.Name</div>
+                        </div>
+                        index++;
+                    }
+
+
+                </div>
+            </div>
+            <div class="lower">
+                <div id="mobile_socials">
+                  
+                    <a target="_blank" href="https://www.facebook.com/LamosPhotography/" class="social_ico">
+                        <img src="~/Template/images/fb.png">
+                    </a>
+                    <a target="_blank" href="" class="social_ico">
+                        <img src="~/Template/images/youtube.png">
+                    </a>
+                    <a target="_blank" href="https://www.instagram.com/lamosltd/" class="social_ico">
+                        <img src="~/Template/images/instagram.png">
+                    </a>
+                    <a target="_blank" href="https://www.pinterest.com/lamosltd1313/" class="social_ico">
+                        <img src="~/Template/images/pinterest.png">
+                    </a>
+                    <a target="_blank" href="" class="social_ico">
+                        <img src="~/Template/images/behance.png">
+                    </a>
+                </div>
+                <p class="copyright clCopyrightMobile" style="margin-bottom: 10px;">© Lamos Artistic Advertising 2019</p>
+            </div>
+        </div>
+        <div id="section_panels" class="has_transition_1500">
+        <div id="mobile_panels_container" class="has_transition_1500">
+            @{
+                var indexCh = 1;
+                var idName = "";
+                var listMenu1 = listMenuCategory.Take(8).OrderBy(x => x.Order).ToList();
+                foreach (var item in listMenu1)
+                {
+                    <div class="section_panel _@indexCh" ref="@item.Name">
+                        <div class="section_track has_transition_1000">
+                            <div class="chapter" style="min-height: 30px;">
+                                @{
+                                    var textNum = "";
+                                    switch (indexCh)
+                                    {
+                                        case 1:
+                                            textNum = "I";
+                                            break;
+                                        case 2:
+                                            textNum = "II";
+                                            break;
+                                        case 3:
+                                            textNum = "III";
+                                            break;
+                                        case 4:
+                                            textNum = "IV";
+                                            break;
+                                        case 5:
+                                            textNum = "V";
+                                            break;
+                                        case 6:
+                                            textNum = "VI";
+                                            break;
+                                        case 7:
+                                            textNum = "VII";
+                                            break;
+                                        case 8:
+                                            textNum = "VIII";
+                                            break;
+                                    }
+                                }
+                                <p class="has_transition_800" style="margin-top: 2px;">
+                                   @(textNum).
+                                </p>
+                                <div class="has_transition_800" style="padding-right: 50px;display: flex;">@item.Name
+                                
+                                </div>
+                                <a class="no_link phone_ico-top"  href="tel:+84931801313">
+                                    <img src="~/Template/images/icon-keep.png" width="25" />
+                                </a>
+                            </div>
+                            <div class="tracking">
+                                <div class="track"></div>
+                                <div class="has_transition_800"></div>
+                            </div>
+                        </div>
+                        <img class="text_shadow_upper no_opacity has_transition_800" src="~/Template/images/text_shadow_upper.png" />
+
+                      
+                        <div class="paragraphs">
+                            <div class="paragraph_container has_transition_1000">
+                                @{
+                                    var listMenuChildCategory = listMenu.Where(x => x.IsCategoryMenu == 1 && x.IdParentMenu == item.CurrentId).OrderBy(x=>x.Order).ToList();
+
+                                    foreach (var itemChild in listMenuChildCategory)
+                                    {
+                                        if (itemChild.Order == 1)
+                                        {
+                                            <a href="@(!string.IsNullOrEmpty(item.LinkMenu) ? item.LinkMenu : Url.Action("ListCategoy", "Home", new {id = item.Name.UrlFrendly() + "-" + item.CurrentId}))" class="menu_titles">
+                                                <div class="menu_title has_transition_800" style="width: 100%">@(itemChild.Order). @itemChild.Name</div>
+                                                <h3 class="menu_subtitle has_transition_800" style="width: 100%">@itemChild.ShortDescription</h3>
+                                                <div class="underline has_transition_600_inout"></div>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            if (itemChild.Active == 0)
+                                            {
+                                                <a href="@(!string.IsNullOrEmpty(item.LinkMenu) ? item.LinkMenu : Url.Action("ListCategoy", "Home", new {id = item.Name.UrlFrendly() + "-" + item.CurrentId}))" class="menu_titles">
+                                                    <div class="menu_title has_transition_800" style="width: 100%">@(itemChild.Order). @itemChild.Name</div>
+                                                    <h3 class="menu_subtitle has_transition_800" style="width: 100%">@itemChild.ShortDescription</h3>
+                                                    <div class="underline has_transition_600_inout"></div>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@(!string.IsNullOrEmpty(itemChild.LinkMenu) ? itemChild.LinkMenu : Url.Action("DetailCategoy", "Home", new {id = itemChild.Name.UrlFrendly() + "-" + itemChild.CurrentId}))" class="menu_titles">
+                                                    <div class="menu_title has_transition_800" style="width: 100%">@(itemChild.Order). @itemChild.Name</div>
+                                                    <h3 class="menu_subtitle has_transition_800" style="width: 100%">@itemChild.ShortDescription</h3>
+                                                    <div class="underline has_transition_600_inout"></div>
+                                                </a>
+                                            }
+
+                                        }
+
+                                    }
+
+                                }
+                            </div>
+                        </div>
+                        <div class="lower">
+                            <div class="pic">
+                                @{
+                                    var img = item.UrlImage != null ? (ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 853)) : "/Template/images/hotel_menupic.jpg";
+                                }
+                                <img class="full_width" src="@img"/>
+                            </div>
+                            @{
+                                var listProjects1 = menuRepository.GetIQueryableItems().OrderBy(x=>x.Order).FirstOrDefault(x => x.Order > item.Order && x.IdParentMenu== 0 && x.IdParentMenu == 0 && x.IsCategoryMenu == 1 && x.CodeLanguage==lang);
+                                if (listProjects1 != null)
+                                {
+                                    <div class="next_chapter menu_small_button smaller" style="display: inline;">
+
+                                        <div style="display: inline">@{
+                                                                         switch (listProjects1.Order)
+                                                                         {
+                                                                             case 1:
+                                                                                 @("I")
+                                                                                 break;
+                                                                             case 2:
+                                                                                 @("II")
+                                                                                 break;
+                                                                             case 3:
+                                                                                 @("III")
+                                                                                 break;
+                                                                             case 4:
+                                                                                 @("IV")
+                                                                                 break;
+                                                                             case 5:
+                                                                                 @("V")
+                                                                                 break;
+                                                                             case 6:
+                                                                                 @("VI")
+                                                                                 break;
+                                                                             case 7:
+                                                                                 @("VII")
+                                                                                 break;
+                                                                             case 8:
+                                                                                 @("VIII")
+                                                                                 break;
+                                                                         }
+                                                                     }
+                                            . @listProjects1.Name </div>
+                                        <img style="position: absolute;right: 0;bottom: 30px;" src="https://lamos.vn/Template/images/right_arrow.png" />
+                                    </div>
+                                   
+                                            }
+                                            else
+                                            {
+                                                <p style="pointer-events: none;" class="next_chapter menu_small_button smaller">
+                                                
+                                                   <img src="https://lamos.vn/Template/images/left_arrow.png" />&nbsp; Swipe Back
+                                                </p>
+                                                        }
+
+                            }
+                           
+                        </div>
+                    </div>
+
+
+            
+                 indexCh++;
+                }
+            }
+
+
+      
+      
+        </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "04a38b74-1aa3-45cd-819b-bde1bb41bd99": {
+      "ProjectGuid": "04a38b74-1aa3-45cd-819b-bde1bb41bd99",
+      "DisplayName": "XProject.Web",
+      "ColorIndex": 0
+    },
+    "263d721c-c33d-4283-8610-565383893e9c": {
+      "ProjectGuid": "263d721c-c33d-4283-8610-565383893e9c",
+      "DisplayName": "HtmlOptimizerMvc4",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

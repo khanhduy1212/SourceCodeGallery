@@ -1,0 +1,182 @@
+﻿.imgDisplay {
+    margin-bottom: 5px;
+}
+
+.input-validation-error {
+    border-color: #f2a696 !important;
+    color: #D68273 !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.field-validation-error {
+    color: #D16E6C;
+}
+
+.btn-removeItem {
+    background: url("/Areas/Admin/Display/images/remove_dynamic.png");
+    width: 16px !important;
+    height: 16px !important;
+    display: block;
+    float: left;
+    margin: 3px 7px 0 0;
+    border: 0;
+}
+
+#dvLoading {
+    /*background: rgba(0,0,0,0.5) url(/Content/img/ajax-loading.svg) no-repeat center center;*/
+    background: rgba(0,0,0,0.5) no-repeat center center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999999999;
+}
+
+.cssload-container {
+    width: 100%;
+    height: 88px;
+    text-align: center;
+}
+
+.cssload-double-torus {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto;
+    border: 7px double;
+    border-radius: 50%;
+    border-color: transparent rgba(255,255,255,0.91) rgba(255,255,255,0.92);
+    animation: cssload-spin 690ms infinite linear;
+    -o-animation: cssload-spin 690ms infinite linear;
+    -ms-animation: cssload-spin 690ms infinite linear;
+    -webkit-animation: cssload-spin 690ms infinite linear;
+    -moz-animation: cssload-spin 690ms infinite linear;
+}
+
+
+
+@keyframes cssload-spin {
+    100% {
+        transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes cssload-spin {
+    100% {
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-ms-keyframes cssload-spin {
+    100% {
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes cssload-spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes cssload-spin {
+    100% {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.title-dialog {
+    position: relative;
+    margin-top: -50px;
+    margin-left: -50px;
+    margin-right: -50px;
+    padding: 15px 20px;
+    background: #F5F5F5;
+    margin-bottom: 20px;
+    border: 1px solid #DDDDDD;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.ace-thumbnails > li {
+    border: 0;
+}
+
+.colorinput {
+    float: left;
+}
+
+.colorview {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #cecece;
+    float: left;
+    margin-left: 10px;
+}
+
+.datepicker td, .datepicker th {
+    cursor: pointer;
+}
+
+.required {
+    color: red;
+}
+
+
+.select2-container--default .select2-selection .select2-selection__clear {
+    right: 20px;
+    top: 0px;
+}
+
+.select2-container--default .select2-selection.select2-selection--multiple .select2-selection__clear {
+    right: 0;
+}
+
+.widget-body .wysiwyg-editor {
+    border-width: 1px;
+}
+
+.sidebar+.main-content {
+    margin-left: 200px;
+}
+
+.sidebar {
+    width: 200px;
+}
+
+.input-group-addon {
+    cursor: pointer;
+}
+
+.datepicker-months .month, .datepicker-years .year {
+    padding: 10px;
+}
+
+.anphaletters {
+        float: right;
+        margin: 10px 0;
+    }
+    .anphaletters span {
+        padding: 0px 5px;
+        color: #015ba7;
+        margin: 0;
+        width: 20px;
+        height: 20px;
+		cursor:pointer;
+    }
+    .anphaletters span:not(:last-child) {
+        border-right:  1px solid #ddd;
+    }
+    .anphaletters span:hover {
+        background: #e0f0f5;
+    }
+    .anphaletters span.active {
+        background: #c6e1ff;
+        color: #000;
+    }

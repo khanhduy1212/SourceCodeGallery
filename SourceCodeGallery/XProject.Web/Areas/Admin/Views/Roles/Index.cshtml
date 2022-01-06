@@ -1,0 +1,141 @@
+﻿@using XProject.Domain.Entities
+@using Resources
+@model IEnumerable<Role>
+@{
+    ViewBag.Title = Resource.RolesManagement;
+}
+
+
+
+<div class="page-header">
+    <h1>
+        @ViewBag.Title
+    </h1>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="clearfix">
+            <div class="pull-right tableTools-container">
+                <div class="dt-buttons btn-overlap btn-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @if (CurrentUser.HasPermission("Roles", "Create"))
+                            {
+                                <a href="@Url.Action("Create")" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                                    <span>
+                                        Create New
+                                    </span>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <table class="table" id="roles-table">
+                <thead>
+                    <tr>
+                        <th>@Resource.Name</th>
+                        <th>@Resource.RoleLevel</th>
+                        <th>@Resource.Description</th>
+                        <th class="no-sort"></th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var r in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(r.Name, "Edit", new { id = r.ID })
+                            </td>
+                            <td>@r.RoleLevel.DisplayName</td>
+                            <td>@r.Description</td>
+                            <td class="text-center" >
+
+                                <div class="hidden-sm hidden-xs btn-group">
+                                    
+                                    <a class="btn btn-xs btn-info" href="@Url.Action("Edit", new {id = r.ID})">
+                                        <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                    </a>
+
+                                    <a class="btn btn-xs btn-danger" href="#" data-action="delete" data-id="@(r.ID)">
+                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                    </a>
+                                </div>
+                                <div class="hidden-md hidden-lg">
+                                    <div class="inline pos-rel">
+                                        <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                            <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                            
+                                            <li>
+                                                <a href="@Url.Action("Edit", new {id = r.ID})" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                    <span class="green">
+                                                        <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#" data-action="delete" data-id="@(r.ID)" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                    <span class="red">
+                                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                              
+                            </td>
+                          
+                         
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+            @*@Html.Bootstrap().ActionLinkButton("Create Role", "Create").Style(ButtonStyle.Success)*@
+            @Html.Script(
+            @<script>
+
+                var $roleTable = $('#roles-table').dataTable({
+                    columnDefs: [
+      { targets: 'no-sort', orderable: false }
+                    ]
+                });
+
+                $(document).on('click', '[data-action="delete"]', function (e) {
+                    e.preventDefault();
+                    var self = $(this);
+                    bootbox.confirm("@Resource.ConfirmDelete", function (isOK) {
+                        if (isOK) {
+                            $.ajax({
+                                url: '@Url.Action("Delete", "Roles")/' + self.data('id'),
+                                type: 'POST',
+                                success: function () {
+                                    $roleTable.fnDeleteRow(self.closest('tr')[0]);
+                                },
+                                error: function () {
+                                    bootbox.alert('@Resource.DeleteFailed');
+                                }
+                            });
+                        }
+                    });
+                });
+            </script>
+                      )

@@ -1,0 +1,287 @@
+﻿@using System.Xml
+@using Humanizer
+
+@using OfficeOpenXml.FormulaParsing.Excel.Functions.RefAndLookup
+@using Resources
+@model XProject.Web.Areas.Admin.Models.ResourceViewModel
+@{
+    ViewBag.Title = Resource.EditResource;
+}
+@if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+{
+    using (Html.Bootstrap().Begin(new Alert().Style(AlertColor.Success).Closeable()))
+    {
+        <text>@ViewBag.Message</text>
+    }
+}
+
+
+
+
+<div class="page-header">
+    <h1>
+        @ViewBag.Title
+    </h1>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="clearfix">
+            <div class="pull-right tableTools-container">
+                <div class="dt-buttons btn-overlap btn-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @if (CurrentUser.HasPermission("Roles", "Create"))
+                            {
+                                <a href="@Url.Action("Create")" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-bold" tabindex="0" aria-controls="dynamic-table" data-original-title="" title="">
+                                    <span>
+                                        Create New
+                                    </span>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th>@Resource.Name</th>
+                        <th>@Resource.Code</th>
+                        <th style="width: 75px"></th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Languages)
+                    {
+                        var icon = item.Value.ToLower();
+                        var index = item.Value.LastIndexOf("-");
+                        if (index > 0 && index < icon.Length)
+                        {
+                            icon = icon.Substring(index + 1, icon.Length - index - 1);
+                        }
+                        <tr>
+                            <td>
+                                <img class="flag-icon flag-icon-@icon" style="width: 25px;height: 20px;" />
+                                @item.DisplayName
+                            </td>
+                            <td>@item.Value</td>
+
+
+
+                            <td class="text-center">
+
+                                <div class="hidden-sm hidden-xs btn-group">
+
+                                   
+
+                                    <a class="btn btn-xs btn-danger" href="#" data-action="delete" data-id="@(item.ID)">
+                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                    </a>
+                                </div>
+                                <div class="hidden-md hidden-lg">
+                                    <div class="inline pos-rel">
+                                        <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                            <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+
+                                           
+                                            <li>
+                                                <a href="#" data-action="delete" data-id="@(item.ID)" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                    <span class="red">
+                                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                            </td>
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @*@using (Html.BeginForm())
+            {*@
+            <div id="edit_resource_box">
+                @*@Html.Partial("Edit", Model)*@
+
+                <table id="Resource_table" class="table table-hovered">
+                    <thead>
+                        <tr>
+                            <th>@Resource.OriginalName</th>
+                            @foreach (var lang in Model.Languages)
+                            {
+                                <th>@lang.DisplayName</th>
+                            }
+                            @*<th>@Resource.Action</th>*@
+                        </tr>
+                    </thead>
+                    @*<tbody>
+                        @Html.CollectionEditorFor(m => m.ResourceModels)
+                    </tbody>*@
+                </table>
+            </div>
+            <br />
+            @*using (Html.Bootstrap().Begin(new FormActions()))
+            {*@
+            <div class="clearfix form-actions">
+                <div class="col-md-offset-5 col-md-7">
+                 
+                    @Html.Bootstrap().SubmitButton().Id("submitall").Text(Resource.Update).PrependIcon("<i class='ace-icon fa fa-check bigger-110'></i>").Style(ButtonStyle.Info)
+
+                </div>
+            </div>
+            
+            @*}*@
+            @*}*@
+        </div>
+
+    </div>
+</div>
+
+
+
+@Html.Script(
+    @<script>
+        $('#table').on('click', '[data-action="delete"]', function (e) {
+            e.preventDefault();
+            var self = $(this);
+            bootbox.confirm("@Resource.ConfirmDelete", function (isOK) {
+                if (isOK) {
+                    $.ajax({
+                        url: '@Url.Action("Delete", "Resource")/' + self.data('id'),
+                        type: 'POST',
+                        success: function () {
+                            window.location.reload();
+                        },
+                        error: function () {
+                            bootbox.alert('@Resource.DeleteFailed');
+                        }
+                    });
+                }
+            });
+        });
+
+        var $table = $('#Resource_table');
+        $table.dataTable({
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "processing": true, // for show progress bar
+            "serverSide": true, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            //"stateSave": true,
+            "ajax": {
+                "url": "@Url.Action("AjaxGetResourcesIndexView", "Resource")",
+                "type": "POST",
+                "datatype": "json",
+            },
+            "columns": [
+                { "data": "Code", "name": "Code", "orderable": false },
+                @foreach (var lang in Model.Languages)
+                {
+<text>
+              { "data": "Code", "name": "Code", "orderable": false },
+</text>
+                }
+                //{ "data": "Code", "name": "Code", "orderable": false }
+            ],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                $(nRow).find('td:eq(0)').html(aData["Code"]);
+                var items = aData["Items"];
+                for (var i = 0; i < items.length; i++) {
+                    var inputs = '<input name="IsChange" type="hidden" value="false"/>';
+                    inputs += '<input name="Code" type="hidden" value="' + items[i]["Code"] + '"/>';
+                    inputs += '<input name="LanguageCode" type="hidden" value="' + items[i]["LanguageCode"] + '"/>';
+                    inputs += '<input class="form-control text nouc input-medium valid" name="Description" type="text" value="' + items[i]["Description"] + '"/>';
+                    //'<textarea class="form-control nouc" style="resize: vertical;" name="Description">' + items[i]["Description"] + '</textarea>';
+                    $(nRow).find('td:eq(' + (i + 1) + ')').html(inputs);
+                }
+                //$(nRow).find('td:eq(' + (items.length + 1) + ')').html('');
+            },
+            "fnDrawCallback": function () {
+                btnSubmitAll.attr('disabled', true);
+            },
+            "iDisplayLength": 10,
+            "aaSorting": [[0, "desc"]],
+        });
+
+        var editBox = $("#edit_resource_box");
+        var loader = $("#loader_Resource");
+        var btnSubmitAll = $("#submitall");
+        btnSubmitAll.attr('disabled', true);
+
+        $table.on('click', '[data-action="save"]', function (e) {
+            e.preventDefault();
+            var inputs = $(this).parent().parent().find("input[type='text']");
+            var data = new Array();
+            $.each(inputs, function (index, value) {
+                data.push($(value).val());
+            });
+            var json = JSON.stringify({ "langs": data, "code": $(this).data('rescode') });
+            $.ajax({
+                url: '@Url.Action("EditResource", "Resource")',
+                type: 'POST',
+                data: json,
+                contentType: 'application/json; charset=utf-8',
+                success: function (s) {
+                    bootbox.alert(s);
+                },
+                error: function () {
+                    bootbox.alert('@Resource.Error');
+                }
+            });
+        });
+
+        $(document).on('change', ".text", function () {
+            $(this).parent().find("input[name*='IsChange']").val(true);
+            btnSubmitAll.removeAttr('disabled');
+        });
+
+        btnSubmitAll.on('click', function (e) {
+            e.preventDefault();
+            bootbox.confirm("@Resource.ConfirmSave", function (isOK) {
+                if (isOK) {
+                    var inputs = $table.find("input[name='IsChange']");
+                    var data = new Array();
+                    $.each(inputs, function (index, item) {
+                        if ($.parseJSON($(item).val())) {
+                            var description = $(item).parent().find("input[name='Description']");
+                            var langCode = $(item).parent().find("input[name='LanguageCode']");
+                            var code = $(item).parent().find("input[name='Code']");
+                            data.push({
+                                "Description": description.val(),
+                                "LanguageCode": langCode.val(),
+                                "Code": code.val(),
+                            });
+                        }
+                    });
+                    var json = JSON.stringify(data);
+                    $.ajax({
+                        url: '@Url.Action("EditAllResource", "Resource")',
+                        type: 'POST',
+                        data: json,
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (s) {
+                            bootbox.alert(s);
+                        },
+                        error: function () {
+                            bootbox.alert('@Resource.Error');
+                        }
+                    });
+                    //btnSubmitAll.parents("form").submit();
+                }
+            });
+        });
+    </script>)
