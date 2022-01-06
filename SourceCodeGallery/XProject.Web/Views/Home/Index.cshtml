@@ -20,7 +20,8 @@
     }
     var listContent = contentRepository.GetIQueryableItems().Where(x => x.Active == 1 && x.CodeLanguage == lang);
 }
-
+<script src="~/Template/js/app.js"></script>
+<script src="~/Template/js/particles.js"></script>
 <div id="main">
     <div id="main_scroller" class="scroll_transition">
         <div id="content" data-current="index" data-controller="page">
