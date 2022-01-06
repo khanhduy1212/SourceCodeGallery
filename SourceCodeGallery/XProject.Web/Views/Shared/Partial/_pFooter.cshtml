@@ -19,10 +19,106 @@
     }
     var listPartner = partnerRepository.GetIQueryableItems().Where(x => x.Active == 1 && x.CodeLanguage == lang);
 }
+
+<script src="~/Template/js/app.js"></script>
 <div id="footer" class="mobile_hidden">
-    <div class="sitemap_button">
-        <div class="sitemap_block flexed">
-            <div id="socials">
+        <div class="sitemap_button">
+            <div class="sitemap_block flexed">
+                <div id="socials">
+                    <div id="social_container">
+                        <a target="_blank" href="https://www.facebook.com/LamosPhotography/" class="social_ico">
+                            <img src="~/Template/images/fb.png">
+                        </a>
+                        <a target="_blank" href="" class="social_ico">
+                            <img src="~/Template/images/youtube.png">
+                        </a>
+                        <a target="_blank" href="https://www.instagram.com/lamosltd/" class="social_ico">
+                            <img src="~/Template/images/instagram.png">
+                        </a>
+                        <a target="_blank" href="https://www.pinterest.com/lamosltd1313/" class="social_ico">
+                            <img src="~/Template/images/pinterest.png">
+                        </a>
+                        <a target="_blank" href="" class="social_ico">
+                            <img src="~/Template/images/behance.png">
+                        </a>
+                    </div>
+
+                </div>
+                <div class="logo_plus">
+                    <img src="~/Template/images/logo-footer.png" style="width: 125px;">
+                </div>
+
+            </div>
+
+        </div>
+        <div id="footer_panel">
+
+            <div id="footer_base">
+                <div class="divFotter"> </div>
+
+                <img src="~/Template/images/footer_base.png" height="480">
+
+            <div id="footer_base_content">
+                <div class="no_overflow footer_logo">
+                    <img src="~/Template/images/logo2.png">
+                </div>
+
+            </div>
+                <iframe height="480"
+                        width="100%"
+                        style="border:0"
+                        loading="lazy"
+                        allowfullscreen
+                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDzg5o9TxsFDL5OXSAnocfaS1OK4aDOkco
+        &q=Space+Needle,Seattle+WA">
+                </iframe>
+                <iframe width="100%" height="850" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=270%2F2%20Nguy%E1%BB%85n%20V%C4%83n%20%C4%90%E1%BA%ADu%2C%20Ph%C6%B0%E1%BB%9Dng%2011%2C%20B%C3%ACnh%20Th%E1%BA%A1nh%2C%20Ho%20Chi%20Minh%20City%2C%20Vietnam&key=AIzaSyDzg5o9TxsFDL5OXSAnocfaS1OK4aDOkco"></iframe>
+
+            </div>
+        </div>
+    </div>
+    <div id="partners" class="mobile_hidden">
+        <div class="footer_text">
+            <div class="social-footer">
+                <p><i class="fa fa-map-marker-alt"></i><span class="address">Ho Chi Minh City, Viet Nam</span></p>
+                <p><i class="fa fa-mobile-alt"></i><a href="tel:(+84) 931.80.1313"><span> (+84) 931.80.1313</span></a></p>
+                <p>
+                    <i class="fa fa-envelope"></i><a style="padding-top: 4px;" href="mailto:service@lamos.vn">service@lamos.vn</a>
+                </p>
+                <p><i class="fa fa-map"></i><a style="cursor: pointer; padding-top: 7px;" id="myBtn">Open Map</a></p>
+            </div>
+            <div class="email-footer">
+                <input type="text" class="txtEmail pl_YourEmail" placeholder="Your email"/>
+                <a class="langSubscribe btnSubscribe">Subscribe</a>
+                <p class="success langRegistSuccess cushidden">Đăng ký thành công</p>
+                <p class="error langEmailEmpty cushidden">Email không được rỗng</p>
+                <p class="error langEmailFormat cushidden">Email Không đúng định dạng </p>
+                <p class="error langEmailRegisted cushidden">Email đã tồn tại</p>
+            </div>
+
+        </div>
+        <div class="owl-carousel" style="padding-top: 40px;">
+
+            @foreach (var item in listPartner.OrderBy(x=>x.Order).ToList())
+            {
+                <div class="item">
+
+                    <img alt="@item.Name" src="@(!string.IsNullOrEmpty(item.UrlImage) ?(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 240100)):"" )" />
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+    <div class="no_overflow copy mobile_hidden">
+        <p class="clCopyright"><span style="font-family: Geometria">©</span> Copyright 2019 Lamos Artistic Advertising <span style="opacity: 0.5">|</span> All rights reserved
+        </p>
+    </div>
+    <div id="footer_mobile" class="mobile_only">
+        <div class="row">
+            <div id="socials_mobile">
+                <p class="desc_text langFollow">follow us</p>
                 <div id="social_container">
                     <a target="_blank" href="https://www.facebook.com/LamosPhotography/" class="social_ico">
                         <img src="~/Template/images/fb.png">
@@ -40,158 +136,65 @@
                         <img src="~/Template/images/behance.png">
                     </a>
                 </div>
+            </div>
+            <div class="footer_logo">
+                <img src="~/Template/images/logo.png">
+            </div>
+            <div id="partners" class="mobile_only owl-carousel">
+
+                @foreach (var item in listPartner.OrderBy(x => x.Order).ToList())
+                {
+
+
+                    <img alt="@item.Name" src="@(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 853))" />
+
+
+                }
 
             </div>
-            <div class="logo_plus">
-                <img src="~/Template/images/logo-footer.png" style="width: 125px;">
+            <div class="footer_text">
+
+
+                <div class="social-footer">
+                    <p><i class="fa fa-map-marker-alt"></i><span>Ho Chi Minh City, Viet Nam</span></p>
+                    <p><i class="fa fa-mobile-alt"></i><a href="tel:(+84) 931.80.1313"><span> (+84) 931.80.1313</span></a></p>
+                    <p><i class="fa fa-envelope"></i><a href="mailto:service@lamos.vn">service@lamos.vn</a></p>
+                    <p><i class="fa fa-map"></i><a style="cursor: pointer; padding-top: 0px;" id="myBtn">Open Map</a></p>
+                </div>
+                <div class="email-footer">
+                    <input type="text" class="txtEmail pl_YourEmail" placeholder="Your email" />
+                    <a class="langSubscribe btnSubscribe">Subscribe</a>
+                    <p class="success langRegistSuccess cushidden">Đăng ký thành công</p>
+                    <p class="error langEmailEmpty cushidden">Email do not empty</p>
+                    <p class="error langEmailFormat cushidden">Email Không đúng định dạng </p>
+                    <p class="error langEmailRegisted cushidden">Email đã tồn tại</p>
+                </div>
             </div>
+            <a target="_blank" href="" class="privacy_link">privacy policy</a>
+
+            <p class="mobile_copy clCopyrightMobile"><span style="font-family: Geometria">©</span> Copyright 2019 Lamos Artistic Advertising<span class="smaller">All rights reserved</span></p>
 
         </div>
-
     </div>
-    <div id="footer_panel">
-
-        <div id="footer_base">
-            <div class="divFotter"> </div>
-
-            @*<img src="~/Template/images/footer_base.png" height="480">
-
-        <div id="footer_base_content">
-            <div class="no_overflow footer_logo">
-                <img src="~/Template/images/logo2.png">
-            </div>
-
-        </div>*@
-            @*<iframe height="480"
-                    width="100%"
-                    style="border:0"
-                    loading="lazy"
-                    allowfullscreen
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDzg5o9TxsFDL5OXSAnocfaS1OK4aDOkco
-    &q=Space+Needle,Seattle+WA">
-            </iframe>*@
-            <iframe width="100%" height="850" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=270%2F2%20Nguy%E1%BB%85n%20V%C4%83n%20%C4%90%E1%BA%ADu%2C%20Ph%C6%B0%E1%BB%9Dng%2011%2C%20B%C3%ACnh%20Th%E1%BA%A1nh%2C%20Ho%20Chi%20Minh%20City%2C%20Vietnam&key=AIzaSyDzg5o9TxsFDL5OXSAnocfaS1OK4aDOkco"></iframe>
-
-        </div>
+    <div id="scroll_down" class="has_transition_1000 hidden-xs mobile_hidden">
+        <div class="mouse mouse-bottom" id="btnBackToTop"></div>
     </div>
-</div>
-<div id="partners" class="mobile_hidden">
-    <div class="footer_text">
-        <div class="social-footer">
-            <p><i class="fa fa-map-marker-alt"></i><span class="address">Ho Chi Minh City, Viet Nam</span></p>
-            <p><i class="fa fa-mobile-alt"></i><a href="tel:(+84) 931.80.1313"><span> (+84) 931.80.1313</span></a></p>
-            <p>
-                <i class="fa fa-envelope"></i><a style="padding-top: 4px;" href="mailto:service@lamos.vn">service@lamos.vn</a>
-            </p>
-            @*<p><i class="fa fa-map"></i><a style="cursor: pointer; padding-top: 7px;" id="myBtn">Open Map</a></p>*@
-        </div>
-        <div class="email-footer">
-            <input type="text" class="txtEmail pl_YourEmail" placeholder="Your email"/>
-            <a class="langSubscribe btnSubscribe">Subscribe</a>
-            <p class="success langRegistSuccess cushidden">Đăng ký thành công</p>
-            <p class="error langEmailEmpty cushidden">Email không được rỗng</p>
-            <p class="error langEmailFormat cushidden">Email Không đúng định dạng </p>
-            <p class="error langEmailRegisted cushidden">Email đã tồn tại</p>
-        </div>
-       
-    </div>
-    <div class="owl-carousel" style="padding-top: 40px;">
-
-        @foreach (var item in listPartner.OrderBy(x=>x.Order).ToList())
-        {
-            <div class="item">
-
-                <img alt="@item.Name" src="@(!string.IsNullOrEmpty(item.UrlImage) ?(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 240100)):"" )" />
-            </div>
-               
-        }
-
-    </div>
-   
-</div>
-<div class="no_overflow copy mobile_hidden">
-    <p class="clCopyright"><span style="font-family: Geometria">©</span> Copyright 2019 Lamos Artistic Advertising <span style="opacity: 0.5">|</span> All rights reserved
-    </p>
-</div>
-<div id="footer_mobile" class="mobile_only">
-    <div class="row">
-        <div id="socials_mobile">
-            <p class="desc_text langFollow">follow us</p>
-            <div id="social_container">
-                <a target="_blank" href="https://www.facebook.com/LamosPhotography/" class="social_ico">
-                    <img src="~/Template/images/fb.png">
-                </a>
-                <a target="_blank" href="" class="social_ico">
-                    <img src="~/Template/images/youtube.png">
-                </a>
-                <a target="_blank" href="https://www.instagram.com/lamosltd/" class="social_ico">
-                    <img src="~/Template/images/instagram.png">
-                </a>
-                <a target="_blank" href="https://www.pinterest.com/lamosltd1313/" class="social_ico">
-                    <img src="~/Template/images/pinterest.png">
-                </a>
-                <a target="_blank" href="" class="social_ico">
-                    <img src="~/Template/images/behance.png">
-                </a>
-            </div>
-        </div>
-        <div class="footer_logo">
-            <img src="~/Template/images/logo.png">
-        </div>
-        <div id="partners" class="mobile_only owl-carousel">
-
-            @foreach (var item in listPartner.OrderBy(x => x.Order).ToList())
-            {
-
-
-                <img alt="@item.Name" src="@(ConfigurationManager.AppSettings["UrlImage"] + item.UrlImage.Split('_')[0] + "/" + String.Format(item.UrlImage, 853))" />
-              
-                 
-            }
-
-        </div>
-        <div class="footer_text">
-
-
-            <div class="social-footer">
-                <p><i class="fa fa-map-marker-alt"></i><span>Ho Chi Minh City, Viet Nam</span></p>
-                <p><i class="fa fa-mobile-alt"></i><a href="tel:(+84) 931.80.1313"><span> (+84) 931.80.1313</span></a></p>
-                <p><i class="fa fa-envelope"></i><a href="mailto:service@lamos.vn">service@lamos.vn</a></p>
-                @*<p><i class="fa fa-map"></i><a style="cursor: pointer; padding-top: 0px;" id="myBtn">Open Map</a></p>*@
-            </div>
-            <div class="email-footer">
-                <input type="text" class="txtEmail pl_YourEmail" placeholder="Your email" />
-                <a class="langSubscribe btnSubscribe">Subscribe</a>
-                <p class="success langRegistSuccess cushidden">Đăng ký thành công</p>
-                <p class="error langEmailEmpty cushidden">Email do not empty</p>
-                <p class="error langEmailFormat cushidden">Email Không đúng định dạng </p>
-                <p class="error langEmailRegisted cushidden">Email đã tồn tại</p>
-            </div>
-        </div>
-        @*<a target="_blank" href="" class="privacy_link">privacy policy</a>*@
-      
-        <p class="mobile_copy clCopyrightMobile"><span style="font-family: Geometria">©</span> Copyright 2019 Lamos Artistic Advertising<span class="smaller">All rights reserved</span></p>
-        
-    </div>
-</div>
-<div id="scroll_down" class="has_transition_1000 hidden-xs mobile_hidden">
-    <div class="mouse mouse-bottom" id="btnBackToTop"></div>
-</div>
 
 
 <style>
-  
+
     .footer_text p i {
-         margin-top: 5px;
-     }
+        margin-top: 5px;
+    }
+
     .footer_text a {
         font-size: 13px;
     }
+
     .footer_text p span {
         line-height: 20px;
         font-size: 13px;
         padding-top: 4px;
     }
-
 </style>
 

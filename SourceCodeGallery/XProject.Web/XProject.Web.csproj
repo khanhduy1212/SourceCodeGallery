@@ -3918,6 +3918,7 @@
     <Content Include="Template\images\white_right_arrow.png" />
     <Content Include="Template\images\wind_dir.png" />
     <Content Include="Template\images\wind_speed.png" />
+    <Content Include="Template\js\app.js" />
     <Content Include="Template\js\commons.js" />
     <Content Include="Template\js\CusWeb.js" />
     <Content Include="Template\js\gallery.js" />
@@ -3930,6 +3931,7 @@
     <Content Include="Template\js\packed.js" />
     <Content Include="Template\js\panels.js" />
     <Content Include="Template\js\panel_detail.js" />
+    <Content Include="Template\js\particles.js" />
     <Content Include="Template\js\plugins.js" />
     <Content Include="Template\js\weather.js" />
     <Content Include="Template\style\images\home\c2.png" />
